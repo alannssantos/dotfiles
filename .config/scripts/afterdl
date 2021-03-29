@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+echo " | Transmission | $(date '+%d/%m/%Y %H:%M:%S') | $TR_TORRENT_NAME | $TR_TORRENT_DIR |" >> ~/Flexget-Update.md

@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+CorP="#8ee269" # Cor Principal.
+CorF="#d3d0c8" # Cor de Fonts.
+CorB="#2d2d2d" # Cor de Background.
+CorA="#6699cc" # Cor janelas ativas.
+
+Path=$(dirname $(readlink -f $0))
+
+rofi -modi drun,window,finder:$Path/rofi-finder -width 80 -padding 10 -lines 20 -line-margin 0 -line-padding 1 -sidebar-mode -hide-scrollbar -separator-style none \
+-show drun \
+rofi -color-window "$CorB,$CorP,$CorP" \
+-color-normal "$CorB,$CorF,$CorB,$CorP,$CorB" \
+-color-active "$CorA, $CorB, $CorA, $CorA, $CorB" \
+-color-urgent "$CorB, $CorA, $CorB, $CorA, $CorB" \
+-font 'FiraSans 12' \
+-show-icons

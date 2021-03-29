@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+dolar=$(wget -qO- "https://dolarhoje.com/" \
+	| sed -r '/id="nacional"/!d;s/^.*id="nacional" value="(.*)"\/><\/span>.*$/R$ \1 💸/')
+
+echo "<txt>$dolar</txt>"
+echo "<tool>Dólar Hoje</tool>"

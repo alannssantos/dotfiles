@@ -1,0 +1,17 @@
+source config.mutt
+
+set editor = vim
+set timeout = "30"
+set mail_check = "60"
+
+# Folder hooks
+folder-hook 'conta.gmail.alann' 'source ~/.config/mutt/conta.gmail.alann'
+folder-hook 'conta.hotmail.alann' 'source ~/.config/mutt/conta.hotmail.alann'
+
+# Default account
+source ~/.config/mutt/conta.hotmail.alann
+
+# Macros for switching accounts
+
+macro index <F12> '<sync-mailbox><enter-command>source ~/.config/mutt/conta.gmail.alann<enter><change-folder>!<enter>'
+macro index <F11> '<sync-mailbox><enter-command>source ~/.config/mutt/conta.hotmail.alann<enter><change-folder>!<enter>'

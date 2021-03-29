@@ -1,0 +1,83 @@
+tasks:
+  # Remove torrent depois de Upar o dobro!
+  clean-transmission:
+    disable: [seen, seen_info_hash]
+    accept_all: yes
+    from_transmission:
+      only_complete: yes
+    if:
+      - transmission_ratio < 1.0: reject
+    transmission:
+      action: remove
+  # RSS
+  Mangas:
+    sequence:
+      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/22151 #Kanojo, Okarishimasu
+      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/22631 #Ijiranaide, Nagatoro-san
+      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/17910 #Kawaii Joushi wo Komarasetai
+      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/12714 #Boku no Hero Academia
+      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/35439 #1/10 no Hanayome
+      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/16411 #Enen no Shouboutai
+      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/16588 #Gleipnir
+      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/21048 #Jagaaaaaan
+      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/15016 #Black Clover
+      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/21040 #Parallel Paradise
+      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/32386 #Mato Seihei no Slave
+      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/24249 #A Story About Treating a Female Knight, Who Has Never Been Treated as a Woman, as a Woman
+      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/23941 #Berserk of Gluttony
+    accept_all: yes
+    exec: echo " | MangaDex | $(date '+%d/%m/%Y %H:%M:%S') | {{title}} | {{url}} |" >> ~/Flexget-Update.md ; gallery-dl {{url}} &
+  Animes:
+    sequence:
+      - rss: https://nyaa.si/?page=rss&q=%5BErai-raws%5D+Shingeki+no+Kyojin&c=0_0&f=2
+    regexp:
+      accept:
+        - (\[Multiple Subtitle\]|\[720p\]).*(\[Multiple Subtitle\]|\[720p\])
+    transmission:
+      host: localhost
+      port: 9091
+      username: ""
+      password: ""
+      path: "/media/Stronger/Emby/Animes/Shingeki no Kyojin"
+  Filmes:
+    sequence:
+      - rss: https://yts.mx/rss/F9/all/all/0/en
+      - rss: https://yts.mx/rss/black%20widow/all/all/0/en
+      - rss: https://yts.mx/rss/Dune/all/all/0/en
+      - rss: https://yts.mx/rss/A%20Quiet%20Place/all/all/0/en
+      - rss: https://yts.mx/rss/Venom:%20Let%20There%20Be%20Carnage/all/all/0/en
+      - rss: https://yts.mx/rss/Godzilla%20vs%20Kong/all/all/0/en
+      - rss: https://yts.mx/rss/Morbius/all/all/0/en
+      - rss: https://yts.mx/rss/Chaos%20Walking/all/all/0/en
+    regexp:
+      accept:
+        - (BluRay|WEB|1080p).*(BluRay|WEB|1080p)
+      reject:
+        - (3D|720p)
+    transmission:
+      host: localhost
+      port: 9091
+      username: ""
+      password: ""
+      path: /media/Stronger/Emby/Filmes
+  Series:
+    sequence:
+      - rss: https://showrss.info/show/651.rss #Westworld
+      - rss: https://showrss.info/show/1296.rss #Motherland: Fort Salem
+      - rss: https://showrss.info/show/1338.rss #Lovecraft Country
+      - rss: https://showrss.info/show/1183.rss #The Boys
+      - rss: https://showrss.info/show/810.rss #American Gods
+      - rss: https://showrss.info/show/1193.rss #Carnival Row
+      - rss: https://showrss.info/show/1388.rss #WandaVision
+      - rss: https://showrss.info/show/1401.rss #Superman & Lois
+    regexp:
+      accept:
+        - (1080p)
+      reject:
+        - (Repack|PROPER)
+    transmission:
+      host: localhost
+      port: 9091
+      username: ""
+      password: ""
+      path: /media/Stronger/Emby/Series

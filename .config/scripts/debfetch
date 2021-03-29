@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+# Styles...
+
+RCor="$(tput setaf 1)"
+bold="$(tput bold)"
+reset="$(tput sgr0)"
+
+Dpkg=$(command -v dpkg 1>/dev/null && dpkg-query --list | sed '/^ii /!d' | wc -l | sed 's/.*/ & \(dpkg\)/')
+Flatpak=$(command -v flatpak 1>/dev/null && flatpak list | sed '1d' | wc -l | sed 's/.*/, & \(flatpak\)/')
+Snap=$(command -v snap 1>/dev/null && snap list | sed '1d' | wc -l | sed 's/.*/, & \(snap\)/')
+
+# Include 'os-release' to grab Debian pretty name...
+
+. /etc/os-release
+
+# Main...
+
+clear
+
+echo "
+$RCor ⢀⣴⠾⠻⢶⣦⠀$reset ${bold}$PRETTY_NAME${reset}
+$RCor ⣾⠁⢠⠒⠀⣿⡁$reset ${bold}Kernel:${reset} $(uname -rm)
+$RCor ⢿⡄⠘⠷⠚⠋⠀$reset ${bold}Uptime:${reset} $(uptime -p | cut -d' ' -f2-)
+$RCor ⠈⠳⣄⠀⠀⠀⠀$reset ${bold}Packages:$reset$Dpkg$Flatpak$Snap${reset}"
+
+exit 0

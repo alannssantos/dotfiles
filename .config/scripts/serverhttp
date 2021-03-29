@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+Ip=$(hostname -I | sed 's/ $\|$/:8000/')
+Server="python -m SimpleHTTPServer"
+
+echo "$(tput bold)$(tput setaf 3)
+────────────────────────────────────
+$(tput bold)$(tput setaf 4)  Endereço Ip $(tput bold)$(tput setaf 1)$Ip$(tput bold)$(tput setaf 3)
+────────────────────────────────────
+$(tput bold)$(tput setaf 2)"
+
+$Server >/dev/null

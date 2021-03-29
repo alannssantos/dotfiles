@@ -1,0 +1,59 @@
+URxvt*font: xft:FiraCode Nerd Font Mono:size=11, \
+            xft:Inconsolata Nerd Font Mono:size=11, \
+            xft:DejaVuSansMono Nerd Font:size=11, \
+            xft:DroidSansMono Nerd Font:size=11, \
+            xft:FuraMono Nerd Font:size=11, \
+            xft:RobotoMono Nerd Font:size=11, \
+            xft:Noto Sans Mono:size=11, \
+            xft:Monospace:style=Medium:size=11
+URxvt.saveLines: 7000
+URxvt.scrollBar: false
+URxvt.depth: 32
+URxvt.background: [96]#2d2d2d
+
+XTerm*renderFont: true
+XTerm*faceName: xft:FiraCode Nerd Font Mono
+XTerm*faceSize: 11
+XTerm*utf8: 2
+XTerm*locale: true
+
+XTerm*foreground: #d3d0c8
+XTerm*background: #2d2d2d
+XTerm*cursorColor: #d3d0c8
+
+! special
+*.foreground:   #d3d0c8
+*.background:   #2d2d2d
+*.cursorColor:  #d3d0c8
+
+! black
+*.color0:       #2d2d2d
+*.color8:       #747369
+
+! red
+*.color1:       #f2777a
+*.color9:       #f2777a
+
+! green
+*.color2:       #99cc99
+*.color10:      #99cc99
+
+! yellow
+*.color3:       #ffcc66
+*.color11:      #ffcc66
+
+! blue
+*.color4:       #6699cc
+*.color12:      #6699cc
+
+! magenta
+*.color5:       #cc99cc
+*.color13:      #cc99cc
+
+! cyan
+*.color6:       #66cccc
+*.color14:      #66cccc
+
+! white
+*.color7:       #d3d0c8
+*.color15:      #f2f0ec

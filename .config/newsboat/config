@@ -1,0 +1,15 @@
+color listnormal            green default
+color listfocus             green default reverse bold
+color article               blue default
+color info                  green default bold  
+color listnormal_unread     magenta default
+color listfocus_unread      magenta default reverse bold
+
+refresh-on-startup yes
+reload-threads 42
+auto-reload yes
+reload-time 30
+swap-title-and-hints yes  # Like Mutt.
+
+macro m set browser "mpv %u > /dev/null &"; open-in-browser ; set browser "$BROWSER %u"
+macro n set browser "readable %u -p html-title,html-content > /tmp/readable.html&&lynx -image_links /tmp/readable.html"; open-in-browser

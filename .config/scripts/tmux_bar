@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+
+tmux_bar_sleep1() {
+# {{{ #### Update Package
+Update=$(apt list --upgradable 2>/dev/null | sed '/\//!d' | wc -l)
+[ "$Update" = 0 ] && echo -n "" || echo -n " #[fg=colour71]┃ #[fg=colour11]📦 Updates: $Update"
+#### ━━━━━━━━━━━━━━ # }}}
+}
+
+tmux_bar_inst(){
+# {{{ #### Transmission
+Torrent=$(transmission-remote -l \
+	| sed -r '/%|Unknown/!d
+		s/.*Verifying.*/⌛️/
+		s/.*Seeding.*/🌱/
+		s/.*Stopped.*/🔴/
+		s/.*100%.*/✅/
+		s/.*Idle.*/⌛️/
+		s/.*Unknown.*/❗/
+		s/.*Uploading.*/📤/
+		s/ .* (.*%).*Up & Down.*/📥[\1]/
+		s/ .* (.*%).*Downloading.*/📥[\1]/' \
+	| sort \
+	| uniq -c \
+	| sed -r 's/ //g
+		s/(.*🔴.*)/#[fg=colour1] \1/
+		s/(.*❗.*)/#[fg=colour5] \1/
+		s/(.*⌛️.*)/#[fg=colour11] \1/
+		s/(.*🌱.*)/#[fg=colour71] \1/
+		s/(.*✅.*)/#[fg=colour71] \1/
+		s/(.*📤.*)/#[fg=colour71] \1/
+		s/.*(📥.*$)/#[fg=colour4] \1/' \
+	| sed ':a;$!N;s/\n//;ta;' \
+	| sed 's/^/ #[fg=colour71]┃/')
+echo -n "$Torrent"
+#### ━━━━━━━━━━━━ # }}}
+# {{{ #### Flexget Update
+File=~/Flexget-Update.md
+Date=$(date '+%d/%m/%Y')
+[ ! -f "$File" ] && echo -e " | Origem | Data | Titulo | Url |\n |:-----------:|:-----------:|:-----------:|:--------:|" >> "$File"
+FlexgetUP=$(grep -c "$Date" "$File")
+[ "$FlexgetUP" = 0 ] && echo -n "" || echo -n " #[fg=colour71]┃ #[fg=colour4]Flexget: $FlexgetUP"
+#### ━━━━━━━━━━━━ # }}}
+# {{{ #### Mpc Player
+Player=$(mpc -f "[[%artist% ┃ ]%title%]|[%file$]" 2>/dev/null \
+	| sed -r '/^volume:|^\[playing\]|^\[paused\]/d
+		s/(.* )┃( .*)/ #[fg=colour71]┃ 🎵 \1-#[fg=colour5]\2/')
+echo -n "$Player"
+#### ━━━━━━━━━━ # }}}
+# {{{ #### Temperatura CPU
+Temp=$(sensors | sed -r '/Package id 0:/!d;s/.*\+(.*)\..°C *\(.*$/ #[fg=colour71]┃ \1°C/')
+echo -n "$Temp"
+#### ━━━━━━━━━━━━━━━ # }}}
+}
+
+####### Atualiza a Cada Minuto #######
+if [ "$(date -r /tmp/tmux_bar_sleep1 +%M)" = "$(date '+%M')" ]; then
+	cat /tmp/tmux_bar_sleep1 && tmux_bar_inst
+else
+	tmux_bar_sleep1 > /tmp/tmux_bar_sleep1 && cat /tmp/tmux_bar_sleep1 && tmux_bar_inst
+fi
+#######━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

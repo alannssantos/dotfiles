@@ -1,0 +1,76 @@
+#!/usr/bin/env bash
+
+#     _    _
+#    / \  | | __ _ _ __  _ __      Alann Santos
+#   / _ \ | |/ _` | '_ \| '_ \     https://gitlab.com/alannssantos
+#  / ___ \| | (_| | | | | | | |
+# /_/   \_\_|\__,_|_| |_|_| |_|
+
+#### Requisitos.
+# * sudo apt install slop # Para poder selecionar parte da tela.
+
+#### Variável
+RESOLUCAO=$(xrandr | sed '/\*/!d;s/^ *//;s/ .*$//')
+FPS=$(xrandr | sed '/\*/!d;s/*.*$//;s/^.* //')
+
+#### Verificando se já existi o arquivo com mesmo no, se já ele cria um novo.
+ARQUIVO=screencast_out
+if [[ -e $ARQUIVO.mkv ]] ; then
+    i=0
+    while [[ -e $ARQUIVO-$i.mkv ]] ; do
+        let i++
+    done
+    ARQUIVO=$ARQUIVO-$i
+fi
+
+tela_cheia(){
+ffmpeg -f alsa -ac 2 -i pulse -f x11grab -r "$FPS" -s "$RESOLUCAO" -i :0.0 -acodec pcm_s16le -vcodec libx264 -preset ultrafast -crf 0 -threads 0 -y "$ARQUIVO.mkv"
+}
+
+parte_da_tela(){
+[ ! -e /usr/bin/slop ] && [ ! -e /usr/local/bin/slop ] && \
+echo "$(tput bold)$(tput setaf 3)
+Essa parte do script depende do $(tput setaf 5)Slop$(tput setaf 3) para fucionar.
+Por favor, instale-o usando:$(tput setaf 4)
+	╭─────────────────────────╮
+	│  $(tput setaf 3)sudo apt install slop$(tput setaf 4)  │
+	╰─────────────────────────╯$(tput sgr0)" && exit || \
+echo "$(tput setaf 2)Selecionar parte da Tela. $(tput sgr0)" && \
+ffmpeg -f alsa -ac 2 -i pulse -f x11grab -r "$FPS" -s $(slop | sed 's/+/,/g;s/,/ -i :0.0+/') -acodec pcm_s16le -vcodec libx264 -preset ultrafast -crf 0 -threads 0 -y "$ARQUIVO.mkv"
+}
+
+Menu(){
+echo "$(tput bold)$(tput setaf 1)=================
+ Screen Recorder
+=================$(tput setaf 3)
+
+	1) $(tput setaf 2)Gravar Tela Cheia.$(tput setaf 3)
+
+	2) $(tput setaf 2)Selecionar parte da Tela.$(tput setaf 3)
+
+	q) $(tput setaf 2)Sair.$(tput setaf 4)
+	"
+	read -r -p "Opção: " Resposta 
+
+	case "$Resposta" in
+		1)
+			tela_cheia
+			clear
+			Menu;;
+		2)
+			parte_da_tela
+			clear
+			Menu;;
+		q) exit ;;
+		*)
+			clear
+			echo "$(tput setaf 1)==================
+Unknown option(s).
+==================
+
+$(tput sgr0)"
+		Menu ;;
+    esac
+	}
+clear
+Menu

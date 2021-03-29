@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+## Cores.
+RCor="\033[1;31m"    # Red (Vermelho)
+GCor="\033[1;32m"    # Green (Verde)
+YCor="\033[1;33m"    # Yellow (Amarelo)
+ECor="\033[0m"       # End (Fim)
+
+Sussesso="$YCor
+╭────────────────────────╮
+│$GCor Instalado com sucesso!$YCor │
+╰────────────────────────╯
+$ECor"
+Fracasso="$YCor
+╭────────────────────────╮
+│  $RCor Erro na instalação!$YCor  │
+╰────────────────────────╯
+$ECor"
+
+sudo apt install python3-pip feh compton -y \
+	&& sudo -H pip3 install xcffib cairocffi qtile --upgrade \
+	&& echo "[Desktop Entry]
+Name=Qtile
+Comment=Qtile Session
+Exec=qtile
+Type=Application
+Keywords=wm;tiling" > qtile.desktop \
+	&& sudo mv -v qtile.desktop /usr/share/xsessions/qtile.desktop \
+	&& echo -e "$Sussesso" || echo -e "$Fracasso"

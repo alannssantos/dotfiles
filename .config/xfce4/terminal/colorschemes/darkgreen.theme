@@ -1,0 +1,7 @@
+[Scheme]
+Name=Dark Green
+ColorForeground=#d3d3d0d0c8c8
+ColorBackground=#2d2d2d2d2d2d
+ColorPalette=#2d2d2d;#f2777a;#99cc99;#ffcc66;#6699cc;#cc99cc;#66cccc;#d3d0c8;#2d2d2d;#f2777a;#99cc99;#ffcc66;#6699cc;#cc99cc;#66cccc;#f2f0ec
+BackgroundMode=TERMINAL_BACKGROUND_TRANSPARENT
+BackgroundDarkness=0,960000

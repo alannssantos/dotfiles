@@ -1,0 +1,78 @@
+#!/usr/bin/env bash
+
+# Obrigado Blau Araujo (debxp)!
+# https://www.youtube.com/watch?v=uIQzu10Giiw
+
+Fzfopt="fzf -e --color=16 --tiebreak=begin --border -i --prompt=Application:"
+
+Launchers=(
+	"$HOME/.local/share/applications/*.desktop"
+	"$HOME/.local/share/flatpak/exports/share/applications/*.desktop"
+	"/usr/share/applications/*.desktop"
+	"/usr/local/share/applications/*.desktop"
+)
+
+_desktop_files(){
+	awk 'BEGIN {
+		desktop_entry = "[Desktop Entry]"
+		current_key   = desktop_entry
+		show_launcher = 1
+		name_tmp      = ""
+		name          = ""
+		cmt           = ""
+		cmd           = ""
+		app_name      = ""
+	}
+	{
+		if ($0 ~ /^\[.*\]/ ) {
+
+			if ($0 != desktop_entry) {
+				current_key = $0
+			} else {
+				current_key = desktop_entry
+			}
+
+			if (show_launcher && name != "") {
+				printf("%s┃%s┃%s\n", name, cmt, cmd)
+			}
+
+			app_name = ""
+			name = ""
+			cmt = ""
+			cmd = ""
+			show_launcher = 1
+
+			next
+
+		} else {
+
+			if ($0 ~ /^Name=/) name = $0
+			if ($0 ~ /^Name\[pt_BR\]=/) name = "Name=" substr($0, 13)
+			if ($0 ~ /^Comment=/) cmt = $0
+			if ($0 ~ /^Comment\[pt_BR\]=/) cmt = "Comment=" substr($0, 16)
+			if ($0 ~ /^Exec=/) cmd = $0
+			if ($0 ~ /NoDisplay=true/) show_launcher = 0
+		}
+	}' ${Launchers[@]} | awk -F'┃' '{
+	name = ""
+	cmt  = ""
+	cmd  = ""
+
+	name = substr($1, 6)
+	cmt  = substr($2, 9)
+	cmd  = substr($3, 6)
+
+	print name": "cmt"𤭢┃"cmd
+	}'
+}
+
+while :; do
+	Command=$(_desktop_files | column -t -s "𤭢" | sort | $Fzfopt | sed 's/^.*┃//' | sed 's/ %.*$//')
+
+	if [[ $Command ]]; then
+		$Command &
+		break
+	else
+		break
+	fi
+done
