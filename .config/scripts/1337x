@@ -33,7 +33,7 @@ Resultados=$(wget -qO- "$Url" \
 	| sed  'N;N;N;s!\n!┃!g' \
 	| awk -F '┃' '{print "💾"$5 "𤭢"$1 "𤭢🌱"$3 "𤭢🔽"$4 "𤭢┃"$2 }' \
 	| column -t -s "𤭢" \
-	| fzf -e -m --color=16 --border \
+	| fzf -e -m --color=16 --border --prompt=1337x: \
 	| sed 's/^.*┃//')
 
 if [ ! -z "$Resultados" ]; then
