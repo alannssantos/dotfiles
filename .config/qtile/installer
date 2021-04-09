@@ -17,7 +17,7 @@ Fracasso="$YCor
 ╰────────────────────────╯
 $ECor"
 
-sudo apt install python3-pip feh compton -y \
+sudo apt install python3-pip feh compton lxappearance qt5ct -y \
 	&& sudo -H pip3 install xcffib cairocffi qtile --upgrade \
 	&& echo "[Desktop Entry]
 Name=Qtile
