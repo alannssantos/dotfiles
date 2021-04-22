@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 
+# Tela de ajuda.
+info(){
+echo -e "Uso: info-xfce4-panel [OPÇÃO]
+
+\t-d, --dolar\tmostra o cotação atual do dolar"
+}
+
+# Cotação do dolar
 dolar(){
 	dolar=$(wget -qO- "https://dolarhoje.com/" \
 		| sed -r '/id="nacional"/!d
@@ -11,9 +19,7 @@ dolar(){
 
 case "$1" in
 	-d|--dolar)
-	dolar ;;
+		dolar ;;
 	*)
-	echo -e "Uso: info-xfce4-panel [OPÇÃO]
-
-\t-d, --dolar\tmostra o cotação atual do dolar" ;;
+		info ;;
 esac
