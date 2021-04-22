@@ -9,7 +9,8 @@ Launchers=$(ls \
 	"$HOME"/.local/share/applications/*.desktop \
 	"$HOME"/.local/share/flatpak/exports/share/applications/*.desktop \
 	/usr/share/applications/*.desktop \
-	/usr/local/share/applications/*.desktop)
+	/usr/local/share/applications/*.desktop \
+	2>/dev/null)
 
 _desktop_files(){
 	awk 'BEGIN {
