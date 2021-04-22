@@ -5,12 +5,11 @@
 
 Fzfopt="fzf -e --color=16 --tiebreak=begin --border -i --prompt=Application:"
 
-Launchers=(
-	"$HOME/.local/share/applications/*.desktop"
-	"$HOME/.local/share/flatpak/exports/share/applications/*.desktop"
-	"/usr/share/applications/*.desktop"
-	"/usr/local/share/applications/*.desktop"
-)
+Launchers=$(ls \
+	"$HOME"/.local/share/applications/*.desktop \
+	"$HOME"/.local/share/flatpak/exports/share/applications/*.desktop \
+	/usr/share/applications/*.desktop \
+	/usr/local/share/applications/*.desktop)
 
 _desktop_files(){
 	awk 'BEGIN {
@@ -53,7 +52,7 @@ _desktop_files(){
 			if ($0 ~ /^Exec=/) cmd = $0
 			if ($0 ~ /NoDisplay=true/) show_launcher = 0
 		}
-	}' ${Launchers[@]} | awk -F'┃' '{
+	}' $Launchers | awk -F'┃' '{
 	name = ""
 	cmt  = ""
 	cmd  = ""
@@ -67,7 +66,12 @@ _desktop_files(){
 }
 
 while :; do
-	Command=$(_desktop_files | column -t -s "𤭢" | sort | $Fzfopt | sed 's/^.*┃//' | sed 's/ %.*$//')
+	Command=$(_desktop_files \
+		| column -t -s "𤭢" \
+		| sort \
+		| $Fzfopt \
+		| sed 's/^.*┃//' \
+		| sed 's/ %.*$//')
 
 	if [[ $Command ]]; then
 		$Command &
