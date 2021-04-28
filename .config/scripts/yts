@@ -17,7 +17,7 @@ Site="https://yts.mx"
 Pesquisa="$*"
 
 if [ -z "$Pesquisa" ]; then
-	Url="$Site/browse-movies"
+	Url="$Site/browse-movies/0/all/all/0/featured/0/all"
 else
 	Url="$Site/browse-movies/$Pesquisa/all/all/0/latest/0/all"
 fi
@@ -43,4 +43,3 @@ if [ -n "$Resultado" ]; then
 		$Programa "$Qualidade"
 	fi
 fi
-
