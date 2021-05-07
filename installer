@@ -46,6 +46,7 @@ sudo apt install mpc \
 	irssi \
 	xclip \
 	mpg123 \
+	xinput \
 	blueman \
 	gparted \
 	ncmpcpp \
@@ -184,6 +185,16 @@ echo -e "$Sussesso" || \
 echo -e "$Fracasso"
 }
 
+OpInvalido(){
+clear
+echo -e "$YCor
+
+	╭────────────────────────╮
+	│$RCor   Opção desconhecida.$YCor  │
+	╰────────────────────────╯
+$ECor"
+}
+
 Menu(){
 echo -e "$BCor
 	1.Sistema
@@ -192,6 +203,8 @@ echo -e "$BCor
 	4.Nerd Fonts e Ranger config $YCor(pode demorar bastante tempo.)$BCor
 	5.DockBarX
 	6.Configs
+$RCor
+	q.Sair
 $ECor"
 read -r Resposta
 
@@ -217,14 +230,8 @@ case "$Resposta" in
 	q)
 		exit ;;
 	*)
-		clear
-		echo -e "$YCor
-
-        ╭────────────────────────╮
-        │$RCor   Opção desconhecida.$YCor  │
-        ╰────────────────────────╯
-            $ECor"
-	Menu ;;
+		OpInvalido
+		Menu ;;
 esac
 }
 Menu
