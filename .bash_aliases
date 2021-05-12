@@ -32,6 +32,7 @@ alias trc='transmission-remote-cli'
 alias ytmp='mpsyt /'
 alias lynx='lynx -accept_all_cookies -image_links'
 alias mkdir='mkdir -vp'
+alias tmuxd='tmux new -As0'
 alias legenda='subliminal --opensubtitles USERNAME PASSWORD download -l pt-br'
 alias yta-mp3='youtube-dl -c --extract-audio --audio-format mp3 -o "%(playlist_index)s-%(title)s.%(ext)s" --add-metadata'
 alias ytv-best='youtube-dl -c --add-metadata -f bestvideo+bestaudio -o "%(title)s.%(ext)s"'
@@ -39,7 +40,6 @@ alias streamlink='streamlink -p "mpv --cache 2048 --ontop --no-border --force-wi
 alias qbittorrentui='qbittorrentui -c ~/.config/qBittorrent/default.ini'
 
 #### Funções.
-tmuxd() { tmux a || tmux ;}
 finder() { ranger --selectfile="$(fzf -e --color=16 --border | xargs -r -0)" ;}
 justread() { readable "$1" -p html-title,html-content > /tmp/readable.html&&lynx -image_links /tmp/readable.html ;}
 hideinimage() { cat "$@" > "copy_$1" ;}
