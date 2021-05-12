@@ -179,7 +179,7 @@ echo -e "$Fracasso"
 
 Configs(){
 #### Copiar Dotfiles e Plugins.
-cp -r -v .config .irssi .bash_aliases .nanorc .tmux.conf .Xresources ~/ && \
+cp -r -v .config .irssi .local .bash_aliases .nanorc .tmux.conf .Xresources ~/ && \
 echo -e "$BCor\n05.Copiando arquivos de configuração...$ECor" && \
 echo -e "$Sussesso" || \
 echo -e "$Fracasso"
