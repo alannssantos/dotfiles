@@ -4,4 +4,4 @@
 
 Lembrar de colocar no atalho de teclado.
 
-`xfce4-terminal --drop-down --hide-menubar --fullscreen --hide-toolbar -e tmux`
+`xfce4-terminal --drop-down --hide-menubar --fullscreen --hide-toolbar -e 'tmux new -As0'`
