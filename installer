@@ -115,6 +115,7 @@ echo -e "$Sussesso" || \
 echo -e "$Fracasso"
 
 #### Touchegg (mais funções no touchpad.)
+url1="https://github.com"
 url2=$(wget -qO- "https://github.com/JoseExposito/touchegg/releases" \
 	| sed -r '/touchegg_.*_amd64.deb/!d;s/^.*href="(.*)" rel=.*$/\1/' \
 	| sed '1!d')
@@ -125,6 +126,7 @@ echo -e "$Sussesso" || \
 echo -e "$Fracasso"
 
 #### NeoVim AppImage.
+url1="https://github.com"
 url2=$(wget -qO- "https://github.com/neovim/neovim/releases" \
 	| sed -r '/\/download\/v[0-9].*nvim.appimage"/!d;s/^.*href="(.*)" rel=.*$/\1/' \
 	| sed '1!d')
@@ -152,8 +154,15 @@ echo -e "$Fracasso"
 
 NerdFonts_RangerIcons(){
 #### Nerd Fonts e Ranger config.
-git clone https://github.com/ryanoasis/nerd-fonts.git /tmp/nerd-fonts && cd /tmp/nerd-fonts && /tmp/nerd-fonts/install.sh && \
-git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons && echo "default_linemode devicons" >> ~/.config/ranger/rc.conf && \
+mkdir -vp "$HOME/.local/share/fonts/FiraCode"
+url1="https://github.com"
+url2=$(wget -qO- "https://github.com/ryanoasis/nerd-fonts/releases" \
+	| sed -r '/FiraCode.zip/!d;s/^.*href="(.*)" rel=.*$/\1/' \
+	| sed '1!d')
+wget -c "$url1$url2" -P /tmp/ && \
+atool --extract-to="$HOME/.local/share/fonts/FiraCode" /tmp/FiraCode.zip && \
+git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons && \
+echo "default_linemode devicons" >> ~/.config/ranger/rc.conf && \
 echo -e "$BCor\nNerd Fonts e Ranger config.$ECor" && \
 echo -e "$Sussesso" || \
 echo -e "$Fracasso"
