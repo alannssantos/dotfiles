@@ -5,7 +5,6 @@ info(){
 echo -e "Uso: info-xfce4-panel [OPÇÃO]
 
 \t-d, --dolar\tmostra o cotação atual do dolar
-\t-e, --email\tmostra o numero de email não lidos no thunderbird"
 }
 
 # Cotação do dolar
@@ -18,34 +17,9 @@ dolar(){
 	echo "<tool>Dólar Hoje</tool>"
 }
 
-email(){
-	THUNDERBIRD_HOME="$HOME"/.thunderbird
-
-	GMAIL_ACCOUNT="imap.gmail.com/INBOX.msf"
-	HOTMAIL_ACCOUNT="outlook.office365.com/INBOX.msf"
-
-	cd "$THUNDERBIRD_HOME" || exit
-	COUNTS=$(find . -name '*.msf' -exec grep -REo '94=[0-9]' {} + | grep -Eo 'imap.gmail.*INBOX.*=[0-9]+|outlook.office365.*INBOX.*=[0-9]+')
-
-	declare -A COUNT_BY_ACCOUNT
-
-	# Counts are in chronological order, so it's safe to assume that the latest is the most recent update
-	for line in $COUNTS; do
-	    ACCOUNT=$(echo "$line" | awk -F ':94=' '{ print $1 }')
-	    COUNT=$(echo "$line" | awk -F ':94=' '{ print $2 }')
-
-	    COUNT_BY_ACCOUNT[$ACCOUNT]=$COUNT
-	done
-
-	echo "<txt>Gmail:${COUNT_BY_ACCOUNT[$GMAIL_ACCOUNT]} 📩 Hotmail:${COUNT_BY_ACCOUNT[$HOTMAIL_ACCOUNT]}</txt>"
-	echo "<tool>Novos Emails</tool>"
-}
-
 case "$1" in
 	-d|--dolar)
 		dolar ;;
-	-e|--email)
-		email ;;
 	*)
 		info ;;
 esac
