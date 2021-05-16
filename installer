@@ -78,6 +78,7 @@ sudo apt install mpc \
 	breeze-cursor-theme \
 	libjpeg62-turbo-dev \
 	transmission-daemon \
+	fonts-noto-color-emoji \
 	transmission-remote-cli \
 	transmission-remote-gtk \
 	numix-icon-theme-circle \
