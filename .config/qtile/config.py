@@ -43,7 +43,7 @@ mod = "mod4"  # Escolher tecla Super.
 mod1 = "mod1"  # Habilitar tecla Alt pra atalhos.
 home = os.path.expanduser('~')  # Definindo caminho Home.
 # Definir terminal padrão.
-terminal = "xfce4-terminal --drop-down --hide-menubar --fullscreen --hide-toolbar -e tmux "
+terminal = "xfce4-terminal --drop-down --hide-menubar --fullscreen --hide-toolbar -e 'tmux new -As0'"
 
 # Cores.
 cor1 = "#8ee269"  # Cor Principal.
