@@ -18,7 +18,10 @@ Fracasso="$YCor
 $ECor"
 
 sudo apt install python3-pip feh compton lxappearance qt5ct -y \
-	&& sudo -H pip3 install xcffib cairocffi qtile --upgrade \
+	&& sudo -H pip3 install xcffib \
+	&& sudo -H pip3 install --no-cache-dir cairocffi \
+	&& sudo -H pip3 install dbus-next \
+	&& sudo -H pip3 install qtile \
 	&& echo "[Desktop Entry]
 Name=Qtile
 Comment=Qtile Session
