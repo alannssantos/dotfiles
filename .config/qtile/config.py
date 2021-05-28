@@ -133,7 +133,7 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font='fira sans',
+    font='Fira Mono',
     fontsize=14,
     padding=3,
 )
