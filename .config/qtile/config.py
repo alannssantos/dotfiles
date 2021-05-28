@@ -42,7 +42,7 @@ from libqtile.config import Key, Screen, Group, Drag, Click, Match
 mod = "mod4"  # Escolher tecla Super.
 home = os.path.expanduser('~')  # Definindo caminho Home.
 # Definir terminal padrão.
-terminal = "xfce4-terminal --drop-down --hide-menubar --fullscreen --hide-toolbar -e 'tmux new -As0'"
+terminal = "xfce4-terminal --hide-menubar --hide-toolbar"
 
 # Cores.
 cor1 = "#8ee269"  # Cor Principal.
