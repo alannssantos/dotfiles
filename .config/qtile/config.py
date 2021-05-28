@@ -40,7 +40,6 @@ from libqtile.config import Key, Screen, Group, Drag, Click, Match
 
 # Variaveis.
 mod = "mod4"  # Escolher tecla Super.
-mod1 = "mod1"  # Habilitar tecla Alt pra atalhos.
 home = os.path.expanduser('~')  # Definindo caminho Home.
 # Definir terminal padrão.
 terminal = "xfce4-terminal --drop-down --hide-menubar --fullscreen --hide-toolbar -e 'tmux new -As0'"
@@ -54,7 +53,8 @@ cor5 = "#f2777a"  # Cor de Alerta.
 
 # Cria Poll Funcion do Shell no bar com GenPollText.
 # def torrent():
-# return subprocess.check_output([home + "/.config/scripts/torrent"]).decode('utf-8').strip()
+# return subprocess.check_output([home + "/.config/qtile/scripts/torrent"]).decode('utf-8').strip()
+
 
 keys = [
     # Controle de Som.
@@ -84,14 +84,13 @@ keys = [
     # Unsplit = 1 window displayed, like Max layout, but still with
     # multiple stack panes
     Key([mod, "shift"], "Return", lazy.layout.toggle_split()),
-    Key([mod1], "Tab", lazy.spawn(home + "/.config/qtile/scripts/rofi-script")),
+    Key([mod], "space", lazy.spawn(
+        home + "/.config/qtile/scripts/rofi-script")),
     Key([mod], "Return", lazy.spawn(terminal)),
-    Key([], "Print", lazy.spawn("gnome-screenshot")),
-    Key([mod1], "Print", lazy.spawn("gnome-screenshot -a")),
+    Key([], "Print", lazy.spawn("xfce4-screenshooter -f")),
+    Key(["mod1"], "Print", lazy.spawn("xfce4-screenshooter -r")),
     Key([mod], "1", lazy.spawn("thunar")),
     Key([mod], "2", lazy.spawn("firefox-esr")),
-    Key([mod], "3", lazy.spawn("xfce4-terminal -e transmission-remote-cli")),
-    Key([mod], "4", lazy.spawn("xfce4-terminal -e neomutt")),
 
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout()),
@@ -195,57 +194,38 @@ screens = [
                     background=cor3,
                     padding=1,
                 ),
+                widget.Image(
+                    scale=True,
+                    filename='~/.config/qtile/icons/monobar4.png',
+                ),
                 # widget.GenPollText(
-                # font='Fira Sans',
-                # fontsize=15,
+                # font='fira Sans',
+                # fontsize=14,
                 # func=torrent,
                 # update_interval=1,
                 # background=cor3,
                 # foreground=cor1,
                 # ),
-                widget.Image(
-                    scale=True,
-                    filename='~/.config/qtile/icons/monobar4.png',
-                ),
-                widget.Net(
-                    interface='enp2s0',
-                    foreground=cor1,
-                    background=cor3,
-                    format='{down} ↓↑ {up}',
-                    padding=5
-                ),
-                widget.Image(
-                    scale=True,
-                    filename='~/.config/qtile/icons/monobar4.png',
-                ),
-                widget.TextBox(
-                    font='UbuntuMono Nerd Font Mono',
-                    text="",
-                    fontsize=30,
-                    background=cor3,
-                    foreground=cor1,
-                ),
                 widget.Volume(
                     device='pulse',
                     channel='Master',
                     background=cor3,
                     foreground=cor1,
+                    emoji=True,
                 ),
-                widget.Image(
-                    scale=True,
-                    filename='~/.config/qtile/icons/monobar4.png',
-                ),
-                widget.CheckUpdates(  # Para Funcionar no Debian instale 'apt-show-versions'.
-                    display_format='🔄 Updates: {updates}',
-                    no_update_string='📦 Updated!',
-                    execute='xfce4-terminal -e sudo apt upgrade',
-                    distro='Debian',
-                    colour_no_updates=cor1,
-                    colour_have_updates=cor1,
+                widget.Battery(
                     background=cor3,
                     foreground=cor1,
-                    update_interval=60,
-                    padding=5,
+                    low_foreground=cor5,
+                    show_short_text=False,
+                    low_percentage=0.25,
+                    format=' {char} {percent:2.0%}',
+                    charge_char="",
+                    empty_char="",
+                    discharge_char="",
+                    full_char=" ",
+                    battery=0,
+                    update_interval=10,
                 ),
                 widget.Image(
                     scale=True,
