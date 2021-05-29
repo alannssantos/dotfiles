@@ -37,7 +37,6 @@ alias legenda='subliminal --opensubtitles USERNAME PASSWORD download -l pt-br'
 alias yta-mp3='youtube-dl -c --extract-audio --audio-format mp3 -o "%(playlist_index)s-%(title)s.%(ext)s" --add-metadata'
 alias ytv-best='youtube-dl -c --add-metadata -f bestvideo+bestaudio -o "%(title)s.%(ext)s"'
 alias streamlink='streamlink -p "mpv --cache 2048 --ontop --no-border --force-window --autofit=500x280 --geometry=-15-60"'
-alias qbittorrentui='qbittorrentui -c ~/.config/qBittorrent/default.ini'
 
 #### Funções.
 finder() { ranger --selectfile="$(fzf -e --color=16 --border | xargs -r -0)" ;}

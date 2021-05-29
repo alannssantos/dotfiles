@@ -1,25 +1,8 @@
 #!/usr/bin/env bash
 
-# Tela de ajuda.
-info(){
-echo -e "Uso: info-xfce4-panel [OPÇÃO]
+dolar=$(wget -qO- "https://dolarhoje.com/" \
+	| sed -r '/id="nacional"/!d
+		s/^.*id="nacional" value="(.*)"\/><\/span>.*$/R$ \1 💸/')
 
-\t-d, --dolar\tmostra o cotação atual do dolar
-}
-
-# Cotação do dolar
-dolar(){
-	dolar=$(wget -qO- "https://dolarhoje.com/" \
-		| sed -r '/id="nacional"/!d
-			s/^.*id="nacional" value="(.*)"\/><\/span>.*$/R$ \1 💸/')
-
-	echo "<txt>$dolar</txt>"
-	echo "<tool>Dólar Hoje</tool>"
-}
-
-case "$1" in
-	-d|--dolar)
-		dolar ;;
-	*)
-		info ;;
-esac
+echo "<txt> $dolar</txt>"
+echo "<tool>Dólar Hoje</tool>"
