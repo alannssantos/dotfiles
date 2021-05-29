@@ -41,13 +41,16 @@ sudo apt install mpc \
 	slop \
 	sxiv \
 	tmux \
+	aria2 \
 	atool \
 	cmake \
 	irssi \
+	sshts \
 	xclip \
 	mpg123 \
 	xinput \
 	blueman \
+	flatpak \
 	gparted \
 	ncmpcpp \
 	neomutt \
@@ -87,6 +90,7 @@ sudo apt update && \
 sudo apt upgrade -y && \
 npm config set prefix "$HOME/.local" && \
 pip3 install jedi && \
+pip3 install aria2p && \
 pip3 install flexget && \
 pip3 install ueberzug && \
 pip3 install ranger-fm && \
@@ -96,7 +100,6 @@ pip3 install youtube-dl && \
 pip3 install PyQt5==5.14.0 && \
 pip3 install transmission-rpc && \
 pip3 install KindleComicConverter && \
-pip3 install git+https://github.com/alannssantos/mangascandl.git && \
 echo -e "$BCor\nSistema!$ECor" && \
 echo -e "$Sussesso" || \
 echo -e "$Fracasso"
