@@ -12,21 +12,17 @@ tasks:
   # RSS
   Mangas:
     sequence:
-      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/22151 #Kanojo, Okarishimasu
-      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/22631 #Ijiranaide, Nagatoro-san
-      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/17910 #Kawaii Joushi wo Komarasetai
-      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/12714 #Boku no Hero Academia
-      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/35439 #1/10 no Hanayome
-      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/16411 #Enen no Shouboutai
-      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/16588 #Gleipnir
-      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/21048 #Jagaaaaaan
-      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/15016 #Black Clover
-      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/21040 #Parallel Paradise
-      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/32386 #Mato Seihei no Slave
-      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/24249 #A Story About Treating a Female Knight, Who Has Never Been Treated as a Woman, as a Woman
-      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/23941 #Berserk of Gluttony
+      - rss: http://fanfox.net/rss/kanojo_okarishimasu.xml #Kanojo, Okarishimasu
+      - rss: http://fanfox.net/rss/boku_no_hero_academia.xml #Boku no Hero Academia
+      - rss: http://fanfox.net/rss/enen_no_shouboutai.xml #Enen no Shouboutai
+      - rss: http://fanfox.net/rss/gleipnir.xml #Gleipnir
+      - rss: http://fanfox.net/rss/jagaaaaaan.xml #Jagaaaaaan
+      - rss: http://fanfox.net/rss/black_clover.xml #Black Clover
+      - rss: http://fanfox.net/rss/parallel_paradise.xml #Parallel Paradise
+      - rss: http://fanfox.net/rss/mato_seihei_no_slave.xml #Mato Seihei no Slave
+      - rss: http://fanfox.net/rss/berserk_of_gluttony.xml #Berserk of Gluttony
     accept_all: yes
-    exec: echo " | MangaDex | $(date '+%d/%m/%Y %H:%M:%S') | {{title}} | {{url}} |" >> ~/Flexget-Update.md ; gallery-dl {{url}} &
+    exec: echo "|MangaFox|$(date '+%d/%m/%Y %H:%M:%S')|{{title}}|{{url}}|" >> ~/Flexget-Update.md ; gallery-dl --exec-after 'cd {}/.. && zip -rm "{{title}}.cbz" * && mv *.cbz ~/HardDisk/Plex/Mangas/Weekly/' {{url}}
   Animes:
     sequence:
       - rss: https://nyaa.si/?page=rss&q=%5BErai-raws%5D+Shingeki+no+Kyojin&c=0_0&f=2
