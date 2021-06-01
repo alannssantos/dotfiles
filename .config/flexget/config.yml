@@ -21,8 +21,9 @@ tasks:
       - rss: http://fanfox.net/rss/parallel_paradise.xml #Parallel Paradise
       - rss: http://fanfox.net/rss/mato_seihei_no_slave.xml #Mato Seihei no Slave
       - rss: http://fanfox.net/rss/berserk_of_gluttony.xml #Berserk of Gluttony
+      - rss: http://fanfox.net/rss/the_story_between_a_dumb_prefect_and_a_high_school_girl_with_an_inappropriate_skirt_length.xml #The Story Between a Dumb Prefect and a High School Girl with an Inappropriate Skirt Length
     accept_all: yes
-    exec: echo "|MangaFox|$(date '+%d/%m/%Y %H:%M:%S')|{{title}}|{{url}}|" >> ~/Flexget-Update.md ; gallery-dl --exec-after 'cd {}/.. && zip -rm "{{title}}.cbz" * && mv *.cbz ~/HardDisk/Plex/Mangas/Weekly/' {{url}}
+    exec: gallery-dl -d /tmp/ --exec-after 'cd {}/.. && zip -rm ~/HardDisk/Plex/Mangas/Weekly/"{{title}}".cbz *' {{url}}
   Animes:
     sequence:
       - rss: https://nyaa.si/?page=rss&q=%5BErai-raws%5D+Shingeki+no+Kyojin&c=0_0&f=2
