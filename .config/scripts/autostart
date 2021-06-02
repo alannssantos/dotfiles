@@ -12,8 +12,14 @@
 #### Configurar touchpad para sensibilidade no toque.
 # xinput set-prop 'SynPS/2 Synaptics TouchPad' 'libinput Tapping Enabled' 1 &
 
+#### Flexget Web UI.
+# flexget daemon start --daemonize &
+
 #### Temperatura da tela
 redshift -l -6.265936:-35.210228 &
+
+#### Aria2c
+aria2c --enable-rpc --rpc-listen-all &
 
 #### Server Livros
 $HOME/.local/bin/ubooquity &
