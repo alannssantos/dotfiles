@@ -35,19 +35,24 @@ tasks:
       port: 9091
       username: ""
       password: ""
-      path: "/home/alann/HardDisk/Plex/Animes/Megalo Box 2"
+      path: "/media/HardDisk/Plex/Animes/Megalo Box 2"
   Filmes:
-    rss: https://yts.mx/rss/0/1080p/all/0/en
-    imdb_lookup: yes
+    discover:
+      what:
+        - movie_list: movies
+      from:
+        - yts: yes
     list_match:
       from:
         - movie_list: movies
+    quality: 1080p bluray|webrip
+    imdb_lookup: yes
     transmission:
       host: localhost
       port: 9091
       username: ""
       password: ""
-      path: /media/Stronger/Emby/Filmes
+      path: /media/HardDisk/Plex/Filmes
   Series:
     sequence:
       - rss: https://showrss.info/show/651.rss #Westworld
@@ -69,3 +74,24 @@ tasks:
       username: ""
       password: ""
       path: /media/Stronger/Emby/Series
+  Legendas:
+    filesystem:
+      path:
+        - /media/HardDisk/Plex/Series
+        - /media/HardDisk/Plex/Filmes
+      regexp: '.*\.(avi|mkv|mp4)$'
+      recursive: yes
+    accept_all: yes
+    seen: local
+    subliminal:
+      languages:
+        - pt-BR
+      alternatives:
+        - en
+      exact_match: yes
+      single: no
+      hearing_impaired: yes
+      authentication:
+        opensubtitles:
+          username: LOGIN
+          password: PASSWORD
