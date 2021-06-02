@@ -26,7 +26,7 @@ tasks:
     exec: ~/.local/bin/gallery-dl -d /tmp/ --exec-after 'cd {}/.. && zip -rm ~/HardDisk/Plex/Mangas/Weekly/"{{title}}".cbz *' {{url}}
   Animes:
     sequence:
-      - rss: https://nyaa.si/?page=rss&q=%5BErai-raws%5D+Shingeki+no+Kyojin&c=0_0&f=2
+      - rss: https://nyaa.si/?page=rss&q=megalo+box+Multiple+Subtitle+720p+v0&c=1_2&f=2
     regexp:
       accept:
         - (\[Multiple Subtitle\]|\[720p\]).*(\[Multiple Subtitle\]|\[720p\])
@@ -35,22 +35,13 @@ tasks:
       port: 9091
       username: ""
       password: ""
-      path: "/media/Stronger/Emby/Animes/Shingeki no Kyojin"
+      path: "/home/alann/HardDisk/Plex/Animes/Megalo Box 2"
   Filmes:
-    sequence:
-      - rss: https://yts.mx/rss/F9/all/all/0/en
-      - rss: https://yts.mx/rss/black%20widow/all/all/0/en
-      - rss: https://yts.mx/rss/Dune/all/all/0/en
-      - rss: https://yts.mx/rss/A%20Quiet%20Place/all/all/0/en
-      - rss: https://yts.mx/rss/Venom:%20Let%20There%20Be%20Carnage/all/all/0/en
-      - rss: https://yts.mx/rss/Godzilla%20vs%20Kong/all/all/0/en
-      - rss: https://yts.mx/rss/Morbius/all/all/0/en
-      - rss: https://yts.mx/rss/Chaos%20Walking/all/all/0/en
-    regexp:
-      accept:
-        - (BluRay|WEB|1080p).*(BluRay|WEB|1080p)
-      reject:
-        - (3D|720p)
+    rss: https://yts.mx/rss/0/1080p/all/0/en
+    imdb_lookup: yes
+    list_match:
+      from:
+        - movie_list: movies
     transmission:
       host: localhost
       port: 9091
