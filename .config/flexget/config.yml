@@ -36,16 +36,63 @@ tasks:
       username: ""
       password: ""
       path: "/media/HardDisk/Plex/Animes/Megalo Box 2"
+  Series:
+    discover:
+      what:
+        - next_series_episodes: yes
+      from:
+        - 1337x: yes
+      interval: 30 minutes
+    series:
+      - Westworld:
+          begin: S04E01
+          quality: 720p
+          propers: no
+      - Motherland Fort Salem:
+          begin: S02E01
+          quality: 720p
+          propers: no
+      - Lovecraft Country:
+          begin: S02E01
+          quality: 720p
+          propers: no
+      - The Boys:
+          begin: S03E01
+          quality: 720p
+          propers: no
+      - American Gods:
+          begin: S04E01
+          quality: 720p
+          propers: no
+      - Carnival Row:
+          begin: S02E01
+          quality: 720p
+          propers: no
+      - WandaVision:
+          begin: S02E01
+          quality: 720p
+          propers: no
+    transmission:
+      host: localhost
+      port: 9091
+      username: ""
+      password: ""
+      path: /media/HardDisk/Plex/Series
+
+  # Filmes adcionado com `flexget movie_list add [nome do filme|id_imdb]`
   Filmes:
     discover:
       what:
         - movie_list: movies
       from:
         - yts: yes
+      interval: 30 minutes
     list_match:
       from:
         - movie_list: movies
-    quality: 1080p bluray|webrip
+    quality:
+      - 1080p
+      - bluray|webrip
     imdb_lookup: yes
     transmission:
       host: localhost
@@ -53,27 +100,6 @@ tasks:
       username: ""
       password: ""
       path: /media/HardDisk/Plex/Filmes
-  Series:
-    sequence:
-      - rss: https://showrss.info/show/651.rss #Westworld
-      - rss: https://showrss.info/show/1296.rss #Motherland: Fort Salem
-      - rss: https://showrss.info/show/1338.rss #Lovecraft Country
-      - rss: https://showrss.info/show/1183.rss #The Boys
-      - rss: https://showrss.info/show/810.rss #American Gods
-      - rss: https://showrss.info/show/1193.rss #Carnival Row
-      - rss: https://showrss.info/show/1388.rss #WandaVision
-      - rss: https://showrss.info/show/1401.rss #Superman & Lois
-    regexp:
-      accept:
-        - (1080p)
-      reject:
-        - (Repack|PROPER)
-    transmission:
-      host: localhost
-      port: 9091
-      username: ""
-      password: ""
-      path: /media/Stronger/Emby/Series
   Legendas:
     filesystem:
       path:
