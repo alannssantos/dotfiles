@@ -25,6 +25,16 @@ tasks:
       - rss: http://fanfox.net/rss/the_story_between_a_dumb_prefect_and_a_high_school_girl_with_an_inappropriate_skirt_length.xml #The Story Between a Dumb Prefect and a High School Girl with an Inappropriate Skirt Length
     accept_all: yes
     exec: ~/.local/bin/gallery-dl -d /tmp/ --exec-after 'cd {}/.. && zip -rm ~/HardDisk/Plex/Mangas/Weekly/"{{title}}".cbz *' {{url}}
+  Comics:
+    sequence:
+      - rss: https://torrentgalaxy.mx/rss?user=2918
+    accept_all: yes
+    transmission:
+      host: localhost
+      port: 9091
+      username: ""
+      password: ""
+      path: "/media/HardDisk/Plex/HQ's/Weekly"
   Animes:
     sequence:
       - rss: https://nyaa.si/?page=rss&q=megalo+box+Multiple+Subtitle+720p+v0&c=1_2&f=2
