@@ -44,34 +44,23 @@ tasks:
         - 1337x: yes
       interval: 30 minutes
     series:
-      - Westworld:
-          begin: S04E01
+      settings:
+        shows:
           quality: 720p
           propers: no
-      - Motherland Fort Salem:
-          begin: S02E01
-          quality: 720p
-          propers: no
-      - Lovecraft Country:
-          begin: S02E01
-          quality: 720p
-          propers: no
-      - The Boys:
-          begin: S03E01
-          quality: 720p
-          propers: no
-      - American Gods:
-          begin: S04E01
-          quality: 720p
-          propers: no
-      - Carnival Row:
-          begin: S02E01
-          quality: 720p
-          propers: no
-      - WandaVision:
-          begin: S02E01
-          quality: 720p
-          propers: no
+      shows:
+        - Westworld:
+            begin: S04E01
+        - Motherland Fort Salem:
+            begin: S02E01
+        - Lovecraft Country:
+            begin: S02E01
+        - The Boys:
+            begin: S03E01
+        - American Gods:
+            begin: S04E01
+        - Carnival Row:
+            begin: S02E01
     transmission:
       host: localhost
       port: 9091
