@@ -1,6 +1,6 @@
 tasks:
-  # Remove torrent depois de Upar o dobro!
-  clean-transmission:
+  # Remove torrent depois de Upar a mesma quantidade!
+  Limpeza:
     disable: [seen, seen_info_hash]
     accept_all: yes
     from_transmission:
@@ -9,6 +9,7 @@ tasks:
       - transmission_ratio < 1.0: reject
     transmission:
       action: remove
+
   # RSS
   Mangas:
     sequence:
