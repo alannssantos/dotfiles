@@ -103,7 +103,7 @@ tasks:
         - pt-BR
       alternatives:
         - en
-      exact_match: yes
+      exact_match: no
       single: no
       hearing_impaired: yes
       authentication:
