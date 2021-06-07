@@ -77,7 +77,7 @@ tasks:
       port: 9091
       username: ""
       password: ""
-      path: /media/HardDisk/Plex/Series
+      path: "/media/HardDisk/Plex/Series/{{series_name}}/Season {{series_season}}/"
 
   # Filmes adcionado com `flexget movie_list add [nome do filme|id_imdb]`
   Filmes:
