@@ -48,6 +48,10 @@ tasks:
       password: ""
       path: "/media/HardDisk/Plex/Animes/Megalo Box 2"
   Series:
+    content_size:
+      min: 700
+      strict: no
+
     discover:
       what:
         - next_series_episodes: yes
