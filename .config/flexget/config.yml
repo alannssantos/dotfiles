@@ -52,8 +52,7 @@ tasks:
       what:
         - next_series_episodes: yes
       from:
-        - 1337x:
-            order_by: size
+        - 1337x: yes
       interval: 30 minutes
     series:
       settings:
