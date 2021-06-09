@@ -45,7 +45,7 @@ sudo apt install mpc \
 	atool \
 	cmake \
 	irssi \
-	sshts \
+	sshfs \
 	xclip \
 	mpg123 \
 	xinput \
