@@ -2,7 +2,6 @@
 
 Bookmarks=~/.favoritos
 Browser="firefox"
-Fzfopt="fzf -e --color=16 --tiebreak=begin --border -i"
 
 # Pegar favoritos do Firefox Automaticamente.
 #
@@ -11,12 +10,12 @@ Fzfopt="fzf -e --color=16 --tiebreak=begin --border -i"
 # Pesquise por "browser.bookmarks.file" escolha texto e adicione "~/.favoritos".
 #
 
-Site=$(sed -r '/http/!d;s/^.*HREF="(.*)" ADD_DATE=.*">(.*)<\/A>.*$/\2𤭢┃\1/' $Bookmarks \
-	| column -t -s "𤭢" \
-	| $Fzfopt \
-	| sed 's/#Porn.*┃\|#Hentai.*┃/┃--private-window /' \
-	| sed 's/^.*┃//')
-
-if [ ! -z "$Site" ]; then
-	eval $Browser "$Site" &
+if [ "$@" ]; then
+	eval $Browser "$(echo "$@" \
+		| sed 's/#Porn.*┃\|#Hentai.*┃/┃--private-window /' \
+		| sed 's/^.*┃//')" &
+else
+	sed -r '/http/!d;s/^.*HREF="(.*)" ADD_DATE=.*">(.*)<\/A>.*$/\2𤭢┃\1/' $Bookmarks \
+		| column -t -s "𤭢"
 fi
+

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+FileManager="thunar"
+
+if [ "$@" ]; then
+	$FileManager "${@%/*}" >& /dev/null &
+else
+	find /home /media /mnt -type f 2>/dev/null
+fi
