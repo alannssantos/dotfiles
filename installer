@@ -38,6 +38,7 @@ sudo apt install mpc \
 	curl \
 	lynx \
 	peek \
+	rofi \
 	slop \
 	sxiv \
 	tmux \
@@ -54,7 +55,6 @@ sudo apt install mpc \
 	flatpak \
 	gparted \
 	ncmpcpp \
-	neomutt \
 	w3m-img \
 	xdotool \
 	zathura \
