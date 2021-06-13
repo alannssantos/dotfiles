@@ -50,6 +50,7 @@ sudo apt install mpc \
 	mpg123 \
 	xinput \
 	blueman \
+	fd-find \
 	flatpak \
 	gparted \
 	ncmpcpp \
