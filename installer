@@ -48,6 +48,7 @@ sudo apt install mpc \
 	irssi \
 	sshfs \
 	xclip \
+	mcomix \
 	mpg123 \
 	xinput \
 	blueman \
@@ -106,7 +107,7 @@ echo -e "$Sussesso" || \
 echo -e "$Fracasso"
 }
 
-Bat_Touchegg_NeoVim(){
+Extra(){
 #### Bat (cat mais bonito.)
 url1="https://github.com"
 url2=$(wget -qO- "https://github.com/sharkdp/bat/releases" \
@@ -115,17 +116,6 @@ url2=$(wget -qO- "https://github.com/sharkdp/bat/releases" \
 wget -c "$url1$url2" -P /tmp/ && \
 sudo apt install /tmp/bat_*_amd64.deb -y && \
 echo -e "$BCor\nInstalacao do Bat!$ECor" && \
-echo -e "$Sussesso" || \
-echo -e "$Fracasso"
-
-#### Touchegg (mais funções no touchpad.)
-url1="https://github.com"
-url2=$(wget -qO- "https://github.com/JoseExposito/touchegg/releases" \
-	| sed -r '/touchegg_.*_amd64.deb/!d;s/^.*href="(.*)" rel=.*$/\1/' \
-	| sed '1!d')
-wget -c "$url1$url2" -P /tmp/ && \
-sudo apt install /tmp/touchegg_*_amd64.deb -y && \
-echo -e "$BCor\nInstalacao do Touchegg!$ECor" && \
 echo -e "$Sussesso" || \
 echo -e "$Fracasso"
 
@@ -140,9 +130,7 @@ sudo mv -v vim /usr/bin/vim && \
 echo -e "$BCor\nInstalacao do NeoVim!$ECor" && \
 echo -e "$Sussesso" || \
 echo -e "$Fracasso"
-}
 
-Fzf_Dragon(){
 #### Instalação do Fuzzy Finder.
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.config/fzf && ~/.config/fzf/install --all && \
 echo -e "$BCor\nInstalacao do Fuzzy Finder$ECor" && \
@@ -154,25 +142,7 @@ git clone https://github.com/mwh/dragon.git /tmp/dragon && cd /tmp/dragon && mak
 echo -e "$BCor\nInstalacao do Dragon.$ECor" && \
 echo -e "$Sussesso" || \
 echo -e "$Fracasso"
-}
 
-NerdFonts_RangerIcons(){
-#### Nerd Fonts e Ranger config.
-mkdir -vp "$HOME/.local/share/fonts/FiraCode"
-url1="https://github.com"
-url2=$(wget -qO- "https://github.com/ryanoasis/nerd-fonts/releases" \
-	| sed -r '/FiraCode.zip/!d;s/^.*href="(.*)" rel=.*$/\1/' \
-	| sed '1!d')
-wget -c "$url1$url2" -P /tmp/ && \
-atool --extract-to="$HOME/.local/share/fonts/FiraCode" /tmp/FiraCode.zip && \
-git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons && \
-echo "default_linemode devicons" >> ~/.config/ranger/rc.conf && \
-echo -e "$BCor\nNerd Fonts e Ranger config.$ECor" && \
-echo -e "$Sussesso" || \
-echo -e "$Fracasso"
-}
-
-DockBarX(){
 #### DockBarX.
 Urls=$(wget -qO- "https://launchpad.net/~xuzhen666/+archive/ubuntu/dockbarx/+packages?field.name_filter=&field.status_filter=published&field.series_filter=bionic" \
 	| sed -r '/sprite expander/!d;s/^.*href="(.*)" .*$/https:\/\/launchpad.net\/~xuzhen666\/+archive\/ubuntu\/dockbarx\/\1/' \
@@ -190,10 +160,37 @@ echo -e "$Sussesso" || \
 echo -e "$Fracasso"
 }
 
+Touchegg(){
+#### Touchegg (mais funções no touchpad.)
+url1="https://github.com"
+url2=$(wget -qO- "https://github.com/JoseExposito/touchegg/releases" \
+	| sed -r '/touchegg_.*_amd64.deb/!d;s/^.*href="(.*)" rel=.*$/\1/' \
+	| sed '1!d')
+wget -c "$url1$url2" -P /tmp/ && \
+sudo apt install /tmp/touchegg_*_amd64.deb -y && \
+echo -e "$BCor\nInstalacao do Touchegg!$ECor" && \
+echo -e "$Sussesso" || \
+echo -e "$Fracasso"
+}
+
 Configs(){
 #### Copiar Dotfiles e Plugins.
 cp -r -v .config .irssi .bash_aliases .nanorc .tmux.conf .Xresources ~/ && \
 echo -e "$BCor\n05.Copiando arquivos de configuração...$ECor" && \
+echo -e "$Sussesso" || \
+echo -e "$Fracasso"
+
+#### Nerd Fonts e Ranger config.
+mkdir -vp "$HOME/.local/share/fonts/FiraCode"
+url1="https://github.com"
+url2=$(wget -qO- "https://github.com/ryanoasis/nerd-fonts/releases" \
+	| sed -r '/FiraCode.zip/!d;s/^.*href="(.*)" rel=.*$/\1/' \
+	| sed '1!d')
+wget -c "$url1$url2" -P /tmp/ && \
+atool --extract-to="$HOME/.local/share/fonts/FiraCode" /tmp/FiraCode.zip && \
+git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons && \
+echo "default_linemode devicons" >> ~/.config/ranger/rc.conf && \
+echo -e "$BCor\nNerd Fonts e Ranger config.$ECor" && \
 echo -e "$Sussesso" || \
 echo -e "$Fracasso"
 }
@@ -211,11 +208,9 @@ $ECor"
 Menu(){
 echo -e "$BCor
 	1.Sistema
-	2.Bat, Touchegg e NeoVim
-	3.Fuzzy Finder e Dragon
-	4.Nerd Fonts e Ranger config $YCor(pode demorar bastante tempo.)$BCor
-	5.DockBarX
-	6.Configs
+	2.Extra $YCor(Bat, NeoVim, Fuzzy Finder, Dragon, DockBarX.)$BCor
+	3.Touchegg $YCor(Mais Funções no TouchPad.)$BCor
+	4.Dotfiles
 $RCor
 	q.Sair
 $ECor"
@@ -226,18 +221,12 @@ case "$Resposta" in
 		Sistema
 		Menu ;;
 	2)
-		Bat_Touchegg_NeoVim
+		Extra
 		Menu ;;
 	3)
-		Fzf_Dragon
+		Touchegg
 		Menu ;;
 	4)
-		NerdFonts_RangerIcons
-		Menu ;;
-	5)
-		DockBarX
-		Menu ;;
-	6)
 		Configs
 		Menu ;;
 	q)
