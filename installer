@@ -187,6 +187,10 @@ url2=$(wget -qO- "https://github.com/ryanoasis/nerd-fonts/releases" \
 	| sed '1!d')
 wget -c "$url1$url2" -P /tmp/ && \
 atool --extract-to="$HOME/.local/share/fonts/FiraCode" /tmp/FiraCode.zip && \
+wget -c \
+	"https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Noto/Emoji/complete/Noto%20Emoji%20Nerd%20Font%20Complete%20Mono.ttf" \
+	"https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Noto/Emoji/complete/Noto%20Emoji%20Nerd%20Font%20Complete.ttf" \
+	-P $HOME/.local/share/fonts && \
 git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons && \
 echo "default_linemode devicons" >> ~/.config/ranger/rc.conf && \
 echo -e "$BCor\nNerd Fonts e Ranger config.$ECor" && \
