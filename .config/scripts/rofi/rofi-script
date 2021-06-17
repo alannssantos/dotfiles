@@ -8,18 +8,14 @@ CorA="#6699cc" # Cor janelas ativas.
 Path=$(dirname $(readlink -f $0))
 
 rofi \
-	-switchers combi \
-	-combi-modi window,drun \
-	-modi Bookmarks:$Path/bookmarks,Finder:$Path/finder \
+	-modi drun,Bookmarks:$Path/bookmarks,Finder:$Path/finder \
 	-width 80 \
 	-padding 10 \
 	-lines 20 \
 	-line-margin 0 \
 	-line-padding 1 \
-	-sidebar-mode \
-	-hide-scrollbar \
-	-separator-style none \
-	-show combi \
+	-sidebar-mode -hide-scrollbar -separator-style none \
+	-show drun \
 	rofi -color-window "$CorB,$CorP,$CorP" \
 	-color-normal "$CorB,$CorF,$CorB,$CorP,$CorB" \
 	-color-active "$CorA, $CorB, $CorA, $CorA, $CorB" \
