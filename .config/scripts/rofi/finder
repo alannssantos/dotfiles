@@ -5,5 +5,5 @@ FileManager="thunar"
 if [ "$@" ]; then
 	$FileManager "${@%/*}" >& /dev/null &
 else
-	fdfind . /home /media /mnt
+	find /home /media -type f 2>/dev/null
 fi
