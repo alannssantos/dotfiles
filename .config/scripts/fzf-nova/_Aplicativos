@@ -1,0 +1,72 @@
+#!/bin/env bash
+
+# Thanks Blau Araujo (debxp)!
+# https://www.youtube.com/watch?v=uIQzu10Giiw
+
+fzfopt="fzf -e --color=16 --tiebreak=begin --border -i --prompt=Application:"
+
+IFS=':' read -ra DIRS <<<"${XDG_DATA_HOME-${HOME}/.local/share}:${XDG_DATA_DIRS-/usr/local/share:/usr/share}"
+for i in "${!DIRS[@]}"; do
+  if [[ ! -d "${DIRS[i]}" ]]; then
+    unset -v 'DIRS[$i]'
+  else
+    DIRS[$i]="${DIRS[i]}/applications/"
+  fi
+done
+
+launchers=$(find ${DIRS[@]} -name "*.desktop" 2>/dev/null | sort | uniq )
+
+_desktop_files(){
+	awk 'BEGIN {
+		desktop_entry = "[Desktop Entry]"
+		current_key   = desktop_entry
+		show_launcher = 1
+		name_tmp      = ""
+		name          = ""
+		cmt           = ""
+		cmd           = ""
+		app_name      = ""
+	}
+	{
+		if ($0 ~ /^\[.*\]/ ) {
+
+			if ($0 != desktop_entry) {
+				current_key = $0
+			} else {
+				current_key = desktop_entry
+			}
+
+			if (show_launcher && name != "") {
+				printf("%s: %s𤭢┃%s\n", name, cmt, cmd)
+			}
+
+			app_name = ""
+			name = ""
+			cmt = ""
+			cmd = ""
+			show_launcher = 1
+
+			next
+
+		} else {
+
+			if ($0 ~ /^Name=/) name = substr($0, 6)
+			if ($0 ~ /^Name\[pt_BR\]=/) name = substr($0, 13)
+			if ($0 ~ /^Comment=/) cmt = substr($0, 9)
+			if ($0 ~ /^Comment\[pt_BR\]=/) cmt = substr($0, 16)
+			if ($0 ~ /^Exec=/) cmd = substr($0, 6)
+			if ($0 ~ /NoDisplay=true/) show_launcher = 0
+		}
+	}' ${launchers[@]}
+}
+
+while :; do
+	Command=$(_desktop_files | column -t -s "𤭢" | sort | $fzfopt | sed 's/^.*┃//' | sed 's/ %.*$//')
+
+	if [[ $Command ]]; then
+		$Command &
+		break
+	else
+		break
+	fi
+done
