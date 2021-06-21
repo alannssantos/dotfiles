@@ -5,18 +5,20 @@
 
 fzfopt="fzf -e --color=16 --tiebreak=begin --border -i --prompt=Application:"
 
-IFS=':' read -ra DIRS <<<"${XDG_DATA_HOME-${HOME}/.local/share}:${XDG_DATA_DIRS-/usr/local/share:/usr/share}"
-for i in "${!DIRS[@]}"; do
-  if [[ ! -d "${DIRS[i]}" ]]; then
-    unset -v 'DIRS[$i]'
-  else
-    DIRS[$i]="${DIRS[i]}/applications/"
-  fi
-done
+Desktop_files(){
+	IFS=':' read -ra DIRS <<<"${XDG_DATA_HOME-${HOME}/.local/share}:${XDG_DATA_DIRS-/usr/local/share:/usr/share}"
+	for i in "${!DIRS[@]}"; do
+		if [[ ! -d "${DIRS[i]}" ]]; then
+			unset -v 'DIRS[$i]'
+		else
+			DIRS[$i]="${DIRS[i]}/applications/"
+		fi
+	done
 
-launchers=$(find ${DIRS[@]} -name "*.desktop" 2>/dev/null | sort | uniq )
+	find ${DIRS[@]} -name "*.desktop" 2>/dev/null | sort | uniq
+}
 
-_desktop_files(){
+Pretty_list(){
 	awk 'BEGIN {
 		desktop_entry = "[Desktop Entry]"
 		current_key   = desktop_entry
@@ -57,16 +59,11 @@ _desktop_files(){
 			if ($0 ~ /^Exec=/) cmd = substr($0, 6)
 			if ($0 ~ /NoDisplay=true/) show_launcher = 0
 		}
-	}' ${launchers[@]}
+	}' $(Desktop_files) | column -t -s "𤭢" | sort | $fzfopt | sed 's/^.*┃//' | sed 's/ %.*$//'
 }
 
-while :; do
-	Command=$(_desktop_files | column -t -s "𤭢" | sort | $fzfopt | sed 's/^.*┃//' | sed 's/ %.*$//')
+Command=$(Pretty_list)
 
-	if [[ $Command ]]; then
-		$Command &
-		break
-	else
-		break
-	fi
-done
+if [ -n "$Command" ]; then
+	$Command &
+fi
