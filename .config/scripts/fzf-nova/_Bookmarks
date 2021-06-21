@@ -17,6 +17,6 @@ Site=$(sed -r '/http/!d;s/^.*HREF="(.*)" ADD_DATE=.*">(.*)<\/A>.*$/\2𤭢┃\1/'
 	| sed 's/#Porn.*┃\|#Hentai.*┃/┃--private-window /' \
 	| sed 's/^.*┃//')
 
-if [ ! -z "$Site" ]; then
+if [ -n "$Site" ]; then
 	eval $Browser "$Site" &
 fi
