@@ -46,6 +46,10 @@ autocmd VimEnter *
 " }}} ----------------------------- Plugins End -----------------------------
 " {{{ --------------------------- Plug-config Begin ---------------------------
 " {{{ --------------------------- Coc-config Begin  ---------------------------
+
+" Coc Explorer
+nnoremap <space>d :CocCommand explorer<CR>
+
 " TextEdit might fail if hidden is not set.
 set hidden
 
@@ -214,6 +218,7 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 " coc config
 let g:coc_global_extensions = [
   \ 'coc-snippets',
+  \ 'coc-explorer',
   \ 'coc-tsserver',
   \ 'coc-sh',
   \ 'coc-python',
