@@ -2,6 +2,14 @@
   "coc.preferences.formatOnSaveFiletypes": ["css", "markdown", "javascript", "graphql", "html", "yaml",  "json", "python"],
 
   "coc.preferences.colorSupport": true,
+
+  // explorer
+  "explorer.icon.enableNerdfont": true,
+  "explorer.keyMappings.global": {
+    "<cr>": ["expandable?", "expand", "open"],
+    "v": "open:vsplit"
+  },
+
   // python config
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": true,
