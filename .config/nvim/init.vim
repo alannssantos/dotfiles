@@ -18,7 +18,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 	" ==== Themes
 	Plug 'morhetz/gruvbox'                " Gruvbox Theme
-  Plug 'ryanoasis/vim-devicons'
+	Plug 'ryanoasis/vim-devicons'
 	Plug 'vim-airline/vim-airline'        " Airline
 	Plug 'vim-airline/vim-airline-themes'	" Airline Themes
 
