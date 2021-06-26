@@ -48,7 +48,7 @@ autocmd VimEnter *
 " {{{ --------------------------- Coc-config Begin  ---------------------------
 
 " Coc Explorer
-nnoremap <space>d :CocCommand explorer<CR>
+nnoremap <space><Tab> :CocCommand explorer<CR>
 
 " TextEdit might fail if hidden is not set.
 set hidden
@@ -388,6 +388,7 @@ function! Compiler()
 endfunction
 
 " Maps
+map <Tab> :bn<CR>
 map <leader>q :bw<CR>
 map <leader>f :FZF -e<CR>
 map <leader>p :call Preview()<CR>
@@ -395,7 +396,6 @@ map <leader>c :call Compiler()<CR><CR>
 map <leader>s :!clear && shellcheck -x %<CR>
 map <leader>t :!tmux split-window -v -p 20<CR>
 map <leader>nl :%s/^/\=printf('%03d', line('.'))<CR>
-map <leader><Tab> :bn<CR>
 
 " Copiar e Colar X11
 vmap <C-c> :!xclip -f -sel clip<CR>
