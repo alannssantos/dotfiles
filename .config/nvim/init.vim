@@ -119,16 +119,17 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " coc config
 let g:coc_global_extensions = [
-  \ 'coc-snippets',
-  \ 'coc-explorer',
-  \ 'coc-tsserver',
   \ 'coc-sh',
-  \ 'coc-python',
-  \ 'coc-flutter',
   \ 'coc-json',
-  \ 'coc-eslint',
-  \ 'coc-prettier',
   \ 'coc-pairs',
+  \ 'coc-eslint',
+  \ 'coc-python',
+  \ 'coc-texlab',
+  \ 'coc-flutter',
+  \ 'coc-explorer',
+  \ 'coc-prettier',
+  \ 'coc-snippets',
+  \ 'coc-tsserver',
   \ ]
 " }}} --------------------------- Coc-config End  ---------------------------
 " {{{ -------------------------- Airline-config Begin -------------------------
