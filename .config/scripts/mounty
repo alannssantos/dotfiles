@@ -11,13 +11,22 @@
 Opcoes=$(lsblk -o "FSTYPE,PATH,SIZE,FSTYPE,LABEL,RM,MOUNTPOINT" \
 	| sed '/^ /d' \
 	| sed 's|^.*/dev/|/dev/|' \
-	| sed '/sd./!d;s/ 0 / \(Disco Local\)𤭢/;s/ 1 / \(Disco Removível\)𤭢/' \
+	| sed '/\/dev\//!d;s/ 0 / \(Disco Local\)𤭢/
+		s/ 1 / \(Disco Removível\)𤭢/' \
 	| column -t -s "𤭢")
 
 Escolha=$(echo " Escolha a Partição que deve ser Montada ou Desmontada.
 
 $Opcoes
 
- Sair" | fzf -e --layout=reverse-list --color='fg:#99cc99,fg+:#2d2d2d,bg+:#99cc99,pointer:#2d2d2d,prompt:#99cc99' --margin=5% --border --no-info --phony | sed 's/ .*$//')
+ Sair" \
+	| fzf -e \
+		--layout=reverse-list \
+		--color='fg:#99cc99,fg+:#2d2d2d,bg+:#99cc99,pointer:#2d2d2d,prompt:#99cc99' \
+		--margin=5% \
+		--border \
+		--no-info \
+		--phony \
+	| sed 's/ .*$//')
 
 udisksctl mount -b $Escolha $1 2>/dev/null || udisksctl unmount -b $Escolha $1 2>/dev/null
