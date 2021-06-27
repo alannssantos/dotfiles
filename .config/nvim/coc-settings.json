@@ -1,13 +1,10 @@
 {
   "coc.preferences.formatOnSaveFiletypes": ["css", "markdown", "javascript", "graphql", "html", "yaml",  "json", "python"],
 
-  "coc.preferences.colorSupport": true,
-
   // explorer
   "explorer.icon.enableNerdfont": true,
   "explorer.keyMappings.global": {
-    "<cr>": ["expandable?", "expand", "open"],
-    "v": "open:vsplit"
+    "<cr>": ["expandable?", "expand", "open"]
   },
 
   // python config
