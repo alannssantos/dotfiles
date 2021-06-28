@@ -3,7 +3,7 @@
 # Thanks Blau Araujo (debxp)!
 # https://www.youtube.com/watch?v=uIQzu10Giiw
 
-fzfopt="fzf -e --color=16 --tiebreak=begin --border -i --prompt=Application:"
+Fzfopt="fzf -e --color=16 --tiebreak=begin -i"
 
 Desktop_files(){
 	IFS=':' read -ra DIRS <<<"${XDG_DATA_HOME-${HOME}/.local/share}:${XDG_DATA_DIRS-/usr/local/share:/usr/share}"
@@ -59,7 +59,7 @@ Pretty_list(){
 			if ($0 ~ /^Exec=/) cmd = substr($0, 6)
 			if ($0 ~ /NoDisplay=true/) show_launcher = 0
 		}
-	}' $(Desktop_files) | column -t -s "𤭢" | sort | $fzfopt | sed 's/^.*┃//' | sed 's/ %.*$//'
+	}' $(Desktop_files) | column -t -s "𤭢" | sort | $Fzfopt | sed 's/^.*┃//' | sed 's/ %.*$//'
 }
 
 Command=$(Pretty_list)
