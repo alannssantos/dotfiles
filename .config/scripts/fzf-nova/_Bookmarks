@@ -2,7 +2,7 @@
 
 Bookmarks=~/.favoritos
 Browser="firefox"
-Fzfopt="fzf -e --color=16 --tiebreak=begin --border -i"
+Fzfopt="fzf -e --color=16 --tiebreak=begin -i"
 
 # Pegar favoritos do Firefox Automaticamente.
 #
