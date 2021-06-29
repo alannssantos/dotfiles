@@ -256,7 +256,7 @@ let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['node_modules'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['webpack\.'] = 'ﰩ'
 
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 0
+let g:airline_powerline_fonts = 1
 let g:airline_theme='onedark'
 " }}} -------------------------- Airline-config End -------------------------
 " }}} --------------------------- Plug-config End -----------------------------
@@ -272,9 +272,9 @@ set path+=**
 set incsearch
 set smartindent
 set laststatus=2
+set termguicolors
 set foldmethod=marker
 set clipboard=unnamedplus
-set termguicolors
 
 " Theme
 colorscheme gruvbox
