@@ -36,17 +36,21 @@ tasks:
       password: ""
       path: "/media/HardDisk/Plex/HQ's/Weekly"
   Animes:
-    sequence:
-      - rss: https://nyaa.si/?page=rss&q=megalo+box+Multiple+Subtitle+720p+v0&c=1_2&f=2
-    regexp:
-      accept:
-        - (\[Multiple Subtitle\]|\[720p\]).*(\[Multiple Subtitle\]|\[720p\])
+    rss: https://nyaa.si/?page=rss&c=1_2&f=2
+    series:
+      settings:
+        shows:
+          quality: 720p+
+      shows:
+        - "Nomad - Megalo Box 2":
+            from_group: Erai-raws
+            begin: 01
     transmission:
       host: localhost
       port: 9091
       username: ""
       password: ""
-      path: "/media/HardDisk/Plex/Animes/Megalo Box 2"
+      path: "/media/HardDisk/Plex/Animes/{{series_name}}/"
   Series:
     discover:
       what:
