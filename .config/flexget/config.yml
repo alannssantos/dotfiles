@@ -8,7 +8,7 @@ tasks:
     if:
       - transmission_ratio < 1.0: reject
     transmission:
-      action: remove
+      action: pause
 
   # RSS
   Mangas:
