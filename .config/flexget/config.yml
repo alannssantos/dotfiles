@@ -36,7 +36,15 @@ tasks:
       password: ""
       path: "/media/HardDisk/Plex/HQ's/Weekly"
   Animes:
-    rss: https://nyaa.si/?page=rss&c=1_2&f=2
+    discover:
+      what:
+        - next_series_episodes: yes
+      from:
+        - nyaa:
+            category: "anime eng"
+            filter: "trusted only"
+      interval: 15 minutes
+      release_estimations: ignore
     series:
       settings:
         shows:
@@ -57,7 +65,7 @@ tasks:
         - next_series_episodes: yes
       from:
         - 1337x: yes
-      interval: 30 minutes
+      interval: 15 minutes
     series:
       settings:
         shows:
@@ -90,7 +98,7 @@ tasks:
         - movie_list: movies
       from:
         - yts: yes
-      interval: 30 minutes
+      interval: 15 minutes
     list_match:
       from:
         - movie_list: movies
