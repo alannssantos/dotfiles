@@ -14,4 +14,4 @@
 #   Mod4+space
 
 DIR="${0%/*}"
-"$DIR"/"$(find "$DIR" -type f -exec basename {} \; | grep '^_' | sort | fzf -e -i --delimiter _ --with-nth='2..' --reverse --prompt="fzf-nova: ")" || break
+"$DIR"/"$(find "$DIR" -type f -exec basename {} \; | grep '^_' | sort | fzf -e -i --delimiter _ --with-nth='2..' --color='fg+:#99cc99,pointer:#99cc99,prompt:#99cc99,border:#99cc99' --margin=20% --border --reverse --prompt="fzf-nova: ")" || break
