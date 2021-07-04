@@ -8,6 +8,8 @@
 #  / ___ \| | (_| | | | | | | |
 # /_/   \_\_|\__,_|_| |_|_| |_|
 
+Fzfopt='fzf -e --color='fg+:#99cc99,pointer:#99cc99,prompt:#99cc99,border:#99cc99' --layout=reverse-list --margin=20% --border --no-info --phony'
+
 Opcoes=$(lsblk -o "FSTYPE,PATH,SIZE,FSTYPE,LABEL,RM,MOUNTPOINT" \
 	| sed '/^ /d' \
 	| sed 's|^.*/dev/|/dev/|' \
@@ -19,14 +21,6 @@ Escolha=$(echo " Escolha a Partição que deve ser Montada ou Desmontada.
 
 $Opcoes
 
- Sair" \
-	| fzf -e \
-		--layout=reverse-list \
-		--color='fg:#99cc99,fg+:#2d2d2d,bg+:#99cc99,pointer:#2d2d2d,prompt:#99cc99' \
-		--margin=5% \
-		--border \
-		--no-info \
-		--phony \
-	| sed 's/ .*$//')
+ Sair" | $Fzfopt | sed 's/ .*$//')
 
 udisksctl mount -b $Escolha $1 2>/dev/null || udisksctl unmount -b $Escolha $1 2>/dev/null
