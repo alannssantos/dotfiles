@@ -3,7 +3,7 @@
 # Thanks Blau Araujo (debxp)!
 # https://www.youtube.com/watch?v=uIQzu10Giiw
 
-Fzfopt="fzf -e --color=16 --tiebreak=begin -i"
+Fzfopt='fzf -e --border -i --margin=20% --color='fg+:#99cc99,pointer:#99cc99,prompt:#99cc99,border:#99cc99' --tiebreak=begin --prompt=Aplicativos:'
 
 Desktop_files(){
 	IFS=':' read -ra DIRS <<<"${XDG_DATA_HOME-${HOME}/.local/share}:${XDG_DATA_DIRS-/usr/local/share:/usr/share}"
