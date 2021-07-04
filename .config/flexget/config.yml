@@ -63,7 +63,7 @@ tasks:
       what:
         - next_series_episodes: yes
       from:
-        - rarbg: { ranked: True }
+        - rarbg: {ranked: True}
       release_estimations: ignore
       interval: 15 minutes
     series:
@@ -83,6 +83,9 @@ tasks:
         - American Gods:
             begin: S04E01
         - Carnival Row:
+            begin: S02E01
+        - Evil:
+            exact: yes
             begin: S02E01
         - Loki:
             begin: S01E01
