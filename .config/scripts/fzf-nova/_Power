@@ -1,18 +1,14 @@
 #!/usr/bin/env bash
 
+Fzfopt='fzf -e --color='fg+:#99cc99,pointer:#99cc99,prompt:#99cc99,border:#99cc99' --layout=reverse-list --margin=20% --border --no-info --phony'
+
 Escolha=$(echo -e "Escolha a uma das opções.
 
 Desligar
 Reiniciar
 Suspender
 
-Sair" \
-	| fzf -e \
-		--layout=reverse-list \
-		--color='fg:#99cc99,fg+:#2d2d2d,bg+:#99cc99,pointer:#2d2d2d,prompt:#99cc99' \
-		--no-info \
-		--phony \
-	| sed 's/ .*$//')
+Sair"	| $Fzfopt | sed 's/ .*$//')
 
 case "$Escolha" in
 	Desligar)
