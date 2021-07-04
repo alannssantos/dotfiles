@@ -14,15 +14,19 @@ tasks:
   Mangas:
     rss: http://feeds.feedburner.com/mangafox/latest_manga_chapters?format=xml
     series:
-      - "Gleipnir"
-      - "Jagaaaaaan"
-      - "Black Clover"
-      - "Parallel Paradise"
-      - "Enen no Shouboutai"
-      - "Berserk of Gluttony"
-      - "Kanojo, Okarishimasu"
-      - "Mato Seihei no Slave"
-      - "Boku no Hero Academia"
+      settings:
+        shows:
+          exact: yes
+      shows:
+        - "Gleipnir"
+        - "Jagaaaaaan"
+        - "Black Clover"
+        - "Parallel Paradise"
+        - "Enen no Shouboutai"
+        - "Berserk of Gluttony"
+        - "Kanojo, Okarishimasu"
+        - "Mato Seihei no Slave"
+        - "Boku no Hero Academia"
     exec: ~/.local/bin/gallery-dl -d /tmp/ --exec-after 'cd {}/.. && zip -rm ~/HardDisk/Plex/Mangas/Weekly/"{{title}}".cbz *' {{url}}
   Comics:
     sequence:
@@ -48,6 +52,7 @@ tasks:
       settings:
         shows:
           quality: 720p+
+          exact: yes
       shows:
         - "Nomad - Megalo Box 2":
             from_group: Erai-raws
@@ -71,6 +76,7 @@ tasks:
         shows:
           quality: 720p
           propers: no
+          exact: yes
       shows:
         - Westworld:
             begin: S04E01
@@ -84,13 +90,12 @@ tasks:
             begin: S04E01
         - Carnival Row:
             begin: S02E01
-        - Evil:
-            exact: yes
-            begin: S02E01
         - Loki:
             begin: S01E01
         - Arcane:
             begin: S01E01
+        - Evil:
+            begin: S02E01
     transmission:
       host: localhost
       port: 9091
