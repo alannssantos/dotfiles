@@ -12,18 +12,17 @@ tasks:
 
   # RSS
   Mangas:
-    sequence:
-      - rss: http://fanfox.net/rss/kanojo_okarishimasu.xml #Kanojo, Okarishimasu
-      - rss: http://fanfox.net/rss/boku_no_hero_academia.xml #Boku no Hero Academia
-      - rss: http://fanfox.net/rss/enen_no_shouboutai.xml #Enen no Shouboutai
-      - rss: http://fanfox.net/rss/gleipnir.xml #Gleipnir
-      - rss: http://fanfox.net/rss/jagaaaaaan.xml #Jagaaaaaan
-      - rss: http://fanfox.net/rss/black_clover.xml #Black Clover
-      - rss: http://fanfox.net/rss/parallel_paradise.xml #Parallel Paradise
-      - rss: http://fanfox.net/rss/mato_seihei_no_slave.xml #Mato Seihei no Slave
-      - rss: http://fanfox.net/rss/berserk_of_gluttony.xml #Berserk of Gluttony
-      - rss: http://fanfox.net/rss/the_story_between_a_dumb_prefect_and_a_high_school_girl_with_an_inappropriate_skirt_length.xml #The Story Between a Dumb Prefect and a High School Girl with an Inappropriate Skirt Length
-    accept_all: yes
+    rss: http://feeds.feedburner.com/mangafox/latest_manga_chapters?format=xml
+    series:
+      - "Gleipnir"
+      - "Jagaaaaaan"
+      - "Black Clover"
+      - "Parallel Paradise"
+      - "Enen no Shouboutai"
+      - "Berserk of Gluttony"
+      - "Kanojo, Okarishimasu"
+      - "Mato Seihei no Slave"
+      - "Boku no Hero Academia"
     exec: ~/.local/bin/gallery-dl -d /tmp/ --exec-after 'cd {}/.. && zip -rm ~/HardDisk/Plex/Mangas/Weekly/"{{title}}".cbz *' {{url}}
   Comics:
     sequence:
@@ -64,7 +63,8 @@ tasks:
       what:
         - next_series_episodes: yes
       from:
-        - 1337x: yes
+        - rarbg: { ranked: True }
+      release_estimations: ignore
       interval: 15 minutes
     series:
       settings:
@@ -84,6 +84,10 @@ tasks:
             begin: S04E01
         - Carnival Row:
             begin: S02E01
+        - Loki:
+            begin: S01E01
+        - Arcane:
+            begin: S01E01
     transmission:
       host: localhost
       port: 9091
@@ -124,8 +128,6 @@ tasks:
     subliminal:
       languages:
         - pt-BR
-      alternatives:
-        - en
       exact_match: no
       single: no
       hearing_impaired: yes
