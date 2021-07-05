@@ -14,19 +14,15 @@ tasks:
   Mangas:
     rss: http://feeds.feedburner.com/mangafox/latest_manga_chapters?format=xml
     series:
-      settings:
-        shows:
-          exact: yes
-      shows:
-        - "Gleipnir"
-        - "Jagaaaaaan"
-        - "Black Clover"
-        - "Parallel Paradise"
-        - "Enen no Shouboutai"
-        - "Berserk of Gluttony"
-        - "Kanojo, Okarishimasu"
-        - "Mato Seihei no Slave"
-        - "Boku no Hero Academia"
+      - "Gleipnir"
+      - "Jagaaaaaan"
+      - "Black Clover"
+      - "Parallel Paradise"
+      - "Enen no Shouboutai"
+      - "Berserk of Gluttony"
+      - "Kanojo, Okarishimasu"
+      - "Mato Seihei no Slave"
+      - "Boku no Hero Academia"
     exec: ~/.local/bin/gallery-dl -d /tmp/ --exec-after 'cd {}/.. && zip -rm ~/HardDisk/Plex/Mangas/Weekly/"{{title}}".cbz *' {{url}}
   Comics:
     sequence:
