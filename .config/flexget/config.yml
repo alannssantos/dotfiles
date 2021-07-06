@@ -65,7 +65,6 @@ tasks:
         - next_series_episodes: yes
       from:
         - rarbg: {ranked: True}
-      release_estimations: ignore
       interval: 15 minutes
     series:
       settings:
