@@ -22,12 +22,12 @@ tasks:
       - rss: http://fanfox.net/rss/kanojo_okarishimasu.xml
       - rss: http://fanfox.net/rss/mato_seihei_no_slave.xml
       - rss: http://fanfox.net/rss/boku_no_hero_academia.xml
-    accept_all: yes
+    only_new: yes
     exec: ~/.local/bin/gallery-dl -d /tmp/ --exec-after 'cd {}/.. && zip -rm ~/HardDisk/Plex/Mangas/Weekly/"{{title}}".cbz *' {{url}}
   Comics:
     sequence:
       - rss: https://torrentgalaxy.mx/rss?user=2918
-    accept_all: yes
+    only_new: yes
     transmission:
       host: localhost
       port: 9091
