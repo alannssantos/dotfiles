@@ -12,17 +12,17 @@ tasks:
 
   # RSS
   Mangas:
-    rss: http://feeds.feedburner.com/mangafox/latest_manga_chapters?format=xml
-    series:
-      - "Gleipnir"
-      - "Jagaaaaaan"
-      - "Black Clover"
-      - "Parallel Paradise"
-      - "Enen no Shouboutai"
-      - "Berserk of Gluttony"
-      - "Kanojo, Okarishimasu"
-      - "Mato Seihei no Slave"
-      - "Boku no Hero Academia"
+    sequence:
+      - rss: http://fanfox.net/rss/gleipnir.xml
+      - rss: http://fanfox.net/rss/jagaaaaaan.xml
+      - rss: http://fanfox.net/rss/black_clover.xml
+      - rss: http://fanfox.net/rss/parallel_paradise.xml
+      - rss: http://fanfox.net/rss/enen_no_shouboutai.xml
+      - rss: http://fanfox.net/rss/berserk_of_gluttony.xml
+      - rss: http://fanfox.net/rss/kanojo_okarishimasu.xml
+      - rss: http://fanfox.net/rss/mato_seihei_no_slave.xml
+      - rss: http://fanfox.net/rss/boku_no_hero_academia.xml
+    accept_all: yes
     exec: ~/.local/bin/gallery-dl -d /tmp/ --exec-after 'cd {}/.. && zip -rm ~/HardDisk/Plex/Mangas/Weekly/"{{title}}".cbz *' {{url}}
   Comics:
     sequence:
