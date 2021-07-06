@@ -70,7 +70,6 @@ tasks:
       settings:
         shows:
           quality: 720p
-          propers: no
           exact: yes
       shows:
         - Westworld:
