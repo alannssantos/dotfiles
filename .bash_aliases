@@ -39,7 +39,7 @@ alias ytv-best='youtube-dl -c --add-metadata -f bestvideo+bestaudio -o "%(title)
 alias streamlink='streamlink -p "mpv --cache 2048 --ontop --no-border --force-window --autofit=500x280 --geometry=-15-60"'
 
 #### Funções.
-finder() { ranger --selectfile="$(fzf -e --color=16 --border | xargs -r -0)" ;}
+finder() { ranger --selectfile="$(fzf -e | xargs -r -0)" ;}
 justread() { readable "$1" -p html-title,html-content > /tmp/readable.html&&lynx -image_links /tmp/readable.html ;}
 hideinimage() { cat "$@" > "copy_$1" ;}
 
@@ -59,6 +59,7 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'
 
 #### Mostrar arquivos ocultos com FZF e abri com o aplcativo padrão pra determinado arquivo.
 export FZF_DEFAULT_COMMAND='find /home /media /mnt'
+export FZF_DEFAULT_OPTS='--color='fg+:#99cc99,pointer:#99cc99,prompt:#99cc99,border:#99cc99' --border'
 
 bind '"\C-X":"tmuxd\n"'
 bind '"\C-F":"finder\n"'
