@@ -38,7 +38,6 @@ sudo apt install mpc \
 	curl \
 	lynx \
 	peek \
-	rofi \
 	slop \
 	sxiv \
 	tmux \
@@ -52,6 +51,7 @@ sudo apt install mpc \
 	mpg123 \
 	xinput \
 	blueman \
+	concalc \
 	flatpak \
 	gparted \
 	ncmpcpp \
