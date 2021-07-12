@@ -272,14 +272,14 @@ set path+=**
 set incsearch
 set smartindent
 set laststatus=2
-set termguicolors
 set foldmethod=marker
 set clipboard=unnamedplus
 
 " Theme
 colorscheme gruvbox
-hi Normal ctermbg=none
-hi Normal guibg=none
+set termguicolors cursorline
+hi! Normal ctermbg=none guibg=none
+hi! NonText ctermbg=none guibg=none ctermfg=none guifg=none
 
 " Maps
 map <Tab> :bn<CR>
