@@ -37,7 +37,7 @@ echo -n "$Torrent"
 # {{{ #### Flexget Update
 File=~/Flexget-Update.md
 Date=$(date '+%d/%m/%Y')
-[ ! -f "$File" ] && echo -e " | Origem | Data | Titulo | Url |\n |:-----------:|:-----------:|:-----------:|:--------:|" >> "$File"
+[ ! -f "$File" ] && echo -e "| Data | Titulo | Url |\n| :--: | :----: | :-: |" >> "$File"
 FlexgetUP=$(grep -c "$Date" "$File")
 [ "$FlexgetUP" = 0 ] && echo -n "" || echo -n " #[fg=colour71]┃ #[fg=colour4]Flexget: $FlexgetUP"
 #### ━━━━━━━━━━━━ # }}}
