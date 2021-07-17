@@ -1,3 +1,4 @@
+# Para a notificação via telegram funcionar é preciso colocar o TokenID e ChatID.
 tasks:
   # Remove torrent depois de Upar a mesma quantidade!
   Limpeza:
@@ -16,24 +17,31 @@ tasks:
       - rss: http://fanfox.net/rss/gleipnir.xml
       - rss: http://fanfox.net/rss/jagaaaaaan.xml
       - rss: http://fanfox.net/rss/black_clover.xml
+      - rss: http://fanfox.net/rss/killing_bites.xml
       - rss: http://fanfox.net/rss/parallel_paradise.xml
       - rss: http://fanfox.net/rss/enen_no_shouboutai.xml
       - rss: http://fanfox.net/rss/berserk_of_gluttony.xml
       - rss: http://fanfox.net/rss/kanojo_okarishimasu.xml
       - rss: http://fanfox.net/rss/mato_seihei_no_slave.xml
       - rss: http://fanfox.net/rss/boku_no_hero_academia.xml
-    only_new: yes
-    exec: ~/.local/bin/gallery-dl -d /tmp/ --exec-after 'cd {}/.. && zip -rm ~/HardDisk/Plex/Mangas/Weekly/"{{title}}".cbz *' {{url}}
+      - rss: http://fanfox.net/rss/ren_ai_shikou_seitokai.xml
+      - rss: http://fanfox.net/rss/amano_megumi_wa_suki_darake.xml
+      - rss: http://fanfox.net/rss/hitomi_chan_is_shy_with_strangers.xml
+    accept_all: yes
+    exec:
+      - curl -F text="{{title}}" https://api.telegram.org/bot<TokenID>/sendMessage?chat_id=<ChatID>
+      - ~/.local/bin/gallery-dl -d /tmp/ --exec-after 'cd {}/.. && zip -rm ~/HardDisk/Plex/Mangas/Weekly/"{{title}}".cbz *' {{url}}
   Comics:
     sequence:
       - rss: https://torrentgalaxy.mx/rss?user=2918
-    only_new: yes
+    accept_all: yes
     transmission:
       host: localhost
       port: 9091
       username: ""
       password: ""
       path: "/media/HardDisk/Plex/HQ's/Weekly"
+    exec: curl -F text="{{title}}" https://api.telegram.org/bot<TokenID>/sendMessage?chat_id=<ChatID>
   Animes:
     discover:
       what:
@@ -52,13 +60,17 @@ tasks:
       shows:
         - "Nomad - Megalo Box 2":
             from_group: Erai-raws
-            begin: 01
+            begin: 14
     transmission:
       host: localhost
       port: 9091
       username: ""
       password: ""
       path: "/media/HardDisk/Plex/Animes/{{series_name}}/"
+    exec:
+      - curl -F text="{{imdb_name}}" https://api.telegram.org/bot<TokenID>/sendMessage?chat_id=<ChatID>
+      - curl "{{(tvdb_posters|d|first )|d(imdb_photo)|d|replace("_", "%5F")}}" -o "/tmp/Flexget.jpg"
+      - curl -F photo=@"/tmp/Flexget.jpg" https://api.telegram.org/bot<TokenID>/sendPhoto?chat_id=<ChatID>
   Series:
     discover:
       what:
@@ -90,12 +102,20 @@ tasks:
             begin: S01E01
         - Evil:
             begin: S02E01
+        - The Witcher:
+            begin: S02E01
+        - What If...?:
+            begin: S01E01
     transmission:
       host: localhost
       port: 9091
       username: ""
       password: ""
       path: "/media/HardDisk/Plex/Series/{{series_name}}/Season {{series_season}}/"
+    exec:
+      - curl -F text="{{imdb_name}}" https://api.telegram.org/bot<TokenID>/sendMessage?chat_id=<ChatID>
+      - curl "{{(tvdb_posters|d|first )|d(imdb_photo)|d|replace("_", "%5F")}}" -o "/tmp/Flexget.jpg"
+      - curl -F photo=@"/tmp/Flexget.jpg" https://api.telegram.org/bot<TokenID>/sendPhoto?chat_id=<ChatID>
 
   # Filmes adcionado com `flexget movie_list add [nome do filme|id_imdb]`
   Filmes:
@@ -118,22 +138,7 @@ tasks:
       username: ""
       password: ""
       path: /media/HardDisk/Plex/Filmes
-  Legendas:
-    filesystem:
-      path:
-        - /media/HardDisk/Plex/Series
-        - /media/HardDisk/Plex/Filmes
-      regexp: '.*\.(avi|mkv|mp4)$'
-      recursive: yes
-    accept_all: yes
-    seen: local
-    subliminal:
-      languages:
-        - pt-BR
-      exact_match: no
-      single: no
-      hearing_impaired: yes
-      authentication:
-        opensubtitles:
-          username: LOGIN
-          password: PASSWORD
+    exec:
+      - curl -F text="{{imdb_name}}" https://api.telegram.org/bot<TokenID>/sendMessage?chat_id=<ChatID>
+      - curl "{{(tvdb_posters|d|first )|d(imdb_photo)|d|replace("_", "%5F")}}" -o "/tmp/Flexget.jpg"
+      - curl -F photo=@"/tmp/Flexget.jpg" https://api.telegram.org/bot<TokenID>/sendPhoto?chat_id=<ChatID>
