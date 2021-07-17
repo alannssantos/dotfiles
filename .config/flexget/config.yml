@@ -1,4 +1,5 @@
-# Para a notificação via telegram funcionar é preciso colocar o TokenID e ChatID.
+# Para a notificação via telegram funcionar é preciso colocar o <TokenID> e <ChatID>.
+# Instalar `pip3 install python-telegram-bot==12.8`
 tasks:
   # Remove torrent depois de Upar a mesma quantidade!
   Limpeza:
@@ -29,7 +30,8 @@ tasks:
       - rss: http://fanfox.net/rss/hitomi_chan_is_shy_with_strangers.xml
     accept_all: yes
     exec:
-      - curl -F text="{{title}}" https://api.telegram.org/bot<TokenID>/sendMessage?chat_id=<ChatID>
+      - echo "|$(date '+%d/%m/%Y %H:%M:%S')|{{title}}|Mangas|" >> ~/Flexget-Update.md
+      - wget -qO- --post-data "text={{title}}" https://api.telegram.org/bot<TokenID>/sendMessage?chat_id=<ChatID>
       - ~/.local/bin/gallery-dl -d /tmp/ --exec-after 'cd {}/.. && zip -rm ~/HardDisk/Plex/Mangas/Weekly/"{{title}}".cbz *' {{url}}
   Comics:
     sequence:
@@ -41,7 +43,9 @@ tasks:
       username: ""
       password: ""
       path: "/media/HardDisk/Plex/HQ's/Weekly"
-    exec: curl -F text="{{title}}" https://api.telegram.org/bot<TokenID>/sendMessage?chat_id=<ChatID>
+    exec:
+      - echo "|$(date '+%d/%m/%Y %H:%M:%S')|{{title}}|Comics|" >> ~/Flexget-Update.md
+      - wget -qO- --post-data "text={{title}}" https://api.telegram.org/bot<TokenID>/sendMessage?chat_id=<ChatID>
   Animes:
     discover:
       what:
@@ -68,9 +72,8 @@ tasks:
       password: ""
       path: "/media/HardDisk/Plex/Animes/{{series_name}}/"
     exec:
-      - curl -F text="{{imdb_name}}" https://api.telegram.org/bot<TokenID>/sendMessage?chat_id=<ChatID>
-      - curl "{{(tvdb_posters|d|first )|d(imdb_photo)|d|replace("_", "%5F")}}" -o "/tmp/Flexget.jpg"
-      - curl -F photo=@"/tmp/Flexget.jpg" https://api.telegram.org/bot<TokenID>/sendPhoto?chat_id=<ChatID>
+      - echo "|$(date '+%d/%m/%Y %H:%M:%S')|{{title}}|Animes|" >> ~/Flexget-Update.md
+      - wget -qO- --post-data "text={{title}}" https://api.telegram.org/bot<TokenID>/sendMessage?chat_id=<ChatID>
   Series:
     discover:
       what:
@@ -113,9 +116,8 @@ tasks:
       password: ""
       path: "/media/HardDisk/Plex/Series/{{series_name}}/Season {{series_season}}/"
     exec:
-      - curl -F text="{{imdb_name}}" https://api.telegram.org/bot<TokenID>/sendMessage?chat_id=<ChatID>
-      - curl "{{(tvdb_posters|d|first )|d(imdb_photo)|d|replace("_", "%5F")}}" -o "/tmp/Flexget.jpg"
-      - curl -F photo=@"/tmp/Flexget.jpg" https://api.telegram.org/bot<TokenID>/sendPhoto?chat_id=<ChatID>
+      - echo "|$(date '+%d/%m/%Y %H:%M:%S')|{{title}}|Series|" >> ~/Flexget-Update.md
+      - wget -qO- --post-data "text={{title}}" https://api.telegram.org/bot<TokenID>/sendMessage?chat_id=<ChatID>
 
   # Filmes adcionado com `flexget movie_list add [nome do filme|id_imdb]`
   Filmes:
@@ -139,6 +141,5 @@ tasks:
       password: ""
       path: /media/HardDisk/Plex/Filmes
     exec:
-      - curl -F text="{{imdb_name}}" https://api.telegram.org/bot<TokenID>/sendMessage?chat_id=<ChatID>
-      - curl "{{(tvdb_posters|d|first )|d(imdb_photo)|d|replace("_", "%5F")}}" -o "/tmp/Flexget.jpg"
-      - curl -F photo=@"/tmp/Flexget.jpg" https://api.telegram.org/bot<TokenID>/sendPhoto?chat_id=<ChatID>
+      - echo "|$(date '+%d/%m/%Y %H:%M:%S')|{{imdb_name}}|Filmes|" >> ~/Flexget-Update.md
+      - wget -qO- --post-data "text={{imdb_name}} - {{(tvdb_posters|d|first )|d(imdb_photo)}}" https://api.telegram.org/bot<TokenID>/sendMessage?chat_id=<ChatID>
