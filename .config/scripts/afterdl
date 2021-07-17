@@ -2,4 +2,4 @@
 
 export DISPLAY=:0.0
 
-exec notify-send -i transmission "Transmission [Finalizado]" "$TR_TORRENT_NAME."
+exec notify-send -i transmission "Transmission [Finalizado]" "$TR_TORRENT_NAME"
