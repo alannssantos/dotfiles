@@ -12,11 +12,9 @@ templates:
           *{{series_name}}* - {{series_id}} - {{quality|d('')}}
           *{{tvmaze_episode_name|d(tvdb_ep_name)|d('')}}*
           [Image]({{tvmaze_series_original_image|replace("_", "%5F")}})
-          [Show page]({{tvmaze_series_url|replace("_", "%5F")}})
           {% elif imdb_name is defined -%}
           *{{imdb_name}}* - ({{imdb_year}})
           [Image]({{(tvdb_posters|d|first )|d(imdb_photo)|d|replace("_", "%5F")}})
-          [Movie Page]({{imdb_url|d('')}})
           {% else -%}
           {{title}}
           {%- endif -%}
@@ -24,9 +22,12 @@ templates:
           - telegram:
               bot_token: '<TokenID>'
               parse_mode: markdown
+              disable_previews: no
               recipients:
                 - username: '<UserName>'
 
+# Transmission só funciona com `pip3 install transmission-rpc`.
+# Mais informações `https://flexget.com/Plugins/transmission`.
 tasks:
   # Remove torrent depois de Upar a mesma quantidade!
   Limpeza:
@@ -37,9 +38,10 @@ tasks:
     if:
       - transmission_ratio < 1.0: reject
     transmission:
-      action: pause
+      action: remove
+    template: no_global
 
-  # RSS
+  # Baixar mangas do (mangafox|fanfox) só funciona com `pip3 install gallery-dl`.
   Mangas:
     sequence:
       - rss: http://fanfox.net/rss/gleipnir.xml
@@ -142,7 +144,7 @@ tasks:
     exec:
       - echo "|$(date '+%d/%m/%Y %H:%M:%S')|{{title}}|Series|" >> ~/Flexget-Update.md
 
-  # Filmes adcionado com `flexget movie_list add [nome do filme|id_imdb]`
+  # Filmes adcionado com `flexget movie_list add (nome do filme|id_imdb)`
   Filmes:
     discover:
       what:
