@@ -1,6 +1,32 @@
 # Para a notificação via telegram funcionar é preciso colocar o <TokenID> e <UserName>.
-# Crie um Bot para gerar um TokenID e inicie uma conversa com ele para gerar ChatID.
+# Crie um Bot para gerar um TokenID e inicie uma conversa com ele para gerar ChatID,
+# caso voce não tenha um UserName vá nas configurações do telegram e crie.
 # Instalar `pip3 install python-telegram-bot==12.8`.
+templates:
+  global:
+    notify:
+      entries:
+        message:
+          |+
+          {% if series_name is defined -%}
+          *{{series_name}}* - {{series_id}} - {{quality|d('')}}
+          *{{tvmaze_episode_name|d(tvdb_ep_name)|d('')}}*
+          [Image]({{tvmaze_series_original_image|replace("_", "%5F")}})
+          [Show page]({{tvmaze_series_url|replace("_", "%5F")}})
+          {% elif imdb_name is defined -%}
+          *{{imdb_name}}* - ({{imdb_year}})
+          [Image]({{(tvdb_posters|d|first )|d(imdb_photo)|d|replace("_", "%5F")}})
+          [Movie Page]({{imdb_url|d('')}})
+          {% else -%}
+          {{title}}
+          {%- endif -%}
+        via:
+          - telegram:
+              bot_token: '<TokenID>'
+              parse_mode: markdown
+              recipients:
+                - username: '<UserName>'
+
 tasks:
   # Remove torrent depois de Upar a mesma quantidade!
   Limpeza:
@@ -33,30 +59,6 @@ tasks:
     exec:
       - echo "|$(date '+%d/%m/%Y %H:%M:%S')|{{title}}|Mangas|" >> ~/Flexget-Update.md
       - ~/.local/bin/gallery-dl -d /tmp/ --exec-after 'cd {}/.. && zip -rm ~/HardDisk/Plex/Mangas/Weekly/"{{title}}".cbz *' {{url}}
-    notify:
-      entries:
-        message:
-          |+
-          {% if series_name is defined -%}
-          *{{series_name}}* - {{series_id}} - {{quality|d('')}}
-          *{{tvmaze_episode_name|d(tvdb_ep_name)|d('')}}*
-          [Image]({{tvmaze_series_original_image|replace("_", "%5F")}})
-          [Show page]({{tvmaze_series_url|replace("_", "%5F")}})
-          {% elif imdb_name is defined -%}
-          *{{imdb_name}}* - ({{imdb_year}})
-          {{quality|d('')}}
-          *Plot:* {{imdb_plot_outline}}
-          [Image]({{(tvdb_posters|d|first )|d(imdb_photo)|d|replace("_", "%5F")}})
-          [Movie Page]({{imdb_url|d('')}})
-          {% else -%}
-          {{title}}
-          {%- endif -%}
-        via:
-          - telegram:
-              bot_token: '<TokenID>'
-              parse_mode: markdown
-              recipients:
-                - username: '<UserName>'
   Comics:
     sequence:
       - rss: https://torrentgalaxy.mx/rss?user=2918
@@ -69,30 +71,6 @@ tasks:
       path: "/media/HardDisk/Plex/HQ's/Weekly"
     exec:
       - echo "|$(date '+%d/%m/%Y %H:%M:%S')|{{title}}|Comics|" >> ~/Flexget-Update.md
-    notify:
-      entries:
-        message:
-          |+
-          {% if series_name is defined -%}
-          *{{series_name}}* - {{series_id}} - {{quality|d('')}}
-          *{{tvmaze_episode_name|d(tvdb_ep_name)|d('')}}*
-          [Image]({{tvmaze_series_original_image|replace("_", "%5F")}})
-          [Show page]({{tvmaze_series_url|replace("_", "%5F")}})
-          {% elif imdb_name is defined -%}
-          *{{imdb_name}}* - ({{imdb_year}})
-          {{quality|d('')}}
-          *Plot:* {{imdb_plot_outline}}
-          [Image]({{(tvdb_posters|d|first )|d(imdb_photo)|d|replace("_", "%5F")}})
-          [Movie Page]({{imdb_url|d('')}})
-          {% else -%}
-          {{title}}
-          {%- endif -%}
-        via:
-          - telegram:
-              bot_token: '<TokenID>'
-              parse_mode: markdown
-              recipients:
-                - username: '<UserName>'
   Animes:
     discover:
       what:
@@ -120,30 +98,6 @@ tasks:
       path: "/media/HardDisk/Plex/Animes/{{series_name}}/"
     exec:
       - echo "|$(date '+%d/%m/%Y %H:%M:%S')|{{title}}|Animes|" >> ~/Flexget-Update.md
-    notify:
-      entries:
-        message:
-          |+
-          {% if series_name is defined -%}
-          *{{series_name}}* - {{series_id}} - {{quality|d('')}}
-          *{{tvmaze_episode_name|d(tvdb_ep_name)|d('')}}*
-          [Image]({{tvmaze_series_original_image|replace("_", "%5F")}})
-          [Show page]({{tvmaze_series_url|replace("_", "%5F")}})
-          {% elif imdb_name is defined -%}
-          *{{imdb_name}}* - ({{imdb_year}})
-          {{quality|d('')}}
-          *Plot:* {{imdb_plot_outline}}
-          [Image]({{(tvdb_posters|d|first )|d(imdb_photo)|d|replace("_", "%5F")}})
-          [Movie Page]({{imdb_url|d('')}})
-          {% else -%}
-          {{title}}
-          {%- endif -%}
-        via:
-          - telegram:
-              bot_token: '<TokenID>'
-              parse_mode: markdown
-              recipients:
-                - username: '<UserName>'
   Series:
     discover:
       what:
@@ -187,30 +141,6 @@ tasks:
       path: "/media/HardDisk/Plex/Series/{{series_name}}/Season {{series_season}}/"
     exec:
       - echo "|$(date '+%d/%m/%Y %H:%M:%S')|{{title}}|Series|" >> ~/Flexget-Update.md
-    notify:
-      entries:
-        message:
-          |+
-          {% if series_name is defined -%}
-          *{{series_name}}* - {{series_id}} - {{quality|d('')}}
-          *{{tvmaze_episode_name|d(tvdb_ep_name)|d('')}}*
-          [Image]({{tvmaze_series_original_image|replace("_", "%5F")}})
-          [Show page]({{tvmaze_series_url|replace("_", "%5F")}})
-          {% elif imdb_name is defined -%}
-          *{{imdb_name}}* - ({{imdb_year}})
-          {{quality|d('')}}
-          *Plot:* {{imdb_plot_outline}}
-          [Image]({{(tvdb_posters|d|first )|d(imdb_photo)|d|replace("_", "%5F")}})
-          [Movie Page]({{imdb_url|d('')}})
-          {% else -%}
-          {{title}}
-          {%- endif -%}
-        via:
-          - telegram:
-              bot_token: '<TokenID>'
-              parse_mode: markdown
-              recipients:
-                - username: '<UserName>'
 
   # Filmes adcionado com `flexget movie_list add [nome do filme|id_imdb]`
   Filmes:
@@ -235,27 +165,3 @@ tasks:
       path: /media/HardDisk/Plex/Filmes
     exec:
       - echo "|$(date '+%d/%m/%Y %H:%M:%S')|{{imdb_name}}|Filmes|" >> ~/Flexget-Update.md
-    notify:
-      entries:
-        message:
-          |+
-          {% if series_name is defined -%}
-          *{{series_name}}* - {{series_id}} - {{quality|d('')}}
-          *{{tvmaze_episode_name|d(tvdb_ep_name)|d('')}}*
-          [Image]({{tvmaze_series_original_image|replace("_", "%5F")}})
-          [Show page]({{tvmaze_series_url|replace("_", "%5F")}})
-          {% elif imdb_name is defined -%}
-          *{{imdb_name}}* - ({{imdb_year}})
-          {{quality|d('')}}
-          *Plot:* {{imdb_plot_outline}}
-          [Image]({{(tvdb_posters|d|first )|d(imdb_photo)|d|replace("_", "%5F")}})
-          [Movie Page]({{imdb_url|d('')}})
-          {% else -%}
-          {{title}}
-          {%- endif -%}
-        via:
-          - telegram:
-              bot_token: '<TokenID>'
-              parse_mode: markdown
-              recipients:
-                - username: '<UserName>'
