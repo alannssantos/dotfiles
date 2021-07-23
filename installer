@@ -90,6 +90,8 @@ sudo apt install mpc \
 sudo apt update && \
 sudo apt upgrade -y && \
 npm config set prefix "$HOME/.local" && \
+npm i -g pyright && \
+npm i -g bash-language-server && \
 pip3 install jedi && \
 pip3 install aria2p && \
 pip3 install flexget && \
