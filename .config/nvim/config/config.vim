@@ -12,7 +12,7 @@ set laststatus=2
 set termguicolors
 set cursorline
 set foldmethod=marker
+set nospell spelllang=pt
 set clipboard=unnamedplus
-set spell spelllang=pt
 
 au! BufWritePost $MYVIMRC source %
