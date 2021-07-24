@@ -7,10 +7,10 @@ set hlsearch
 set path+=**
 set wildmenu
 set incsearch
+set cursorline
 set smartindent
 set laststatus=2
 set termguicolors
-set cursorline
 set foldmethod=marker
 set nospell spelllang=pt
 set clipboard=unnamedplus
