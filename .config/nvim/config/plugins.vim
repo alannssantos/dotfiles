@@ -16,6 +16,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 	" Sintaxes.
 	Plug 'ap/vim-css-color'
+	Plug 'latex-lsp/texlab'
 	Plug 'hrsh7th/nvim-compe'
 	Plug 'jiangmiao/auto-pairs'
 	Plug 'neovim/nvim-lspconfig'
