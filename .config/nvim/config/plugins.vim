@@ -12,6 +12,7 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'morhetz/gruvbox'
 	Plug 'ryanoasis/vim-devicons'
 	Plug 'vim-airline/vim-airline'
+	Plug 'kyazdani42/nvim-web-devicons'
 	Plug 'vim-airline/vim-airline-themes'
 
 	" Sintaxes.
