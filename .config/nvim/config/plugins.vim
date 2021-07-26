@@ -16,12 +16,14 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'vim-airline/vim-airline-themes'
 
 	" Sintaxes.
+	Plug 'vimwiki/vimwiki'
 	Plug 'ap/vim-css-color'
 	Plug 'latex-lsp/texlab'
 	Plug 'hrsh7th/nvim-compe'
 	Plug 'jiangmiao/auto-pairs'
 	Plug 'neovim/nvim-lspconfig'
 	Plug 'preservim/nerdcommenter'
+	Plug 'liuchengxu/vim-which-key'
 	Plug 'ntpeters/vim-better-whitespace'
 
 	" Gerenciar arquivos.
