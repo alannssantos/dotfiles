@@ -10,7 +10,10 @@ source $HOME/.config/nvim/config/plugins.vim
 source $HOME/.config/nvim/config/teclatalho.vim
 source $HOME/.config/nvim/config/plugins.conf/airline.vim
 source $HOME/.config/nvim/config/plugins.conf/grovbox.vim
+source $HOME/.config/nvim/config/plugins.conf/vimwiki.vim
+source $HOME/.config/nvim/config/plugins.conf/which-key.vim
 source $HOME/.config/nvim/config/plugins.conf/auto-pairs.vim
 source $HOME/.config/nvim/config/plugins.conf/lsp-config.vim
+source $HOME/.config/nvim/config/plugins.conf/NERDCommenter.vim
 source $HOME/.config/nvim/config/plugins.conf/nvim-tree.lua.vim
 luafile $HOME/.config/nvim/config/plugins.conf/compe-config.lua
