@@ -36,7 +36,7 @@ if [ -n "$Resultado" ]; then
 		| sed -r '/<a href=".*" rel=".*title=".*"><span class=".*<\/a>/!d' \
 		| sed -r 's/^.*<a href="(.*)" rel=".*"><\/span>(.*)<\/a>.*$/\2𤭢┃\1/'\
 		| column -t -s "𤭢" \
-		| fzf -e --color=16 --border --prompt=Qualidade: \
+		| fzf -e --border --prompt=Qualidade: \
 		| sed 's/^.*┃//')
 
 	if [ -n "$Qualidade" ]; then
