@@ -9,7 +9,7 @@ templates:
         message:
           |+
           {% if series_name is defined -%}
-          *{{series_name}}* - {{series_id}} - {{quality|d('')}}
+          *{{series_name}}* - {{series_id}}
           *{{tvmaze_episode_name|d(tvdb_ep_name)|d('')}}*
           [Image]({{tvmaze_series_original_image|replace("_", "%5F")}})
           {% elif imdb_name is defined -%}
@@ -92,6 +92,7 @@ tasks:
         - "Nomad - Megalo Box 2":
             from_group: Erai-raws
             begin: 14
+    tvmaze_lookup: yes
     transmission:
       host: localhost
       port: 9091
@@ -99,7 +100,7 @@ tasks:
       password: ""
       path: "/media/HardDisk/Plex/Animes/{{series_name}}/"
     exec:
-      - echo "|$(date '+%d/%m/%Y %H:%M:%S')|{{title}}|Animes|" >> ~/Flexget-Update.md
+      - echo "|$(date '+%d/%m/%Y %H:%M:%S')|{{series_name}}|Animes|" >> ~/Flexget-Update.md
   Series:
     discover:
       what:
@@ -135,6 +136,7 @@ tasks:
             begin: S02E01
         - What If...?:
             begin: S01E01
+    tvmaze_lookup: yes
     transmission:
       host: localhost
       port: 9091
@@ -142,7 +144,7 @@ tasks:
       password: ""
       path: "/media/HardDisk/Plex/Series/{{series_name}}/Season {{series_season}}/"
     exec:
-      - echo "|$(date '+%d/%m/%Y %H:%M:%S')|{{title}}|Series|" >> ~/Flexget-Update.md
+      - echo "|$(date '+%d/%m/%Y %H:%M:%S')|{{series_name}}|Series|" >> ~/Flexget-Update.md
 
   # Filmes adcionado com `flexget movie_list add (nome do filme|id_imdb)`
   Filmes:
