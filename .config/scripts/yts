@@ -28,7 +28,7 @@ Resultado=$(wget -qO- "$Url" \
 	| sed 'N;s/\n/𤭢/' \
 	| sed -r 's/(.*)𤭢(.*)/\2𤭢┃\1/' \
 	| column -t -s "𤭢" \
-	| fzf -e --color=16 --border --prompt=YTS.MX: \
+	| fzf -e --border --prompt=YTS.MX: \
 	| sed 's/^.*┃//')
 
 if [ -n "$Resultado" ]; then
