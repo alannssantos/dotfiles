@@ -14,5 +14,6 @@ set termguicolors
 set foldmethod=marker
 set nospell spelllang=pt
 set clipboard=unnamedplus
+set splitbelow splitright
 
 au! BufWritePost $MYVIMRC source %
