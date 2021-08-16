@@ -22,6 +22,10 @@ gitB() { git branch 2>&1 | tee | sed '/^[^*]/d;s/* \(.*\)/\1/' | sed 's/^/ \[/;s
 export PS1="\\n$RCor[$WCor\A$RCor] $GCor\u$YCor@$BCor\h $GCor\w$ECor\\n$YCor\$(gitB)$CCor\$(gitH)$RCor\$(gitD)$GCor\$(gitN)$CCor\$(gitR)$YCor\$(gitU)$CCor\$(gitM)$ECor $PCor$ $ECor"
 export PS2=" $GCor>$ECor "
 
+if [ -f ~/.config/lf/icons ]; then
+	. ~/.config/lf/icons
+fi
+
 #### Aliases.
 alias mv='mv -iv'
 alias rg='finder'
