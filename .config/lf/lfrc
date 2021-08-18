@@ -1,0 +1,120 @@
+set ratios 1:2:3
+set cleaner ~/.config/lf/cleaner
+# Basic Settings
+set previewer ~/.config/lf/preview
+set preview true
+set nohidden true
+set drawbox true
+set icons true
+set ignorecase true
+
+#Para ter imagem no seu terminal.
+#https://github.com/cirala/lfimg
+
+# Custom Functions
+cmd open ${{
+    case $(file --mime-type "$f" --separator="┃" | sed -r 's/(.*)┃ (.*)/\2┃\1/') in
+	*.cbz|*.cbr) mcomix "$f" & ;;
+	*.pdf) zathura "$f" & ;;
+	*.torrent) transmission-remote -a "$f" ;;
+        video/*) nohup mpv "$f" >/dev/null & ;;
+	text/*) /bin/bash -c "vim $(echo "$fx" | sed 's/^.*\///' | xargs -i echo "\\'{}\\'" | xargs echo)";;
+	image/*) sxiv * & ;;
+        *) xdg-open "$f" & ;;
+    esac
+}}
+
+cmd mkdir %{{
+  printf " Nome do Diretório:"
+  read ans
+  mkdir "$ans"
+}}
+
+cmd bulkrename ${{
+    old="$(mktemp)"
+    new="$(mktemp)"
+    printf '%s\n' "$fx" >"$old"
+    printf '%s\n' "$fx" >"$new"
+    vim "$new"
+    [ "$(wc -l < "$new")" -ne "$(wc -l < "$old")" ] && exit
+    paste "$old" "$new" | while IFS= read -r names; do
+	src="$(printf '%s' "$names" | cut -f1)"
+	dst="$(printf '%s' "$names" | cut -f2)"
+	if [ "$src" = "$dst" ] || [ -e "$dst" ]; then
+	    continue
+	fi
+	mv -- "$src" "$dst"
+    done
+    rm -- "$old" "$new"
+    lf -remote "send $id unselect"
+}}
+
+cmd fzf_find ${{
+  res="$(fzf --prompt='Ir Para: ')"
+  if [ -f "$res" ]; then
+    cmd="select"
+  elif [ -d "$res" ]; then
+    cmd="cd"
+  fi
+  lf -remote "send $id $cmd \"$res\""
+}}
+
+# Archive bindings
+cmd unz $atool -x "$f"
+cmd zip %zip -r "$f.zip" "${f##*/}" && echo "Concluido!"
+cmd 7zp %7z a -r "$f.7z" "${f##*/}" && echo "Concluido!"
+cmd rar %rar a -r "$f.rar" "${f##*/}" && echo "Concluido!"
+cmd zis !zip -er "$f.zip" "${f##*/}" && echo "Concluido!"
+cmd 7zs !7z a -r "$f.7z" "${f##*/}" -p && echo "Concluido!"
+
+cmd dra $dragon -a -T "$f"
+cmd mou $mounty
+cmd hif $cat "$f" > copy_"$f"
+cmd kcs %kcc-c2e --profile=K578 --upscale --splitter=2 --forcecolor "$f"
+
+# Bindings
+# Remove some defaults
+map m
+map o
+map n
+map "'"
+map '"'
+map d
+map c
+map e
+map p
+map y
+
+# Archive Mappings
+map xk kcs Converter Pasta em Arquivo .mobi
+map xr rar Compactar Rar
+map xz zip Compactar Zip
+map x7 7zp Compactar 7zip
+map xx unz Descompactar
+map xd dra Arrastar e Colar
+map xm mou Montar Dispositivos
+map xZ zps Compactar Zip com Senha
+map x6 7zs Compactar 7zip com Senha
+map xh hif Esconder Arquivo Dentro de Imagem
+
+# Broot Mapping
+map f fzf_find
+
+# Basic Functions
+map <backspace> set hidden!
+map dd cut
+map dD delete
+map pp paste
+map yy copy
+map <enter> open
+map mk mkdir
+map a rename
+map b bulkrename
+map R reload
+map C clear
+map U unselect
+map S $$SHELL
+map s $pcmanfm
+
+# Movement
+map gh cd ~/
