@@ -64,7 +64,7 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'
 
 #### Mostrar arquivos ocultos com FZF e abri com o aplcativo padrão pra determinado arquivo.
 export FZF_DEFAULT_COMMAND='find /home /media /mnt'
-export FZF_DEFAULT_OPTS="--color='fg+:#99cc99,pointer:#99cc99,prompt:#99cc99,border:#99cc99' --border"
+export FZF_DEFAULT_OPTS="--color='bg+:#282C34,fg+:#99cc99,pointer:#99cc99,prompt:#99cc99,border:#99cc99' --border"
 
 bind '"\C-X":"tmuxd\n"'
 bind '"\C-F":"finder\n"'
