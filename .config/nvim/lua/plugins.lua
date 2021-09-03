@@ -10,7 +10,6 @@ return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
   -- Tema.
   use 'Th3Whit3Wolf/one-nvim'
-  use 'akinsho/bufferline.nvim'
   use 'norcalli/nvim-colorizer.lua'
   use 'kyazdani42/nvim-web-devicons'
   -- Endentação.
