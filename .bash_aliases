@@ -29,10 +29,10 @@ fi
 #### Aliases.
 alias mv='mv -iv'
 alias rg='finder'
+alias trc='tremc'
 alias cp='cp -riv'
 alias mp='ncmpcpp'
 alias cat='bat --theme zenburn -p --paging=never'
-alias trc='transmission-remote-cli'
 alias calc='concalc'
 alias ytmp='mpsyt /'
 alias lynx='lynx -accept_all_cookies -image_links'
