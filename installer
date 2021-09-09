@@ -82,8 +82,6 @@ sudo apt install mpc \
 	breeze-cursor-theme \
 	libjpeg62-turbo-dev \
 	transmission-daemon \
-	transmission-remote-cli \
-	transmission-remote-gtk \
 	numix-icon-theme-circle \
 	ttf-mscorefonts-installer -y && \
 
@@ -96,6 +94,7 @@ pip3 install jedi && \
 pip3 install aria2p && \
 pip3 install flexget && \
 pip3 install ueberzug && \
+pip3 install pyperclip && \
 pip3 install ranger-fm && \
 pip3 install gallery-dl && \
 pip3 install subliminal && \
@@ -103,6 +102,7 @@ pip3 install youtube-dl && \
 pip3 install PyQt5==5.14.0 && \
 pip3 install transmission-rpc && \
 pip3 install KindleComicConverter && \
+pip3 install python-telegram-bot==12.8 && \
 echo -e "$BCor\nSistema!$ECor" && \
 echo -e "$Sussesso" || \
 echo -e "$Fracasso"
