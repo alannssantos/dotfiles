@@ -95,7 +95,6 @@ pip3 install aria2p && \
 pip3 install flexget && \
 pip3 install ueberzug && \
 pip3 install pyperclip && \
-pip3 install ranger-fm && \
 pip3 install gallery-dl && \
 pip3 install subliminal && \
 pip3 install youtube-dl && \
