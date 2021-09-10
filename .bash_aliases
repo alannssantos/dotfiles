@@ -44,7 +44,7 @@ alias ytv-best='youtube-dl -c --add-metadata -f bestvideo+bestaudio -o "%(title)
 alias streamlink='streamlink -p "mpv --cache 2048 --ontop --no-border --force-window --autofit=500x280 --geometry=-15-60"'
 
 #### Funções.
-finder() { ranger --selectfile="$(fzf -e | xargs -r -0)" ;}
+finder() { lfrun "$(fzf -e | xargs -r -0)" ;}
 justread() { readable "$1" -p html-title,html-content > /tmp/readable.html&&lynx -image_links /tmp/readable.html ;}
 hideinimage() { cat "$@" > "copy_$1" ;}
 
