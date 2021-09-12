@@ -17,8 +17,9 @@ cmd open ${{
 	*.cbz|*.cbr) mcomix "$f" & ;;
 	*.pdf) zathura "$f" & ;;
 	*.torrent) transmission-remote -a "$f" ;;
+        audio/*) mpg123 "$f" >/dev/null ;;
         video/*) nohup mpv "$f" >/dev/null & ;;
-	text/*) /bin/bash -c "vim $(echo "$fx" | sed 's/^.*\///' | xargs -i echo "\\'{}\\'" | xargs echo)";;
+	text/*|*.json) /bin/bash -c "vim $(echo "$fx" | sed 's/^.*\///' | xargs -i echo "\\'{}\\'" | xargs echo)";;
 	image/*) sxiv * & ;;
         *) xdg-open "$f" & ;;
     esac
@@ -118,3 +119,4 @@ map s $pcmanfm
 
 # Movement
 map gh cd ~/
+map gm cd /media
