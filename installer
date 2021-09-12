@@ -71,6 +71,7 @@ sudo apt install mpc \
 	libxtst-dev \
 	font-manager \
 	libgtk-3-dev \
+	poppler-utils \
 	fonts-firacode \
 	xfce4-terminal \
 	numix-gtk-theme \
