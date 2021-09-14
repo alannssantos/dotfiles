@@ -30,7 +30,8 @@ $ECor"
 ## Funções
 Sistema(){
 #### Aplicativos e Drivers Pos-instalação.
-sudo apt install mpc \
+sudo apt install feh \
+	mpc \
 	mpd \
 	mpv \
 	npm \
@@ -60,6 +61,7 @@ sudo apt install mpc \
 	zathura \
 	redshift \
 	smplayer \
+	xsensors \
 	arc-theme \
 	keepassxc \
 	pkg-config \
@@ -73,11 +75,15 @@ sudo apt install mpc \
 	libgtk-3-dev \
 	poppler-utils \
 	fonts-firacode \
-	xfce4-terminal \
+	network-manager \
 	numix-gtk-theme \
+	libfreetype6-dev \
+	libxkbcommon-dev \
 	numix-icon-theme \
 	transmission-cli \
 	ffmpegthumbnailer \
+	libfontconfig1-dev \
+	libxcb-xfixes0-dev \
 	papirus-icon-theme \
 	python3-libtorrent \
 	breeze-cursor-theme \
