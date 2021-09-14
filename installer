@@ -76,20 +76,16 @@ sudo apt install feh \
 	poppler-utils \
 	fonts-firacode \
 	network-manager \
-	numix-gtk-theme \
 	libfreetype6-dev \
 	libxkbcommon-dev \
-	numix-icon-theme \
 	transmission-cli \
 	ffmpegthumbnailer \
 	libfontconfig1-dev \
 	libxcb-xfixes0-dev \
-	papirus-icon-theme \
 	python3-libtorrent \
 	breeze-cursor-theme \
 	libjpeg62-turbo-dev \
 	transmission-daemon \
-	numix-icon-theme-circle \
 	ttf-mscorefonts-installer -y && \
 
 sudo apt update && \
@@ -153,6 +149,12 @@ echo -e "$Fracasso"
 #### Instalação do Tremc (Transmission-CLI).
 git clone https://github.com/tremc/tremc.git /tmp/tremc && cd /tmp/tremc && sudo make install && \
 echo -e "$BCor\nInstalacao do Tremc.$ECor" && \
+echo -e "$Sussesso" || \
+echo -e "$Fracasso"
+
+#### Instalação do One-Dark icons.
+sudo git clone https://github.com/alannssantos/one-dark-icons.git /usr/share/icons/One-Dark && \
+echo -e "$BCor\nInstalacao do One-Dark icons.$ECor" && \
 echo -e "$Sussesso" || \
 echo -e "$Fracasso"
 }
