@@ -87,7 +87,6 @@ tasks:
       settings:
         shows:
           quality: 720p+
-          exact: yes
       shows:
         - "Nomad - Megalo Box 2":
             from_group: Erai-raws
@@ -111,8 +110,7 @@ tasks:
     series:
       settings:
         shows:
-          quality: 720p
-          exact: yes
+          quality: 720p+
       shows:
         - Westworld:
             begin: S04E01
