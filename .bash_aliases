@@ -46,7 +46,7 @@ alias streamlink='streamlink -p "mpv --cache 2048 --ontop --no-border --force-wi
 #### Funções.
 finder() { lfrun "$(fzf -e | xargs -r -0)" ;}
 justread() { readable "$1" -p html-title,html-content > /tmp/readable.html&&lynx -image_links /tmp/readable.html ;}
-subinvid() { ffmpeg -i "$1" -i "$2" -map 0 -map 1 -slang pt-BR -c copy "${1%.*}.pt-BR.${1##*.}" ;}
+subinvid() { ffmpeg -i "$1" -i "$2" -map 0 -map 1 -c copy "${1%.*}.pt-BR.${1##*.}" ;}
 hideinimage() { cat "$@" > "copy_$1" ;}
 
 #### Exports.
