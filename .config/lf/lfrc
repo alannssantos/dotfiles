@@ -19,7 +19,7 @@ cmd open ${{
 	*.torrent) transmission-remote -a "$f" ;;
         audio/*) mpg123 "$f" >/dev/null ;;
         video/*) nohup mpv "$f" >/dev/null & ;;
-	text/*|*.json) /bin/bash -c "vim $(echo "$fx" | sed 's/^.*\///' | xargs -i echo "\\'{}\\'" | xargs echo)";;
+	text/*) /bin/bash -c "vim $(echo "$fx" | sed 's/^.*\///' | xargs -i echo "\\'{}\\'" | xargs echo)";;
 	image/*) sxiv * & ;;
         *) xdg-open "$f" & ;;
     esac
@@ -73,6 +73,7 @@ cmd mou $mounty
 cmd hif $cat "$f" > copy_"$f"
 cmd kcs %kcc-c2e --profile=K578 --upscale --splitter=2 --forcecolor "$f"
 
+cmd vim $vim "$f"
 # Bindings
 # Remove some defaults
 map m
@@ -109,6 +110,7 @@ map pp paste
 map yy copy
 map <enter> open
 map mk mkdir
+map v vim
 map a rename
 map b bulkrename
 map R reload
