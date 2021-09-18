@@ -110,8 +110,8 @@ map x6 7zs Compactar 7zip com Senha
 map xh hif Esconder Arquivo Dentro de Imagem
 
 # Broot Mapping
-map F fzf_global
-map f fzf_local
+map f fzf_global
+map F fzf_local
 
 # Basic Functions
 map <backspace> set hidden!
