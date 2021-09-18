@@ -50,8 +50,18 @@ cmd bulkrename ${{
     lf -remote "send $id unselect"
 }}
 
-cmd fzf_find ${{
+cmd fzf_global ${{
   res="$(fzf --prompt='Ir Para: ')"
+  if [ -f "$res" ]; then
+    cmd="select"
+  elif [ -d "$res" ]; then
+    cmd="cd"
+  fi
+  lf -remote "send $id $cmd \"$res\""
+}}
+
+cmd fzf_local ${{
+  res="$(find "$PWD" -exec basename {}  \; | fzf --prompt='Procurar: ')"
   if [ -f "$res" ]; then
     cmd="select"
   elif [ -d "$res" ]; then
@@ -100,7 +110,8 @@ map x6 7zs Compactar 7zip com Senha
 map xh hif Esconder Arquivo Dentro de Imagem
 
 # Broot Mapping
-map f fzf_find
+map F fzf_global
+map f fzf_local
 
 # Basic Functions
 map <backspace> set hidden!
@@ -122,3 +133,4 @@ map s $pcmanfm
 # Movement
 map gh cd ~/
 map gm cd /media
+map gG cd /mnt/Greed/home/alann
