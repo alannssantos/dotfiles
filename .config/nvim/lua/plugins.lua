@@ -19,6 +19,7 @@ return require('packer').startup(function()
   use 'windwp/nvim-autopairs'
   use 'terrortylor/nvim-comment'
   -- Gerenciamento de Arquivo.
+  use 'lambdalisue/suda.vim'
   use 'kyazdani42/nvim-tree.lua'
   use { 'ibhagwan/fzf-lua',
     requires = {'vijaymarupudi/nvim-fzf'}
