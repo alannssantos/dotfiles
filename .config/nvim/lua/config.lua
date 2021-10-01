@@ -22,3 +22,8 @@ vim.o.smartindent=true
 vim.o.termguicolors=true
 vim.o.foldmethod='marker'
 vim.o.clipboard='unnamedplus'
+
+vim.g.netrw_altv=1
+vim.g.netrw_winsize=25
+vim.g.netrw_liststyle=3
+vim.g.netrw_browse_split=3
