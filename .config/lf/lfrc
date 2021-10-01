@@ -19,7 +19,7 @@ cmd open ${{
 	*.torrent) transmission-remote -a "$f" ;;
         audio/*) mpv "$f" ;;
         video/*) nohup mpv "$f" >/dev/null & ;;
-	text/*) /bin/bash -c "vim $(echo "$fx" | sed 's/^.*\///' | xargs -i echo "\\'{}\\'" | xargs echo)";;
+	text/*) /bin/bash -c "nvim $(echo "$fx" | sed 's/^.*\///' | xargs -i echo "\\'{}\\'" | xargs echo)";;
 	image/*) sxiv * & ;;
         *) xdg-open "$f" & ;;
     esac
@@ -36,7 +36,7 @@ cmd bulkrename ${{
     new="$(mktemp)"
     printf '%s\n' "$fx" >"$old"
     printf '%s\n' "$fx" >"$new"
-    vim "$new"
+    nvim "$new"
     [ "$(wc -l < "$new")" -ne "$(wc -l < "$old")" ] && exit
     paste "$old" "$new" | while IFS= read -r names; do
 	src="$(printf '%s' "$names" | cut -f1)"
@@ -83,7 +83,7 @@ cmd mou $mounty
 cmd hif $cat "$f" > copy_"$f"
 cmd kcs %kcc-c2e --profile=K578 --upscale --splitter=2 --forcecolor "$f"
 
-cmd vim $vim "$f"
+cmd nvim $vim "$f"
 # Bindings
 # Remove some defaults
 map m
@@ -121,7 +121,7 @@ map pp paste
 map yy copy
 map <enter> open
 map mk mkdir
-map v vim
+map v nvim
 map a rename
 map b bulkrename
 map R reload
