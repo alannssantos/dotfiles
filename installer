@@ -127,9 +127,9 @@ url1="https://github.com"
 url2=$(wget -qO- "https://github.com/neovim/neovim/releases" \
 	| sed -r '/\/download\/v[0-9].*nvim.appimage"/!d;s/^.*href="(.*)" rel=.*$/\1/' \
 	| sed '1!d')
-wget -c "$url1$url2" -O "vim" && \
-chmod +x vim && \
-sudo mv -v vim /usr/bin/vim && \
+wget -c "$url1$url2" -O "nvim" && \
+chmod +x nvim && \
+sudo mv -v nvim /usr/bin/nvim && \
 echo -e "$BCor\nInstalacao do NeoVim!$ECor" && \
 echo -e "$Sussesso" || \
 echo -e "$Fracasso"
