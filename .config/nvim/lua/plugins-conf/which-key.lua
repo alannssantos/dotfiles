@@ -6,7 +6,7 @@ require'which-key'.register({
   ["<Tab>"] = { "<cmd>tabn<CR>", "Próxima Guia" },
   ["<leader>q"] = { "<cmd>q<CR>", "Fechar Guia" },
   ["<leader>/"] = { "<cmd>CommentToggle<CR>", "Comentar" },
-  ["<leader>e"] = { "<cmd>NvimTreeToggle<CR>", "Explorer" },
+  ["<leader>e"] = { "<cmd>Explore<CR>", "Explorer" },
   ["<leader>w"] = { "<cmd>SudaWrite<CR>", "Salvar com Sudo" },
   ["<leader>f"] = { "<cmd>FzfLua files<cr>", "Procurar Arquivo" },
   ["<leader>o"] = { "<cmd>set spell!<CR>", "Corretor Ortográfico" },
