@@ -8,7 +8,7 @@ CCor="\[\033[1;36m\]"	# Cyan (Turquesa)
 WCor="\[\033[1;37m\]"	# White (Branco)
 ECor="\[\033[0m\]"	# End (Fim)
 
-EDITOR="vim"
+EDITOR="nvim"
 
 #### Começo da Funções git status.
 gitU() { git status 2>&1 | tee | sed '/\t/!d;/:/d' | sed '$=' | sed '/\t/d;s/^//' ;}
@@ -27,6 +27,8 @@ if [ -f ~/.config/lf/icons ]; then
 fi
 
 #### Aliases.
+alias v='nvim'
+alias V='sudo nvim'
 alias mv='mv -iv'
 alias rg='finder'
 alias trc='tremc'
