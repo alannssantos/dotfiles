@@ -7,6 +7,7 @@ set nohidden true
 set drawbox true
 set icons true
 set ignorecase true
+set info size
 
 #Para ter imagem no seu terminal.
 #https://github.com/cirala/lfimg
