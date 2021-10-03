@@ -1,13 +1,13 @@
-set ratios 1:2:3
-set cleaner ~/.config/lf/cleaner
 # Basic Settings
-set previewer ~/.config/lf/preview
-set preview true
-set nohidden true
-set drawbox true
-set icons true
-set ignorecase true
 set info size
+set icons true
+set drawbox true
+set preview true
+set ratios 1:2:3
+set nohidden true
+set ignorecase true
+set cleaner ~/.config/lf/cleaner
+set previewer ~/.config/lf/preview
 
 #Para ter imagem no seu terminal.
 #https://github.com/cirala/lfimg
@@ -75,14 +75,16 @@ cmd fzf_local ${{
 cmd unz $atool -x "$f"
 cmd zip %zip -r "$f.zip" "${f##*/}" && echo "Concluido!"
 cmd 7zp %7z a -r "$f.7z" "${f##*/}" && echo "Concluido!"
-cmd rar %rar a -r "$f.rar" "${f##*/}" && echo "Concluido!"
 cmd zis !zip -er "$f.zip" "${f##*/}" && echo "Concluido!"
+cmd rar %rar a -r "$f.rar" "${f##*/}" && echo "Concluido!"
 cmd 7zs !7z a -r "$f.7z" "${f##*/}" -p && echo "Concluido!"
 
-cmd dra $dragon -a -T "$f"
 cmd mou $mounty
+cmd dra $dragon -a -T "$f"
 cmd hif $cat "$f" > copy_"$f"
 cmd kcs %kcc-c2e --profile=K578 --upscale --splitter=2 --forcecolor "$f"
+
+cmd frs %du -sh | sed 's/^/Espaço Livre: /;s/\t.*//'
 
 cmd nvim $vim "$f"
 # Bindings
@@ -99,37 +101,38 @@ map p
 map y
 
 # Archive Mappings
-map xk kcs Converter Pasta em Arquivo .mobi
+map xx unz Descompactar
 map xr rar Compactar Rar
 map xz zip Compactar Zip
 map x7 7zp Compactar 7zip
-map xx unz Descompactar
 map xd dra Arrastar e Colar
 map xm mou Montar Dispositivos
+map xs frs Mostrar Espaço Livre
 map xZ zps Compactar Zip com Senha
 map x6 7zs Compactar 7zip com Senha
+map xk kcs Converter Pasta em Arquivo .mobi
 map xh hif Esconder Arquivo Dentro de Imagem
 
 # Broot Mapping
-map f fzf_global
 map F fzf_local
+map f fzf_global
 
 # Basic Functions
-map <backspace> set hidden!
 map dd cut
-map dD delete
-map pp paste
-map yy copy
-map <enter> open
-map mk mkdir
 map v nvim
-map a rename
-map b bulkrename
-map R reload
+map yy copy
 map C clear
-map U unselect
+map pp paste
+map mk mkdir
+map a rename
+map R reload
+map dD delete
 map S $$SHELL
+map U unselect
 map s $pcmanfm
+map <enter> open
+map b bulkrename
+map <backspace> set hidden!
 
 # Movement
 map gh cd ~/
