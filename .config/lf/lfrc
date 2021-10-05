@@ -5,6 +5,7 @@ set drawbox true
 set preview true
 set ratios 1:2:3
 set nohidden true
+set dircounts true
 set ignorecase true
 set cleaner ~/.config/lf/cleaner
 set previewer ~/.config/lf/preview
