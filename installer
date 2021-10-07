@@ -86,6 +86,7 @@ sudo apt install feh \
 	breeze-cursor-theme \
 	libjpeg62-turbo-dev \
 	transmission-daemon \
+	libimage-exiftool-perl \
 	ttf-mscorefonts-installer -y && \
 
 sudo apt update && \
