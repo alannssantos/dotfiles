@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+eval file --mime-type "$(echo "$@" | sed ':a;$!N;s/\n/" "/;ta;' | sed 's/^/"/;s/$/"/')" | grep -q "text/\|/json"
+  if [ "$?" == 0 ]; then
+    eval $(echo "$@" \
+      | sed ':a;$!N;s/\n/" "/;ta;' \
+      | sed 's/^/nvim -p "/;s/$/"/')
+  else
+    xdg-open "$@" &
+  fi
