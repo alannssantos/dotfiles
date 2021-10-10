@@ -98,7 +98,7 @@ cmd dra $dragon -a -T "$f"
 cmd hif $cat "$f" > copy_"$f"
 cmd kcs %kcc-c2e --profile=K578 --upscale --splitter=2 --forcecolor "$f"
 
-cmd frs %du -sh | sed 's/^/Espaço Livre: /;s/\t.*//'
+cmd frs %df -h --output="avail","target" . | awk '/\// {print "Espaço Livre: "$1}'
 
 cmd nvim $vim "$f"
 # Bindings
