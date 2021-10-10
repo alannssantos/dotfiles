@@ -25,13 +25,13 @@ cmd open ${{
     *.torrent)
       transmission-remote -a "$f"
       ;;
-    audio/.*)
+    audio/*)
       mpv "$f"
       ;;
-    video/.*)
+    video/*)
       nohup mpv "$f" >/dev/null &
       ;;
-    image/.*)
+    image/*)
       ~/.config/lf/sxivhandler "$f" &
       ;;
     *)
@@ -100,7 +100,6 @@ cmd kcs %kcc-c2e --profile=K578 --upscale --splitter=2 --forcecolor "$f"
 
 cmd frs %df -h --output="avail","target" . | awk '/\// {print "Espaço Livre: "$1}'
 
-cmd nvim $vim "$f"
 # Bindings
 # Remove some defaults
 map m
@@ -133,7 +132,6 @@ map f fzf_global
 
 # Basic Functions
 map dd cut
-map v nvim
 map yy copy
 map C clear
 map pp paste
