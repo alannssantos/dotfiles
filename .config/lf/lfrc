@@ -96,7 +96,7 @@ cmd 7zs !7z a -r "$f.7z" "${f##*/}" -p && echo "Concluido!"
 cmd mou $mounty
 cmd dra $dragon -a -T "$f"
 cmd hif $cat "$f" > copy_"$f"
-cmd kcs %kcc-c2e --profile=K578 --upscale --splitter=2 --forcecolor "$f"
+cmd kcs %kcc-c2e --profile=K578 --upscale --splitter=2 --forcecolor "$f" && echo "Concluido!"
 
 cmd frs %df -h --output="avail","target" . | awk '/\// {print "Espaço Livre: "$1}'
 
