@@ -178,8 +178,8 @@ Links=$(eval wget -qO- "$Urls" \
 	| sed '/dockbarx-common\|dockbarx-themes-extra\|xfce4-dockbarx-plugin.*.amd64/!d' \
 	| sed '/.deb$/!d' \
 	| sed ';:a;$!N;s/\n/ /;ta;')
-eval wget -c "$Links" && \
-sudo apt install ./*.deb -y && \
+eval wget -c "$Links" -P /tmp/DockBarX/ && \
+sudo apt install /tmp/DockBarX/*.deb -y && \
 echo -e "$BCor\nInstalacao do DockBarX.$ECor" && \
 echo -e "$Sussesso" || \
 echo -e "$Fracasso"
