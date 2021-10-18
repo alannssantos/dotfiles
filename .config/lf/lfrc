@@ -29,7 +29,7 @@ cmd open ${{
       mpv "$f"
       ;;
     video/*)
-      nohup mpv "$f" >/dev/null &
+      nohup mpv --fs "$f" >/dev/null &
       ;;
     image/*)
       ~/.config/lf/sxivhandler "$f" &
