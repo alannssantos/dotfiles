@@ -76,6 +76,7 @@ sudo apt install feh \
 	poppler-utils \
 	fonts-firacode \
 	network-manager \
+	paper-icon-theme \
 	libfreetype6-dev \
 	libxkbcommon-dev \
 	transmission-cli \
@@ -152,12 +153,6 @@ git clone https://github.com/tremc/tremc.git /tmp/tremc && cd /tmp/tremc && sudo
 echo -e "$BCor\nInstalacao do Tremc.$ECor" && \
 echo -e "$Sussesso" || \
 echo -e "$Fracasso"
-
-#### Instalação do One-Dark icons.
-sudo git clone https://github.com/alannssantos/one-dark-icons.git /usr/share/icons/One-Dark && \
-echo -e "$BCor\nInstalacao do One-Dark icons.$ECor" && \
-echo -e "$Sussesso" || \
-echo -e "$Fracasso"
 }
 
 Touchegg(){
@@ -174,7 +169,7 @@ echo -e "$Fracasso"
 }
 
 DockBarX(){
-Urls=$(wget -qO- "https://launchpad.net/~xuzhen666/+archive/ubuntu/dockbarx/+packages?field.name_filter=&field.status_filter=published&field.series_filter=bionic" \
+Urls=$(wget -qO- "https://launchpad.net/~xuzhen666/+archive/ubuntu/dockbarx/+packages?field.name_filter=&field.status_filter=published&field.series_filter=focal" \
 	| sed -r '/sprite expander/!d;s/^.*href="(.*)" .*$/https:\/\/launchpad.net\/~xuzhen666\/+archive\/ubuntu\/dockbarx\/\1/' \
 	| sed ';:a;$!N;s/\n/ /;ta;')
 Links=$(eval wget -qO- "$Urls" \
