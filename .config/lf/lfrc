@@ -98,6 +98,8 @@ cmd dra $dragon -a -T "$f"
 cmd hif $cat "$f" > copy_"$f"
 cmd kcs %kcc-c2e --profile=K578 --upscale --splitter=2 --forcecolor "$f" && echo "Concluido!"
 
+cmd srt %subliminal --opensubtitles USERNAME PASSWORD download -l pt-br "$f"
+
 cmd frs %df -h --output="avail","target" . | awk '/\// {print "Espaço Livre: "$1}'
 
 # Bindings
@@ -121,6 +123,7 @@ map x7 7zp Compactar 7zip
 map xd dra Arrastar e Colar
 map xm mou Montar Dispositivos
 map xs frs Mostrar Espaço Livre
+map xl srt Baixar Legenda em pt-br
 map xZ zps Compactar Zip com Senha
 map x6 7zs Compactar 7zip com Senha
 map xk kcs Converter Pasta em Arquivo .mobi
