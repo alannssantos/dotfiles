@@ -168,19 +168,18 @@ echo -e "$Sussesso" || \
 echo -e "$Fracasso"
 }
 
-DockBarX(){
-Urls=$(wget -qO- "https://launchpad.net/~xuzhen666/+archive/ubuntu/dockbarx/+packages?field.name_filter=&field.status_filter=published&field.series_filter=focal" \
-	| sed -r '/sprite expander/!d;s/^.*href="(.*)" .*$/https:\/\/launchpad.net\/~xuzhen666\/+archive\/ubuntu\/dockbarx\/\1/' \
+DockLike(){
+Urls=$(wget -qO- "https://launchpad.net/~xubuntu-dev/+archive/ubuntu/extras/+packages?field.name_filter=&field.status_filter=published&field.series_filter=focal" \
+	| sed -r '/sprite expander/!d;s/^.*href="(.*)" .*$/https:\/\/launchpad.net\/~xubuntu-dev\/+archive\/ubuntu\/extras\/\1/' \
 	| sed ';:a;$!N;s/\n/ /;ta;')
-Links=$(eval wget -qO- "$Urls" \
+Link=$(eval wget -qO- "$Urls" \
 	| sed '/.deb/!d' \
 	| sed -r  's/^.*<a href="(.*.deb)">.*$/\1/' \
-	| sed '/dockbarx-common\|dockbarx-themes-extra\|xfce4-dockbarx-plugin.*.amd64/!d' \
-	| sed '/.deb$/!d' \
-	| sed ';:a;$!N;s/\n/ /;ta;')
-eval wget -c "$Links" -P /tmp/DockBarX/ && \
-sudo apt install /tmp/DockBarX/*.deb -y && \
-echo -e "$BCor\nInstalacao do DockBarX.$ECor" && \
+	| sed '/xfce4-docklike-plugin.*.amd64/!d' \
+	| sed '/\.deb$/!d')
+eval wget -c "$Link" -P /tmp/DockLike/ && \
+sudo apt install /tmp/DockLike/*.deb -y && \
+echo -e "$BCor\nInstalacao do DockLike.$ECor" && \
 echo -e "$Sussesso" || \
 echo -e "$Fracasso"
 }
