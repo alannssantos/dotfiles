@@ -129,6 +129,17 @@ echo -e "$BCor\nInstalacao do Bat!$ECor" && \
 echo -e "$Sussesso" || \
 echo -e "$Fracasso"
 
+#### LF (File Manager TUI.)
+url1="https://github.com"
+url2=$(wget -qO- "https://github.com/gokcehan/lf/releases" \
+	| sed -r '/linux-amd64/!d;s/^.*href="(.*)" rel=.*$/\1/' \
+	| sed '1!d')
+wget -c "$url1$url2" -P /tmp/ && \
+sudo atool --extract-to="/usr/bin/" /tmp/lf-linux-amd64.tar.gz && \
+echo -e "$BCor\nInstalacao do lf!$ECor" && \
+echo -e "$Sussesso" || \
+echo -e "$Fracasso"
+
 #### NeoVim AppImage.
 url1="https://github.com"
 url2=$(wget -qO- "https://github.com/neovim/neovim/releases" \
