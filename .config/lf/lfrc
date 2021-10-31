@@ -95,6 +95,7 @@ cmd 7zs !7z a -r "$f.7z" "${f##*/}" -p && echo "Concluido!"
 
 cmd mou $mounty
 cmd ch+ %chmod +x "$f"
+cmd cla !clamscan -ri "$f"
 cmd dra $dragon -a -T "$f"
 cmd hif $cat "$f" > copy_"$f"
 cmd kcs %kcc-c2e --profile=K578 --upscale --splitter=2 --forcecolor "$f" && echo "Concluido!"
@@ -121,6 +122,7 @@ map xx unz Descompactar
 map xr rar Compactar Rar
 map xz zip Compactar Zip
 map x7 7zp Compactar 7zip
+map xv cla Procurar Virus
 map xd dra Arrastar e Colar
 map x+ ch+ Tornar Executavel
 map xm mou Montar Dispositivos
