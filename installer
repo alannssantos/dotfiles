@@ -36,6 +36,7 @@ sudo apt install feh \
 	mpv \
 	npm \
 	rar \
+	cups \
 	curl \
 	lynx \
 	peek \
@@ -87,6 +88,7 @@ sudo apt install feh \
 	libfontconfig1-dev \
 	libxcb-xfixes0-dev \
 	python3-libtorrent \
+	printer-driver-all \
 	breeze-cursor-theme \
 	libjpeg62-turbo-dev \
 	transmission-daemon \
@@ -238,7 +240,7 @@ Menu(){
 echo -e "$BCor
 	1.Sistema
 	2.Extra $YCor(Bat, NeoVim, Fuzzy Finder, Dragon, Tremc.)$BCor
-	3.DockBarX $YCor(Dock para XFCE4-panel.)$BCor
+	3.DockLike $YCor(Dock para XFCE4-panel.)$BCor
 	4.Touchegg $YCor(Mais Funções no TouchPad.)$BCor
 	5.Dotfiles
 $RCor
@@ -254,7 +256,7 @@ case "$Resposta" in
 		Extra
 		Menu ;;
 	3)
-		DockBarX
+		DockLike
 		Menu ;;
 	4)
 		Touchegg
