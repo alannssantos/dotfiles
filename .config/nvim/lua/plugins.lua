@@ -12,6 +12,7 @@ return require('packer').startup(function()
   use 'Th3Whit3Wolf/one-nvim'
   use 'norcalli/nvim-colorizer.lua'
   use 'kyazdani42/nvim-web-devicons'
+  use 'ellisonleao/glow.nvim'
   -- Endentação.
   use 'vimwiki/vimwiki'
   use 'windwp/nvim-autopairs'
