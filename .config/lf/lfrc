@@ -46,6 +46,12 @@ cmd mkdir %{{
   mkdir "$ans"
 }}
 
+cmd mkfil %{{
+  printf " Nome do Arquivo:"
+  read ans
+  > "$ans"
+}}
+
 cmd bulkrename ${{
   old="$(mktemp)"
   new="$(mktemp)"
@@ -143,6 +149,7 @@ map yy copy
 map C clear
 map pp paste
 map mk mkdir
+map mf mkfil
 map a rename
 map R reload
 map dD delete
