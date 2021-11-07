@@ -6,6 +6,7 @@
 
 require('config')
 require('plugins')
+require('plugins-conf.glow')
 require('plugins-conf.compe')
 require('plugins-conf.comment')
 require('plugins-conf.one-nvim')
