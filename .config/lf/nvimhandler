@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-eval file --mime-type "$(echo "$@" | sed ':a;$!N;s/\n/" "/;ta;' | sed 's/^/"/;s/$/"/')" | grep -q "text/\|/json"
+eval file --mime-type "$(echo "$@" | sed ':a;$!N;s/\n/" "/;ta;' | sed 's/^/"/;s/$/"/')" | grep -q "text/\|/json\|inode/x-empty"
   if [ "$?" == 0 ]; then
     eval $(echo "$@" \
       | sed ':a;$!N;s/\n/" "/;ta;' \
