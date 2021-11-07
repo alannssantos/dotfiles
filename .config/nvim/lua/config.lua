@@ -22,6 +22,7 @@ vim.o.smartindent=true
 vim.o.termguicolors=true
 vim.o.foldmethod='marker'
 vim.o.clipboard='unnamedplus'
+vim.o.guifont='FiraCode Nerd Font:h10'
 
 vim.g.netrw_altv=1
 vim.g.netrw_winsize=25
