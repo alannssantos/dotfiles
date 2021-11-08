@@ -125,15 +125,14 @@ tasks:
         - Carnival Row:
             begin: S02E01
         - Loki:
-            begin: S01E01
-        - Arcane:
-            begin: S01E01
-        - Evil:
             begin: S02E01
+        - Arcane:
+            begin: S02E01
+            exact: yes
         - The Witcher:
             begin: S02E01
         - What If...?:
-            begin: S01E01
+            begin: S02E01
     tvmaze_lookup: yes
     transmission:
       host: localhost
