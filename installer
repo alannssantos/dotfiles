@@ -87,6 +87,7 @@ sudo apt install feh \
 	ffmpegthumbnailer \
 	libfontconfig1-dev \
 	libxcb-xfixes0-dev \
+	papirus-icon-theme \
 	python3-libtorrent \
 	printer-driver-all \
 	breeze-cursor-theme \
