@@ -47,8 +47,8 @@ alias streamlink='streamlink -p "mpv --cache 2048 --ontop --no-border --force-wi
 
 #### Funções.
 finder() { lfrun "$(fzf -e | xargs -r -0)" ;}
-cue2chd(){ chdman createcd -i "$1" -o "${1%%.*}.chd" ;}
-chd2cue(){ chdman extractcd -i "$1" -o "${1%%.*}.cue" ;}
+cue2chd(){ chdman createcd -i "$1" -o "${1%.*}.chd" ;}
+chd2cue(){ chdman extractcd -i "$1" -o "${1%.*}.cue" ;}
 justread() { readable "$1" -p html-title,html-content > /tmp/readable.html&&lynx -image_links /tmp/readable.html ;}
 subinvid() { ffmpeg -i "$1" -i "$2" -map 0 -map 1 -c copy "${1%.*}.pt-BR.${1##*.}" ;}
 hideinimage() { cat "$@" > "copy_$1" ;}
