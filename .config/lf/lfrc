@@ -155,7 +155,7 @@ map R reload
 map dD delete
 map S $$SHELL
 map U unselect
-map s $pcmanfm
+map s $thunar
 map <enter> open
 map b bulkrename
 map <backspace> set hidden!
