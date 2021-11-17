@@ -14,8 +14,8 @@ local languages = {
 --          If subtitles are found for the first language,
 --          other languages will NOT be downloaded,
 --          so put your preferred language first:
-            { 'Portuguese', 'pt-BR', 'por' },
-            { 'English', 'en', 'eng' },
+            { 'português', 'pt-BR', 'por' },
+            { 'inglês', 'en', 'eng' },
 --          { 'Dutch', 'nl', 'dut' },
 --          { 'Spanish', 'es', 'spa' },
 --          { 'French', 'fr', 'fre' },
@@ -68,7 +68,7 @@ local utils = require 'mp.utils'
 -- Download function: download the best subtitles in most preferred language
 function download_subs(language)
     language = language or languages[1]
-    log('Searching ' .. language[1] .. ' subtitles ...', 30)
+    log('Procurando legendas em ' .. language[1] .. '...', 30)
 
     -- Build the `subliminal` command, starting with the executable:
     local table = { args = { subliminal } }
@@ -102,16 +102,16 @@ function download_subs(language)
 
     local result = utils.subprocess(table)
 
-    if string.find(result.stdout, 'Downloaded 1 subtitle') then
+    if string.find(result.stdout, 'Legenda baixada') then
         -- When multiple external files are present,
         -- always activate the most recently downloaded:
         mp.set_property('slang', language[2])
         -- Subtitles are downloaded successfully, so rescan to activate them:
         mp.commandv('rescan_external_files')
-        log(language[1] .. ' subtitles ready!')
+        log('Legenda em' .. language[1] .. ' baixada!')
         return true
     else
-        log('No ' .. language[1] .. ' subtitles found\n')
+        log('Legenda em ' .. language[1] .. ' não encontrada\n')
         return false
     end
 end
@@ -143,7 +143,7 @@ function control_downloads()
     end
     if bools.debug then -- Log subtitle properties to terminal:
         for _, track in ipairs(sub_tracks) do
-            mp.msg.warn('Subtitle track', track['id'], ':\n{')
+            mp.msg.warn('Faixa de legenda', track['id'], ':\n{')
             for k, v in pairs(track) do
                 if type(v) == 'string' then v = '"' .. v .. '"' end
                 mp.msg.warn('  "' .. k .. '":', v)
@@ -157,7 +157,7 @@ function control_downloads()
             if download_subs(language) then return end -- Download successful!
         else return end -- No need to download!
     end
-    log('No subtitles were found')
+    log('Nenhuma legenda encontrada')
 end
 
 -- Check if subtitles should be auto-downloaded:
@@ -166,24 +166,24 @@ function autosub_allowed()
     local active_format = mp.get_property('file-format')
 
     if not bools.auto then
-        mp.msg.warn('Automatic downloading disabled!')
+        mp.msg.warn('Download automático desabilitado!')
         return false
     elseif duration < 900 then
-        mp.msg.warn('Video is less than 15 minutes\n' ..
-                      '=> NOT auto-downloading subtitles')
+        mp.msg.warn('Vídeos menores que 15 minutos\n' ..
+                      '=> NÃO baixam a legenda automaticamente')
         return false
     elseif directory:find('^http') then
-        mp.msg.warn('Automatic subtitle downloading is disabled for web streaming')
+        mp.msg.warn('Baixar legenda automática para Streaming esta desabilitado')
         return false
     elseif active_format:find('^cue') then
-        mp.msg.warn('Automatic subtitle downloading is disabled for cue files')
+        mp.msg.warn('Baixar legenda automática para arquivos cue esta desabilitado')
         return false
     else
         local not_allowed = {'aiff', 'ape', 'flac', 'mp3', 'ogg', 'wav', 'wv'}
 
         for _, file_format in pairs(not_allowed) do
             if file_format == active_format then
-                mp.msg.warn('Automatic subtitle downloading is disabled for audio files')
+                mp.msg.warn('Baixar legenda automática para arquivos de audio esta desabilitado')
                 return false
             end
         end
@@ -193,7 +193,7 @@ function autosub_allowed()
             local excluded = directory:find(escaped_exclude)
 
             if excluded then
-                mp.msg.warn('This path is excluded from auto-downloading subs')
+                mp.msg.warn('Este caminho foi excluído do download automático de legendas')
                 return false
             end
         end
@@ -204,7 +204,7 @@ function autosub_allowed()
 
             if included then break
             elseif i == #includes then
-                mp.msg.warn('This path is not included for auto-downloading subs')
+                mp.msg.warn('Este caminho não está incluído para download automático de legendas')
                 return false
             end
         end
@@ -217,28 +217,28 @@ end
 function should_download_subs_in(language)
     for i, track in ipairs(sub_tracks) do
         local subtitles = track['external'] and
-          'subtitle file' or 'embedded subtitles'
+          'Arquivo de legenda ' or 'Legenda definida em '
 
         if not track['lang'] and (track['external'] or not track['title'])
           and i == #sub_tracks then
-            local status = track['selected'] and ' active' or ' present'
-            log('Unknown ' .. subtitles .. status)
-            mp.msg.warn('=> NOT downloading new subtitles')
+            local status = track['selected'] and 'ativa' or 'presente'
+            log(subtitles .. status)
+            mp.msg.warn('=> NÃO baixar nova legenda')
             return false -- Don't download if 'lang' key is absent
         elseif track['lang'] == language[3] or track['lang'] == language[2] or
           (track['title'] and track['title']:lower():find(language[3])) then
             if not track['selected'] then
                 mp.set_property('sid', track['id'])
-                log('Enabled ' .. language[1] .. ' ' .. subtitles .. '!')
+                log(subtitles .. language[1] .. '!')
             else
-                log(language[1] .. ' ' .. subtitles .. ' active')
+                log(subtitles .. language[1])
             end
-            mp.msg.warn('=> NOT downloading new subtitles')
+            mp.msg.warn('=> NÃO baixar nova legenda')
             return false -- The right subtitles are already present
         end
     end
-    mp.msg.warn('No ' .. language[1] .. ' subtitles were detected\n' ..
-                '=> Proceeding to download:')
+    mp.msg.warn('Nenhuma legenda em ' .. language[1] .. ' detectada\n' ..
+                '=> Iniciando download:')
     return true
 end
 
