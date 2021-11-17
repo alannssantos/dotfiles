@@ -106,7 +106,7 @@ cmd dra $dragon -a -T "$f"
 cmd hif $cat "$f" > copy_"$f"
 cmd kcs %kcc-c2e --profile=K578 --upscale --splitter=2 --forcecolor "$f" && echo "Concluido!"
 
-cmd srt %subliminal --opensubtitles USERNAME PASSWORD download -l pt-br "$f"
+cmd srt %subliminal --opensubtitles USERNAME PASSWORD download -l pt-br -s "$f"
 
 cmd frs %df -h --output="avail","target" . | awk '/\// {print "Espaço Livre: "$1}'
 
