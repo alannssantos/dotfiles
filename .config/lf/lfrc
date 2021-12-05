@@ -110,6 +110,8 @@ cmd srt %subliminal --opensubtitles USERNAME PASSWORD download -l pt-br -s "$f"
 
 cmd frs %df -h --output="avail","target" . | awk '/\// {print "Espaço Livre: "$1}'
 
+cmd chr $mkchromecast -s --video -i "$f"
+
 # Bindings
 # Remove some defaults
 map m
@@ -124,6 +126,7 @@ map p
 map y
 
 # Archive Mappings
+map xc chr Chromecast
 map xx unz Descompactar
 map xr rar Compactar Rar
 map xz zip Compactar Zip
