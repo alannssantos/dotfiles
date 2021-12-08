@@ -3,14 +3,20 @@
 Destino="$2"
 Conteudo=$(wget -qO- "m.${1#*//}")
 
-Nome=$(sed -r '/title/!d;s/.*title>(.*)<\/.*$/\1/' <<< "$Conteudo" | sed -r 's/.*<\/div>(.*)<\/div>/\1/' | sed '/^</d' | sed ':a;$!N;s/\n//;ta;')
-Paginas=$(sed -r '/<option/!d;s/^.*"\/\/(.*)".*$/\1/' <<< "$Conteudo")
+Nome=$(sed -r '/title/!d
+  s/.*title>(.*)<\/.*$/\1/
+  ;:a;$!N;s/\n//;ta;
+  s/<.*data-share="false"><\/div>(.*)<\/div><a .*$/\1/' <<< "$Conteudo")
+Paginas=$(sed -r '/<option/!d
+  s/^.*"\/\/(.*)".*$/\1/' <<< "$Conteudo")
 
 for Pagina in $Paginas
 do
   Conteudo=$(wget -qO- "$Pagina")
-  Link=$(sed -r '/^<img src/!d;s/.*"\/\/(.*)" style.*$/\1/' <<< "$Conteudo")
-  NPagina=$(sed -r 's/.*\/(.*).html/\1/' <<< "$Pagina" | sed -e 's/\([0-9]\)/00\1/;s/0*\(...\)/\1.jpg/')
+  Link=$(sed -r '/^<img src/!d
+    s/.*"\/\/(.*)" style.*$/\1/' <<< "$Conteudo")
+  NPagina=$(sed -r 's/^.*\/([0-9]*)\.html/00\1/
+    s/0*(...)/\1.jpg/' <<< "$Pagina")
   mkdir "$Nome"
   wget -c "$Link" -O "$Nome/$NPagina"
 done
