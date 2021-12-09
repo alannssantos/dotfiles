@@ -3,12 +3,17 @@
 Destino="$2"
 Conteudo=$(wget -qO- "$1")
 
-Nome=$(sed -r '/Current Issue:/!d;s/^.*">(.*)<\/a.*$/\1/' <<< "$Conteudo")
-Paginas=$(sed -r '/<img class="img-responsive"/!d;s/^.*data-src=. (.*jpg) .*$/\1/' <<< "$Conteudo")
+Nome=$(sed -r '/Current Issue:/!d
+  s/^.*">(.*)<\/a.*$/\1/' <<< "$Conteudo")
+Paginas=$(sed -r '/<img class="img-responsive"/!d
+  s/^.*data-src=. (.*jpg) .*$/\1/' <<< "$Conteudo")
 
 for Pagina in $Paginas
 do
-  wget -c "$Pagina" -P "$Nome"
+  NPagina=$(sed -r 's/^.*\/(.*)\.jpg/00\1/
+    s/0*(...)/\1.jpg/' <<< "$Pagina")
+  mkdir "$Nome"
+  wget -c "$Pagina" -O "$Nome/$NPagina"
 done
 
 if [ -z "$Destino" ]; then
