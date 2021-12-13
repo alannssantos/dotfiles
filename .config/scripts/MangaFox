@@ -9,6 +9,9 @@ Nome=$(sed -r '/title/!d
   s/<.*data-share="false"><\/div>(.*)<\/div><a .*$/\1/' <<< "$Conteudo")
 Paginas=$(sed -r '/<option/!d
   s/^.*"\/\/(.*)".*$/\1/' <<< "$Conteudo")
+TPaginas=$(sed -r '$!d
+    s/^.*\/([0-9]*)\.html/00\1/
+    s/0*(...)/\1/' <<< "$Paginas")
 
 for Pagina in $Paginas
 do
@@ -19,7 +22,7 @@ do
     s/0*(...)/\1.jpg/' <<< "$Pagina")
   mkdir "/tmp/$Nome" 2> /dev/null
   wget -cq "$Link" -O "/tmp/$Nome/$NPagina"
-  echo -e "\033[1;31m[\033[1;37m${NPagina%%.*}/0$(wc -l <<< $Paginas)\033[1;31m] \033[1;34m$Nome"
+  echo -e "\033[1;31m[\033[1;37m${NPagina%%.*}/$TPaginas\033[1;31m] \033[1;34m$Nome"
 done
 
 if [ -z "$Destino" ]; then
