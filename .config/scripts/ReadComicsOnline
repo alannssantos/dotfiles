@@ -6,15 +6,18 @@ Conteudo=$(wget -qO- "$1")
 Nome=$(sed -r '/Current Issue:/!d
   s/^.*">(.*)<\/a.*$/\1/' <<< "$Conteudo")
 Paginas=$(sed -r '/<img class="img-responsive"/!d
-  s/^.*data-src=. (.*jpg) .*$/\1/' <<< "$Conteudo")
+  s/^.*data-src=. (.*\.jpg|.*\.png) .*$/\1/' <<< "$Conteudo")
+TPaginas=$(sed -r '$!d
+    s/^.*\/(.*)/00\1/
+    s/0*(.......)/\1/' <<< "${Paginas##*/}")
 
 for Pagina in $Paginas
 do
-  NPagina=$(sed -r 's/^.*\/(.*)\.jpg/00\1/
-    s/0*(...)/\1.jpg/' <<< "$Pagina")
+  NPagina=$(sed -r 's/^.*\/(.*)/00\1/
+    s/0*(.......)/\1/' <<< "$Pagina")
   mkdir "/tmp/$Nome" 2> /dev/null
   wget -cq "$Pagina" -O "/tmp/$Nome/$NPagina"
-  echo -e "\033[1;31m[\033[1;37m${NPagina%%.*}/0$(wc -l <<< $Paginas)\033[1;31m] \033[1;34m$Nome"
+  echo -e "\033[1;31m[\033[1;37m${NPagina%%.*}/${TPaginas%%.*}\033[1;31m] \033[1;34m$Nome"
 done
 
 if [ -z "$Destino" ]; then
