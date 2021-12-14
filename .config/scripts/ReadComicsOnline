@@ -8,8 +8,8 @@ Nome=$(sed -r '/Current Issue:/!d
 Paginas=$(sed -r '/<img class="img-responsive"/!d
   s/^.*data-src=. (.*) . alt=.*$/\1/' <<< "$Conteudo")
 TPaginas=$(sed -r '$!d
-    s/(.*)\.*/00\1/
-    s/0*(...)\..*/\1/' <<< "${Paginas##*/}")
+    s/([0-9]*)\..*/00\1/
+    s/0*(...)/\1/' <<< "${Paginas##*/}")
 
 for Pagina in $Paginas
 do
