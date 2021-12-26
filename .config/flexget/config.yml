@@ -65,8 +65,14 @@ tasks:
       - rss: https://readcomicsonline.ru/feed
     regexp:
       accept:
-        - Robin.*\(2021-\)
-        - A Thing Called Truth.*\(2021-\)
+        - Robin \(2021-\)
+        - Nine Stones \(2021-\)
+        - Future State \(2021-\)
+        - Lady Mechanika \(2021\)
+        - Teen Titans Academy \(2021-\)
+        - A Thing Called Truth \(2021-\)
+        - Vlad the Impaler \(2021-\)
+        - Buffy the Last Vampire Slayer \(2021-\)
     exec:
       - ~/.config/scripts/ReadComicsOnline {{url}} ~/HardDisk/Plex/HQs/Weekly
   Animes:
@@ -82,11 +88,14 @@ tasks:
     series:
       settings:
         shows:
-          quality: 720p+
+          quality: 720p
       shows:
-        - "Nomad - Megalo Box 2":
+        - "Blue Period":
+            from_group: NetflixSucks
+            begin: 10
+        - "Boruto - Naruto Next Generations":
             from_group: Erai-raws
-            begin: 14
+            begin: 230
     tvmaze_lookup: yes
     transmission:
       host: localhost
@@ -94,8 +103,6 @@ tasks:
       username: ""
       password: ""
       path: "/media/HardDisk/Plex/Animes/{{series_name}}/"
-    exec:
-      - echo "|$(date '+%d/%m/%Y %H:%M:%S')|{{series_name}}|Animes|" >> ~/Flexget-Update.md
   Series:
     discover:
       what:
@@ -103,15 +110,20 @@ tasks:
       from:
         - rarbg: {ranked: True}
       interval: 15 minutes
+      release_estimations: ignore
     series:
       settings:
         shows:
-          quality: 720p+
+          quality: 720p-1080p
       shows:
         - Westworld:
             begin: S04E01
+        - The Wheel of Time:
+            begin: S01E08
+        - Young Justice:
+            begin: S04E12
         - Motherland Fort Salem:
-            begin: S02E01
+            begin: S03E01
         - Lovecraft Country:
             begin: S02E01
         - The Boys:
@@ -122,11 +134,11 @@ tasks:
             begin: S02E01
         - Loki:
             begin: S02E01
+        - Hawkeye:
+            begin: S01E07
         - Arcane:
             begin: S02E01
             exact: yes
-        - The Witcher:
-            begin: S02E01
         - What If...?:
             begin: S02E01
     tvmaze_lookup: yes
@@ -136,18 +148,16 @@ tasks:
       username: ""
       password: ""
       path: "/media/HardDisk/Plex/Series/{{series_name}}/Season {{series_season}}/"
-    exec:
-      - echo "|$(date '+%d/%m/%Y %H:%M:%S')|{{series_name}}|Series|" >> ~/Flexget-Update.md
 
   # Filmes adcionado com `flexget movie_list add (nome do filme|id_imdb)`
   Filmes:
     discover:
-      release_estimations: ignore
       what:
         - movie_list: movies
       from:
         - yts: yes
       interval: 15 minutes
+      release_estimations: ignore
     list_match:
       from:
         - movie_list: movies
