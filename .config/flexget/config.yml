@@ -142,6 +142,7 @@ tasks:
   # Filmes adcionado com `flexget movie_list add (nome do filme|id_imdb)`
   Filmes:
     discover:
+      release_estimations: ignore
       what:
         - movie_list: movies
       from:
@@ -160,5 +161,3 @@ tasks:
       username: ""
       password: ""
       path: /media/HardDisk/Plex/Filmes
-    exec:
-      - echo "|$(date '+%d/%m/%Y %H:%M:%S')|{{imdb_name}}|Filmes|" >> ~/Flexget-Update.md
