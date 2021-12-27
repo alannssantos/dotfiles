@@ -111,7 +111,7 @@ tasks:
         - rarbg: {ranked: True}
       interval: 15 minutes
       release_estimations:
-        optimistic: 30 days
+        optimistic: 7 days
     series:
       settings:
         shows:
@@ -158,8 +158,7 @@ tasks:
       from:
         - yts: yes
       interval: 15 minutes
-      release_estimations:
-        optimistic: 30 days
+      release_estimations: ignore
     list_match:
       from:
         - movie_list: movies
