@@ -110,8 +110,7 @@ tasks:
       from:
         - rarbg: {ranked: True}
       interval: 15 minutes
-      release_estimations:
-        optimistic: 7 days
+      release_estimations: loose
     series:
       settings:
         shows:
