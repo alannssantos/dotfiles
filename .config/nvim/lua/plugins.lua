@@ -9,7 +9,7 @@ return require('packer').startup(function()
   -- Packer Auto Gerenciamento.
   use 'wbthomason/packer.nvim'
   -- Tema.
-  use 'navarasu/onedark.nvim'
+  use 'sainnhe/everforest'
   use 'ellisonleao/glow.nvim'
   use 'norcalli/nvim-colorizer.lua'
   use 'kyazdani42/nvim-web-devicons'
