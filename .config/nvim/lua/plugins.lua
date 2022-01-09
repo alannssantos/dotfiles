@@ -9,10 +9,10 @@ return require('packer').startup(function()
   -- Packer Auto Gerenciamento.
   use 'wbthomason/packer.nvim'
   -- Tema.
-  use 'Th3Whit3Wolf/one-nvim'
+  use 'joshdick/onedark.vim'
+  use 'ellisonleao/glow.nvim'
   use 'norcalli/nvim-colorizer.lua'
   use 'kyazdani42/nvim-web-devicons'
-  use 'ellisonleao/glow.nvim'
   -- Endentação.
   use 'vimwiki/vimwiki'
   use 'windwp/nvim-autopairs'
