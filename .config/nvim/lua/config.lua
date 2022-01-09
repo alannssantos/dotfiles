@@ -1,6 +1,6 @@
 -- Leader key
 vim.g.mapleader=' '
-vim.g.colors_name='greed'
+vim.g.colors_name='onedark'
 
 vim.o.path='+=**'
 vim.o.hidden=true
