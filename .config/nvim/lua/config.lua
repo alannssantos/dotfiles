@@ -1,7 +1,6 @@
 -- Leader key
 vim.g.mapleader=' '
-vim.g.colors_name='onedark'
-require('onedark').setup{ transparent = true }
+vim.g.colors_name='everforest'
 
 vim.o.path='+=**'
 vim.o.hidden=true
