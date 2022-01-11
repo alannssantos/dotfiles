@@ -25,7 +25,9 @@ return require('packer').startup(function()
   use 'folke/which-key.nvim'
   -- Auto-complete & LSP Conf
   use 'neovim/nvim-lspconfig'
-  use {'hrsh7th/nvim-compe',
-    requires = {'hrsh7th/vim-vsnip'}
-  }
+  use 'hrsh7th/nvim-cmp'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'saadparwaiz1/cmp_luasnip'
+  use 'L3MON4D3/LuaSnip'
+  use 'f3fora/cmp-spell'
 end)
