@@ -12,7 +12,6 @@ return require('packer').startup(function()
   use 'sainnhe/everforest'
   use 'ellisonleao/glow.nvim'
   use 'norcalli/nvim-colorizer.lua'
-  use 'kyazdani42/nvim-web-devicons'
   -- Endentação.
   use 'vimwiki/vimwiki'
   use 'windwp/nvim-autopairs'
@@ -30,4 +29,5 @@ return require('packer').startup(function()
   use 'saadparwaiz1/cmp_luasnip'
   use 'L3MON4D3/LuaSnip'
   use 'f3fora/cmp-spell'
+  use 'williamboman/nvim-lsp-installer'
 end)
