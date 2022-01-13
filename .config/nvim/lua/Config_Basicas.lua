@@ -1,6 +1,5 @@
 -- Leader key
 vim.g.mapleader=' '
-vim.g.colors_name='everforest'
 
 vim.o.path='+=**'
 vim.o.hidden=true
@@ -23,6 +22,7 @@ vim.o.smartindent=true
 vim.o.termguicolors=true
 vim.o.foldmethod='marker'
 vim.o.clipboard='unnamedplus'
+vim.cmd('colorscheme everforest')
 vim.o.guifont='FiraCode Nerd Font:h10'
 
 vim.g.netrw_altv=1
