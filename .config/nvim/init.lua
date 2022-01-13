@@ -4,12 +4,12 @@
 --  / ___ \| | (_| | | | | | | |
 -- /_/   \_\_|\__,_|_| |_|_| |_|
 
-require('config')
-require('plugins')
-require('plugins-conf.glow')
-require('plugins-conf.comment')
-require('plugins-conf.nvim-cmp')
-require('plugins-conf.autopairs')
-require('plugins-conf.colorizer')
-require('plugins-conf.which-key')
-require('plugins-conf.lsp-config')
+require('Packer')
+require('Config_Basicas')
+require('Config_Plugins.glow')
+require('Config_Plugins.comment')
+require('Config_Plugins.nvim-cmp')
+require('Config_Plugins.autopairs')
+require('Config_Plugins.colorizer')
+require('Config_Plugins.which-key')
+require('Config_Plugins.lsp-config')
