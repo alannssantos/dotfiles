@@ -43,5 +43,6 @@ cmp.setup {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
     { name = 'spell' },
+    { name = 'path' },
   },
 }
