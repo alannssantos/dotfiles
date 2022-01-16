@@ -84,6 +84,7 @@ sudo apt install feh \
 	libfreetype6-dev \
 	libxkbcommon-dev \
 	transmission-cli \
+	transmission-gtk \
 	ffmpegthumbnailer \
 	libfontconfig1-dev \
 	libxcb-xfixes0-dev \
@@ -92,7 +93,7 @@ sudo apt install feh \
 	printer-driver-all \
 	breeze-cursor-theme \
 	libjpeg62-turbo-dev \
-	transmission-daemon \
+	transmission-common \
 	libimage-exiftool-perl \
 	ttf-mscorefonts-installer -y && \
 
