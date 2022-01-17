@@ -104,8 +104,8 @@ sudo freshclam && \
 npm config set prefix "$HOME/.local" && \
 npm i -g pyright && \
 npm i -g bash-language-server && \
+pip3 install --pre pyload-ng[all] && \
 pip3 install jedi && \
-pip3 install aria2p && \
 pip3 install flexget && \
 pip3 install ueberzug && \
 pip3 install pyperclip && \
