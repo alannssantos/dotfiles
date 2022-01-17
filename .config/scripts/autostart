@@ -18,8 +18,8 @@
 #### Temperatura da tela
 redshift -l -6.265936:-35.210228 &
 
-#### Aria2c
-aria2c --enable-rpc --rpc-listen-all &
+#### pyLoad
+$HOME/.local/bin/pyload &
 
 #### Server Livros
 $HOME/.local/bin/ubooquity &
