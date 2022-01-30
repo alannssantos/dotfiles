@@ -14,31 +14,7 @@ set previewer ~/.config/lf/preview
 #https://github.com/cirala/lfimg
 
 # Custom Functions
-cmd open ${{
-  case $(file --mime-type "$f" | awk -F': ' '{print tolower($2" "$1)}') in
-    *.cbz|*.cbr)
-      mcomix "$f" &
-      ;;
-    *.pdf)
-      zathura "$f" &
-      ;;
-    *.torrent)
-      transmission-remote -a "$f"
-      ;;
-    audio/*)
-      mpv "$f"
-      ;;
-    video/*)
-      nohup mpv --fs "$f" >/dev/null &
-      ;;
-    image/*)
-      ~/.config/lf/sxivhandler "$f" &
-      ;;
-    *)
-      ~/.config/lf/nvimhandler "$fx"
-      ;;
-    esac
-}}
+cmd open ${{~/.config/lf/handler "$f"}}
 
 cmd mkdir %{{
   printf " Nome do Diretório:"
