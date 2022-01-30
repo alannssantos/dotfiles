@@ -4,7 +4,29 @@ file="$(file --mime-type --dereference --brief "$1")"
 mimetype="$(mimetype --dereference --brief --mimetype -- "$1")"
 
 handler_image(){
-  eval feh -. -B black -g 640x480 "$(file --dereference --mime-type . | awk -F: '{if ($2 ~/image\//) printf "\""$1"\" "}')"
+  [ "$1" == '--' ] && shift
+
+  function abspath {
+    case "$1" in
+      /*) printf "%s\n" "$1";;
+      *)  printf "%s\n" "$PWD/$1";;
+    esac
+  }
+  function listfiles {
+    find -L "$(dirname "$target")" -maxdepth 1 -type f -iregex \
+      '.*\(jpe?g\|bmp\|png\|gif\)$' -print0 | sort -z
+  }
+
+  target="$(abspath $1)"
+  echo "$target"
+  echo "$1"
+  count="$(listfiles | grep -m 1 -Zznx "$target" | cut -d: -f1)"
+
+  if [ -n "$count" ]; then
+    listfiles | xargs -0 feh -. -B black -g 640x480 --start-at "$target" --
+  else
+    feh -. -B black -g 640x480 -- "$@" # fallback
+  fi
 }
 
 handler_comic(){
