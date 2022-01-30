@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+file="$(file --mime-type --dereference --brief "$1")"
+mimetype="$(mimetype --dereference --brief --mimetype -- "$1")"
+
+handler_image(){
+  feh -. -B black -g 640x480 $(file --dereference --mime-type * | awk -F: '{if ($2 ~/image\//) print $1}')
+}
+
+handler_comic(){
+  mcomix "$1" &
+}
+
+handler_torrent(){
+  transmission-remote -a "$1"
+}
+
+handler_pdf(){
+  zathura "$1" &
+}
+
+handler_audio(){
+  mpv "$1"
+}
+
+handler_video(){
+  nohup mpv --fs "$1" >/dev/null &
+}
+
+handler_text(){
+  nvim "$1"
+}
+
+if [ $(grep "^text" <<< "$file") ]
+then mimetype="$file"
+fi
+
+case $mimetype in
+  */pdf) handler_pdf "$1" ;;
+
+  video/*) handler_video "$1" ;;
+
+  audio/*) handler_audio "$1" ;;
+
+  image/*) handler_image "$1" ;;
+
+  text/* |\
+    */json) handler_text "$1" ;;
+
+  */x-bittorrent) handler_torrent "$1" ;;
+
+  */vnd.comicbook+zip |\
+    */vnd.comicbook-rar) handler_comic "$1" ;;
+esac
