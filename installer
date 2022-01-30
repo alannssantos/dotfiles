@@ -41,7 +41,6 @@ sudo apt install feh \
 	lynx \
 	peek \
 	slop \
-	sxiv \
 	tmux \
 	aria2 \
 	atool \
