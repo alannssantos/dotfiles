@@ -4,7 +4,7 @@ file="$(file --mime-type --dereference --brief "$1")"
 mimetype="$(mimetype --dereference --brief --mimetype -- "$1")"
 
 handler_image(){
-  feh -. -B black -g 640x480 $(file --dereference --mime-type * | awk -F: '{if ($2 ~/image\//) print $1}')
+  eval feh -. -B black -g 640x480 "$(file --dereference --mime-type . | awk -F: '{if ($2 ~/image\//) printf "\""$1"\" "}')"
 }
 
 handler_comic(){
@@ -31,7 +31,7 @@ handler_text(){
   nvim "$1"
 }
 
-if [ $(grep "^text" <<< "$file") ]
+if grep -q "^text" <<< "$file"
 then mimetype="$file"
 fi
 
