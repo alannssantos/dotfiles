@@ -18,8 +18,6 @@ handler_image(){
   }
 
   target="$(abspath $1)"
-  echo "$target"
-  echo "$1"
   count="$(listfiles | grep -m 1 -Zznx "$target" | cut -d: -f1)"
 
   if [ -n "$count" ]; then
