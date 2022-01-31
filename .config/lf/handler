@@ -44,7 +44,7 @@ handler_audio(){
 }
 
 handler_video(){
-  nohup mpv --fs "$1" >/dev/null &
+  nohup mpv --fs "$1" 2>/dev/null &
 }
 
 handler_text(){
@@ -52,7 +52,7 @@ handler_text(){
 }
 
 handler_keepass(){
-  keepassxc "$1" &
+  keepassxc "$1" 2>/dev/null &
 }
 
 if grep -q "^text" <<< "$file"
