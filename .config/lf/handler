@@ -51,6 +51,10 @@ handler_text(){
   nvim "$1"
 }
 
+handler_keepass(){
+  keepassxc "$1" &
+}
+
 if grep -q "^text" <<< "$file"
 then mimetype="$file"
 fi
@@ -66,6 +70,8 @@ case $mimetype in
 
   text/* |\
     */json) handler_text "$1" ;;
+
+  */x-keepass2) handler_keepass "$1" ;;
 
   */x-bittorrent) handler_torrent "$1" ;;
 
