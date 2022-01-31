@@ -29,6 +29,7 @@ fi
 #### Aliases.
 alias v='nvim'
 alias V='sudo nvim'
+alias lf='lfrun'
 alias mv='mv -iv'
 alias rg='finder'
 alias trc='tremc'
