@@ -17,7 +17,7 @@ handler_image(){
       '.*\(jpe?g\|bmp\|png\|gif\)$' -print0 | sort -z
   }
 
-  target="$(abspath $1)"
+  target="$(abspath "$1")"
   count="$(listfiles | grep -m 1 -Zznx "$target" | cut -d: -f1)"
 
   if [ -n "$count" ]; then
