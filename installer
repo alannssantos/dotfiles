@@ -101,12 +101,10 @@ sudo apt upgrade -y && \
 sudo rm /var/log/clamav/freshclam.log ; \
 sudo freshclam && \
 npm config set prefix "$HOME/.local" && \
-npm i -g pyright && \
-npm i -g bash-language-server && \
+sudo -H pip3 install ueberzug && \
 pip3 install --pre pyload-ng[all] && \
 pip3 install jedi && \
 pip3 install flexget && \
-pip3 install ueberzug && \
 pip3 install pyperclip && \
 pip3 install gallery-dl && \
 pip3 install subliminal && \
