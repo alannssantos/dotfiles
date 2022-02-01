@@ -11,7 +11,7 @@ files=$(printf '%s\n' "$@" | sed 's/.*\//"/;s/$/" /' | sed ':a;$!N;s/\n//;ta;')
 
 case $1 in
   # extraction session
-  -x) eval atool -xe "${files#* }" && printf "Done!" ;;
+  -x) eval atool -xe "${files#* }" ;;
   # compression session
   -z) eval zip -r "${file%.*}.zip" "${files#* }" && printf "Done!" ;;
   -7) eval 7z a -r "${file%.*}.7z" "${files#* }" && printf "Done!" ;;
