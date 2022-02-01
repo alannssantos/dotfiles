@@ -44,7 +44,7 @@ handler_audio(){
 }
 
 handler_video(){
-  nohup mpv --fs "$1" 2>/dev/null &
+  nohup mpv --fs "$1" >/dev/null 2>&1 &
 }
 
 handler_text(){
@@ -53,6 +53,10 @@ handler_text(){
 
 handler_keepass(){
   keepassxc "$1" 2>/dev/null &
+}
+
+handler_xdg-open(){
+  xdg-open "$1" &
 }
 
 if grep -q "^text" <<< "$file"
@@ -77,4 +81,6 @@ case $mimetype in
 
   */vnd.comicbook+zip |\
     */vnd.comicbook-rar) handler_comic "$1" ;;
+
+  *) handler_xdg-open "$1" ;;
 esac
