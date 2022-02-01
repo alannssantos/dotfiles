@@ -25,7 +25,10 @@ do
 done
 
 if [ -z "$Destino" ]; then
-  zip -rmq "$Nome".cbz "/tmp/$Nome"
+  Destino="$PWD" && \
+  cd /tmp/ && \
+  zip -rmq "$Destino/$Nome".cbz "$Nome"
 else
-  zip -rmq "$Destino/$Nome".cbz "/tmp/$Nome"
+  cd /tmp/ && \
+  zip -rmq "$Destino/$Nome".cbz "$Nome"
 fi
