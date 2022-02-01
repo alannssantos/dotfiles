@@ -14,7 +14,7 @@ set previewer ~/.config/lf/preview
 #https://github.com/cirala/lfimg
 
 # Custom Functions
-cmd open ${{~/.config/lf/handler "$f"}}
+cmd open ${{~/.config/lf/handler "$fx"}}
 
 cmd mkdir %{{
   printf " Nome do Diretório:"
