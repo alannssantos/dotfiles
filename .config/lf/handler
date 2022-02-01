@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
-file="$(file --mime-type --dereference --brief "$1")"
-mimetype="$(mimetype --dereference --brief --mimetype -- "$1")"
+# handling files name.
+files=$(printf '%s\n' "$@" | sed 's/.*\//"/;s/$/" /' | sed ':a;$!N;s/\n//;ta;')
+
+# sort file type.
+file="$(eval file --mime-type --dereference --brief "$files")"
+mimetype="$(eval mimetype --dereference --brief --mimetype -- "$files")"
 
 handler_image(){
   [ "$1" == '--' ] && shift
@@ -36,7 +40,7 @@ handler_torrent(){
 }
 
 handler_pdf(){
-  zathura "$1" &
+  eval zathura "$files" &
 }
 
 handler_audio(){
@@ -48,7 +52,7 @@ handler_video(){
 }
 
 handler_text(){
-  nvim "$1"
+  eval nvim -p "$files"
 }
 
 handler_keepass(){
@@ -64,23 +68,23 @@ then mimetype="$file"
 fi
 
 case $mimetype in
-  */pdf) handler_pdf "$1" ;;
+  */pdf) handler_pdf "$@" ;;
 
-  video/*) handler_video "$1" ;;
+  video/*) handler_video "$@" ;;
 
-  audio/*) handler_audio "$1" ;;
+  audio/*) handler_audio "$@" ;;
 
-  image/*) handler_image "$1" ;;
+  image/*) handler_image "$@" ;;
 
   text/* |\
-    */json) handler_text "$1" ;;
+    */json) handler_text "$@" ;;
 
-  */x-keepass2) handler_keepass "$1" ;;
+  */x-keepass2) handler_keepass "$@" ;;
 
-  */x-bittorrent) handler_torrent "$1" ;;
+  */x-bittorrent) handler_torrent "$@" ;;
 
   */vnd.comicbook+zip |\
-    */vnd.comicbook-rar) handler_comic "$1" ;;
+    */vnd.comicbook-rar) handler_comic "$@" ;;
 
-  *) handler_xdg-open "$1" ;;
+  *) handler_xdg-open "$@" ;;
 esac
