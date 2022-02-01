@@ -68,12 +68,12 @@ cmd fzf_local ${{
 }}
 
 # Archive bindings
-cmd unz $atool -x "$f"
-cmd zip %zip -r "$f.zip" "${f##*/}" && echo "Concluido!"
-cmd 7zp %7z a -r "$f.7z" "${f##*/}" && echo "Concluido!"
-cmd zis !zip -er "$f.zip" "${f##*/}" && echo "Concluido!"
-cmd rar %rar a -r "$f.rar" "${f##*/}" && echo "Concluido!"
-cmd 7zs !7z a -r "$f.7z" "${f##*/}" -p && echo "Concluido!"
+cmd unz %{{~/.config/lf/compress -x "$fx"}}
+cmd zip %{{~/.config/lf/compress -z "$fx"}}
+cmd 7zp %{{~/.config/lf/compress -7 "$fx"}}
+cmd rar %{{~/.config/lf/compress -r "$fx"}}
+cmd zps !{{~/.config/lf/compress -zp "$fx"}}
+cmd 7zs !{{~/.config/lf/compress -7p "$fx"}}
 
 cmd mou $mounty
 cmd ch+ %chmod +x "$f"
