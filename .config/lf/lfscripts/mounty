@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+###############################################################################
+
+#     _    _
+#    / \  | | __ _ _ __  _ __      Alann Santos
+#   / _ \ | |/ _` | '_ \| '_ \     https://github.com/alannssantos
+#  / ___ \| | (_| | | | | | | |
+# /_/   \_\_|\__,_|_| |_|_| |_|
+
+Fzfopt='fzf -e --color='fg+:#99cc99,pointer:#99cc99,prompt:#99cc99,border:#99cc99' --layout=reverse-list --margin=20% --border --no-info --phony'
+
+Opcoes=$(lsblk -o "FSTYPE,PATH,SIZE,FSTYPE,LABEL,RM,MOUNTPOINT" \
+	| sed '/^ /d' \
+	| sed 's|^.*/dev/|/dev/|' \
+	| sed '/\/dev\//!d;s/ 0 / \(Disco Local\)𤭢/
+		s/ 1 / \(Disco Removível\)𤭢/' \
+	| column -t -s "𤭢")
+
+Escolha=$(echo " Escolha a Partição que deve ser Montada ou Desmontada.
+
+$Opcoes
+
+ Sair" | $Fzfopt | sed 's/ .*$//')
+
+udisksctl mount -b $Escolha $1 2>/dev/null || udisksctl unmount -b $Escolha $1 2>/dev/null

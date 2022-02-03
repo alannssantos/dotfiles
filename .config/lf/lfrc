@@ -1,4 +1,4 @@
-# Basic Settings
+# Basic settings
 set info size
 set icons true
 set drawbox true
@@ -13,80 +13,36 @@ set previewer ~/.config/lf/preview
 #Para ter imagem no seu terminal.
 #https://github.com/cirala/lfimg
 
-# Custom Functions
-cmd open ${{~/.config/lf/handler "$fx"}}
+# Custom functions
+# Removable partition mounter
+cmd mou ${{~/.config/lf/lfscripts/mounty}}
 
-cmd mkdir %{{
-  printf " Nome do Diretório:"
-  read ans
-  mkdir "$ans"
-}}
+# Files handler
+cmd open ${{~/.config/lf/lfscripts/handler "$fx"}}
 
-cmd mkfil %{{
-  printf " Nome do Arquivo:"
-  read ans
-  > "$ans"
-}}
+# Search with Fuzzy Finder
+cmd fuzzyfinder ${{~/.config/lf/lfscripts/fuzzyjump}}
 
-cmd bulkrename ${{
-  old="$(mktemp)"
-  new="$(mktemp)"
-  printf '%s\n' "$fx" | sed 's/.*\///' >"$old"
-  printf '%s\n' "$fx" | sed 's/.*\///' >"$new"
-  nvim "$new"
-  [ "$(wc -l < "$new")" -ne "$(wc -l < "$old")" ] && exit
-  paste "$old" "$new" | while IFS= read -r names; do
-    src="$(printf '%s' "$names" | cut -f1)"
-    dst="$(printf '%s' "$names" | cut -f2)"
-    if [ "$src" = "$dst" ] || [ -e "$dst" ]; then
-      continue
-    fi
-      mv -- "$src" "$dst"
-    done
-    rm -- "$old" "$new"
-    lf -remote "send $id unselect"
-}}
-
-cmd fzf_global ${{
-  res="$(fzf --prompt='Ir Para: ')"
-  if [ -f "$res" ]; then
-    cmd="select"
-  elif [ -d "$res" ]; then
-    cmd="cd"
-  fi
-  lf -remote "send $id $cmd \"$res\""
-}}
-
-cmd fzf_local ${{
-  res="$(find "$PWD" -exec basename {}  \; | fzf --prompt='Procurar: ')"
-  if [ -f "$res" ]; then
-    cmd="select"
-  elif [ -d "$res" ]; then
-    cmd="cd"
-  fi
-  lf -remote "send $id $cmd \"$res\""
-}}
+# Rename multiple files
+cmd bulkrename ${{~/.config/lf/lfscripts/bulkrename "$fx"}}
 
 # Archive bindings
-cmd unz %{{~/.config/lf/compress -x "$fx"}}
-cmd zip %{{~/.config/lf/compress -z "$fx"}}
-cmd 7zp %{{~/.config/lf/compress -7 "$fx"}}
-cmd rar %{{~/.config/lf/compress -r "$fx"}}
-cmd zps !{{~/.config/lf/compress -zp "$fx"}}
-cmd 7zs !{{~/.config/lf/compress -7p "$fx"}}
+cmd unz ${{~/.config/lf/lfscripts/compress -x "$fx"}}
+cmd zip %{{~/.config/lf/lfscripts/compress -z "$fx"}}
+cmd 7zp %{{~/.config/lf/lfscripts/compress -7 "$fx"}}
+cmd rar %{{~/.config/lf/lfscripts/compress -r "$fx"}}
+cmd zps !{{~/.config/lf/lfscripts/compress -zp "$fx"}}
+cmd 7zs !{{~/.config/lf/lfscripts/compress -7p "$fx"}}
 
-cmd mou $mounty
 cmd ch+ %chmod +x "$f"
+cmd mkf push %><space>
+cmd mkd push %mkdir<space>
 cmd cla !clamscan -ri "$f"
 cmd dra $dragon -a -T "$f"
 cmd hif $cat "$f" > copy_"$f"
-cmd kcs %kcc-c2e --profile=K578 --upscale --splitter=2 --forcecolor "$f" && echo "Concluido!"
-
 cmd srt %subliminal --opensubtitles USERNAME PASSWORD download -l pt-br -s "$f"
-
 cmd frs %df -h --output="avail","target" . | awk '/\// {print "Espaço Livre: "$1}'
-
-cmd chr $mkchromecast -s --video -i "$f"
+cmd kcs %kcc-c2e --profile=K578 --upscale --splitter=2 --forcecolor "$f" && echo "Concluido!"
 
 # Bindings
 # Remove some defaults
@@ -101,7 +57,7 @@ map e
 map p
 map y
 
-# Archive Mappings
+# Archive mappings
 map xc chr Chromecast
 map xx unz Descompactar
 map xr rar Compactar Rar
@@ -110,25 +66,24 @@ map x7 7zp Compactar 7zip
 map xv cla Procurar Virus
 map xd dra Arrastar e Colar
 map x+ ch+ Tornar Executavel
-map xm mou Montar Dispositivos
 map xs frs Mostrar Espaço Livre
 map xl srt Baixar Legenda em pt-br
 map xZ zps Compactar Zip com Senha
 map x6 7zs Compactar 7zip com Senha
+map xm mou Montar Dispositivos Removíveis
 map xk kcs Converter Pasta em Arquivo .mobi
 map xh hif Esconder Arquivo Dentro de Imagem
 
-# Broot Mapping
-map F fzf_local
-map f fzf_global
+# Broot mapping
+map f fuzzyfinder
 
-# Basic Functions
+# Basic functions
+map mk mkd
+map mf mkf
 map dd cut
-map yy copy
 map C clear
+map yy copy
 map pp paste
-map mk mkdir
-map mf mkfil
 map a rename
 map R reload
 map dD delete

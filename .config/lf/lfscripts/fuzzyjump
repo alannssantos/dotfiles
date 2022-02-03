@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+res="$(find "$PWD/" 2>/dev/null | fzf -e --prompt='Ir Para: ')"
+if [ -f "$res" ]; then
+  cmd="select"
+elif [ -d "$res" ]; then
+  cmd="cd"
+fi
+lf -remote "send $cmd \"$res\""
