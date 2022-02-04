@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-res="$(find "$PWD/" 2>/dev/null | fzf -e --prompt='Ir Para: ')"
+res="$(find /home /media /mnt 2>/dev/null | fzf -e --prompt='Ir Para: ')"
 if [ -f "$res" ]; then
   cmd="select"
 elif [ -d "$res" ]; then
