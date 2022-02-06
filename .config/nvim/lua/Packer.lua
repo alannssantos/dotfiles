@@ -13,7 +13,6 @@ return require('packer').startup(function()
   use 'ellisonleao/glow.nvim'
   use 'norcalli/nvim-colorizer.lua'
   -- Endentação.
-  use 'vimwiki/vimwiki'
   use 'windwp/nvim-autopairs'
   use 'terrortylor/nvim-comment'
   -- Gerenciamento de Arquivo.
@@ -28,6 +27,7 @@ return require('packer').startup(function()
   use 'hrsh7th/cmp-path'
   use 'L3MON4D3/LuaSnip'
   use 'f3fora/cmp-spell'
+  use 'octaltree/cmp-look'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'saadparwaiz1/cmp_luasnip'
   use 'williamboman/nvim-lsp-installer'
