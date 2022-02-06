@@ -46,3 +46,7 @@ cmp.setup {
     { name = 'path' },
   },
 }
+
+require('cmp').setup({
+  sources={{name='look', keyword_length=2, option={convert_case=true, loud=true}}}
+})
