@@ -55,12 +55,16 @@ handler_text(){
   eval nvim -p "$files"
 }
 
+handler_ebook(){
+  epy "$1"
+}
+
 handler_keepass(){
   keepassxc "$1" 2>/dev/null &
 }
 
 handler_xdg-open(){
-  xdg-open "$1" &
+  xdg-open "$1" 2>/dev/null &
 }
 
 if grep -q "^text" <<< "$file"
@@ -85,6 +89,9 @@ case $mimetype in
 
   */vnd.comicbook+zip |\
     */vnd.comicbook-rar) handler_comic "$@" ;;
+
+  */epub+zip |\
+    */x-mobipocket-ebook) handler_ebook "$@" ;;
 
   *) handler_xdg-open "$@" ;;
 esac
