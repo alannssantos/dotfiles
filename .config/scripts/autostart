@@ -18,8 +18,5 @@
 #### Temperatura da tela
 redshift -l -6.265936:-35.210228 &
 
-#### pyLoad
-$HOME/.local/bin/pyload &
-
 #### Server Livros
 $HOME/.local/bin/ubooquity &
