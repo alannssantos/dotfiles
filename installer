@@ -102,10 +102,10 @@ sudo rm /var/log/clamav/freshclam.log ; \
 sudo freshclam && \
 npm config set prefix "$HOME/.local" && \
 sudo -H pip3 install ueberzug && \
-pip3 install --pre pyload-ng[all] && \
 pip3 install jedi && \
 pip3 install flexget && \
 pip3 install pyperclip && \
+pip3 install epy-reader && \
 pip3 install gallery-dl && \
 pip3 install subliminal && \
 pip3 install youtube-dl && \
