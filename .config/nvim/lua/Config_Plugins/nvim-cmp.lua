@@ -44,9 +44,6 @@ cmp.setup {
     { name = 'luasnip' },
     { name = 'spell' },
     { name = 'path' },
+    { name = 'look', keyword_length=2, option={convert_case=true, loud=true}},
   },
 }
-
-require('cmp').setup({
-  sources={{name='look', keyword_length=2, option={convert_case=true, loud=true}}}
-})
