@@ -36,7 +36,7 @@ Resultados=$(wget -qO- "$Url" \
 	| fzf -e -m --border --ansi --delimiter "┃" --with-nth='2..' --prompt=1337x: \
 	| sed 's/ *┃.*$//')
 
-if [ ! -z "$Resultados" ]; then
+if [ -n "$Resultados" ]; then
 	for Resultado in $Resultados
 		do
 		$Programa "$(wget -qO- "$Site$Resultado" \
