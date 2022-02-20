@@ -29,7 +29,6 @@ fi
 #### Aliases.
 alias v='nvim'
 alias V='sudo nvim'
-alias lf='lfrun'
 alias mv='mv -iv'
 alias rg='finder'
 alias trc='tremc'
@@ -47,7 +46,8 @@ alias ytv-best='youtube-dl -c --add-metadata -f bestvideo+bestaudio -o "%(title)
 alias streamlink='streamlink -p "mpv --cache 2048 --ontop --no-border --force-window --autofit=500x280 --geometry=-15-60"'
 
 #### Funções.
-finder() { lfrun "$(fzf -e | xargs -r -0)" ;}
+finder() { lf "$(fzf -e | xargs -r -0)" ;}
+lf(){ command -v lfrun >/dev/null && lfrun || lf ;}
 cue2chd(){ chdman createcd -i "$1" -o "${1%.*}.chd" ;}
 chd2cue(){ chdman extractcd -i "$1" -o "${1%.*}.cue" ;}
 justread() { readable "$1" -p html-title,html-content > /tmp/readable.html&&lynx -image_links /tmp/readable.html ;}
