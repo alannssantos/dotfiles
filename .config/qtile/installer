@@ -18,15 +18,14 @@ Fracasso="$YCor
 $ECor"
 
 sudo apt install python3-pip rofi feh compton lxappearance qt5ct -y \
-	&& sudo -H pip3 install xcffib \
-	&& sudo -H pip3 install --no-cache-dir cairocffi \
-	&& sudo -H pip3 install dbus-next \
-	&& sudo -H pip3 install qtile==0.17.0 \
-	&& echo "[Desktop Entry]
+  && sudo -H pip3 install xcffib \
+  && sudo -H pip3 install --no-cache-dir cairocffi \
+  && sudo -H pip3 install dbus-next \
+  && sudo -H pip3 install qtile==0.17.0 \
+  && echo "[Desktop Entry]
 Name=Qtile
 Comment=Qtile Session
 Exec=qtile
 Type=Application
-Keywords=wm;tiling" > qtile.desktop \
-	&& sudo mv -v qtile.desktop /usr/share/xsessions/qtile.desktop \
-	&& echo -e "$Sussesso" || echo -e "$Fracasso"
+Keywords=wm;tiling" | sudo tee /usr/share/xsessions/qtile.desktop \
+  && echo -e "$Sussesso" || echo -e "$Fracasso"
