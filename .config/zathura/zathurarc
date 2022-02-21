@@ -10,3 +10,7 @@ map K zoom in
 map J zoom out
 map i recolor
 map p print
+
+set default-bg    "#2F383E"
+set statusbar-bg  "#2F383E"
+set statusbar-fg  "#D3C6AA"
