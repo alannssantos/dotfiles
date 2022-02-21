@@ -6,4 +6,4 @@ if [ -f "$res" ]; then
 elif [ -d "$res" ]; then
   cmd="cd"
 fi
-lf -remote "send $cmd \"$res\""
+lf -remote "send $id $cmd \"$res\""
