@@ -13,9 +13,9 @@ case $1 in
   # extraction session
   -x) eval atool -xe "${files#* }" ;;
   # compression session
-  -z) eval zip -r "${file%.*}.zip" "${files#* }" && printf "Done!" ;;
-  -7) eval 7z a -r "${file%.*}.7z" "${files#* }" && printf "Done!" ;;
-  -r) eval rar a -r "${file%.*}.rar" "${files#* }" && printf "Done!" ;;
-  -7p) eval 7z a -r "${file%.*}.7z" "${files#* }" -p ;;
-  -zp) eval zip -er "${file%.*}.zip" "${files#* }" ;;
+  -z) eval zip -r "\"${file/%/.zip}\"" "${files#* }" && printf "Done!" ;;
+  -7) eval 7z a -r "\"${file/%/.7z}\"" "${files#* }" && printf "Done!" ;;
+  -r) eval rar a "\"${file/%/.rar}\"" "${files#* }" && printf "Done!" ;;
+  -7p) eval 7z a -r "\"${file/%/.7z}\"" "${files#* }" -p ;;
+  -zp) eval zip -er "\"${file/%/.zip}\"" "${files#* }" ;;
 esac
