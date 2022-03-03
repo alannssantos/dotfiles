@@ -2,7 +2,8 @@
 
 Bookmarks=~/.favoritos
 Browser="firefox"
-Fzfopt='fzf -e --border -i --margin=20% --tiebreak=begin --prompt=Bookmarks:'
+Search='https://duckduckgo.com/?q='
+FzfOpt='fzf -e --border -i --print-query --margin=20% --tiebreak=begin --prompt=Bookmarks:'
 
 # Pegar favoritos do Firefox Automaticamente.
 #
@@ -13,10 +14,14 @@ Fzfopt='fzf -e --border -i --margin=20% --tiebreak=begin --prompt=Bookmarks:'
 
 Site=$(sed -r '/http/!d;s/^.*HREF="(.*)" ADD_DATE=.*">(.*)<\/A>.*$/\2𤭢┃\"\1\"/' $Bookmarks \
   | column -t -s "𤭢" \
-  | $Fzfopt \
+  | $FzfOpt \
   | sed 's/#Porn.*┃\|#Hentai.*┃/┃--private-window /' \
-  | sed 's/^.*┃//')
+  | sed 's/^.*┃//;/^$/d')
 
 if [ -n "$Site" ]; then
-  eval $Browser "$Site" &
+    if grep '^"http' <<< "$Site"; then
+      eval $Browser "$Site" &
+    else
+      eval $Browser "\"$Search$Site\"" &
+    fi
 fi
