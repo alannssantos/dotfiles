@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-Bookmarks=~/.favoritos
-Browser="firefox"
-Search='https://duckduckgo.com/?q='
+Pesquisador='https://duckduckgo.com/?q='
+Favoritos=~/.favoritos
+Navegador="firefox"
 FzfOpt='fzf -e --border -i --print-query --margin=20% --tiebreak=begin --prompt=Bookmarks:'
 
 # Pegar favoritos do Firefox Automaticamente.
@@ -12,16 +12,17 @@ FzfOpt='fzf -e --border -i --print-query --margin=20% --tiebreak=begin --prompt=
 # Pesquise por "browser.bookmarks.file" escolha texto e adicione "~/.favoritos".
 #
 
-Site=$(sed -r '/http/!d;s/^.*HREF="(.*)" ADD_DATE=.*">(.*)<\/A>.*$/\2𤭢┃\"\1\"/' $Bookmarks \
+Resposta=$(sed -r '/http/!d;s/^.*HREF="(.*)" ADD_DATE=.*">(.*)<\/A>.*$/\2𤭢┃\"\1\"/' $Favoritos \
   | column -t -s "𤭢" \
   | $FzfOpt \
   | sed 's/#Porn.*┃\|#Hentai.*┃/┃--private-window /' \
   | sed 's/^.*┃//;/^$/d')
 
-if [ -n "$Site" ]; then
-    if grep '^"http' <<< "$Site"; then
-      eval $Browser "$Site" &
+if [ -n "$Resposta" ]; then
+    if grep '^"http' <<< "$Resposta"; then
+      Favorito=$(sed '/^"http/!d' <<< "$Resposta")
+      eval $Navegador "$Favorito" &
     else
-      eval $Browser "\"$Search$Site\"" &
+      eval $Navegador "\"$Pesquisador$Resposta\"" &
     fi
 fi
