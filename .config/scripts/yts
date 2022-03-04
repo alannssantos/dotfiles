@@ -17,29 +17,29 @@ Site="https://yts.mx"
 Pesquisa="$*"
 
 if [ -z "$Pesquisa" ]; then
-	Url="$Site/browse-movies/0/all/all/0/featured/0/all"
+  Url="$Site/browse-movies/0/all/all/0/featured/0/all"
 else
-	Url="$Site/browse-movies/$Pesquisa/all/all/0/latest/0/all"
+  Url="$Site/browse-movies/$Pesquisa/all/all/0/latest/0/all"
 fi
 
 Resultado=$(wget -qO- "$Url" \
-	| sed '/class="browse-movie-link"\|img class="img-responsive"/!d' \
-	| sed -r 's/^.*<a href="(.*)" .*$/\1/;s/^.*alt="(.*) download".*$/\1/' \
-	| sed 'N;s/\n/𤭢/' \
-	| sed -r 's/(.*)𤭢(.*)/\2𤭢┃\1/' \
-	| column -t -s "𤭢" \
-	| fzf -e --border --prompt=YTS.MX: \
-	| sed 's/^.*┃//')
+  | sed '/class="browse-movie-link"\|img class="img-responsive"/!d' \
+  | sed -r 's/^.*<a href="(.*)" .*$/\1/;s/^.*alt="(.*) download".*$/\1/' \
+  | sed 'N;s/\n/𤭢/' \
+  | sed -r 's/(.*)𤭢(.*)/\1𤭢┃\2/' \
+  | column -t -s "𤭢" \
+  | fzf -e --border --delimiter "┃" --with-nth='2..' --prompt=YTS.MX: \
+  | sed 's/ *┃.*$//')
 
 if [ -n "$Resultado" ]; then
-	Qualidade=$(wget -qO- "$Resultado" \
-		| sed -r '/<a href=".*" rel=".*title=".*"><span class=".*<\/a>/!d' \
-		| sed -r 's/^.*<a href="(.*)" rel=".*"><\/span>(.*)<\/a>.*$/\2𤭢┃\1/'\
-		| column -t -s "𤭢" \
-		| fzf -e --border --prompt=Qualidade: \
-		| sed 's/^.*┃//')
+  Qualidade=$(wget -qO- "$Resultado" \
+    | sed -r '/<a href=".*" rel=".*title=".*"><span class=".*<\/a>/!d' \
+    | sed -r 's/^.*<a href="(.*)" rel=".*"><\/span>(.*)<\/a>.*$/\1𤭢┃\2/'\
+    | column -t -s "𤭢" \
+    | fzf -e --border --delimiter "┃" --with-nth='2..' --prompt=Qualidade: \
+    | sed 's/ *┃.*$//')
 
-	if [ -n "$Qualidade" ]; then
-		$Programa "$Qualidade"
-	fi
+  if [ -n "$Qualidade" ]; then
+    $Programa "$Qualidade"
+  fi
 fi
