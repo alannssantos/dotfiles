@@ -50,7 +50,7 @@ finder() { command -v lfrun >/dev/null && lfrun "$(fzf -e | xargs -r -0)" || lf 
 cue2chd(){ chdman createcd -i "$1" -o "${1%.*}.chd" ;}
 chd2cue(){ chdman extractcd -i "$1" -o "${1%.*}.cue" ;}
 justread() { readable "$1" -p html-title,html-content > /tmp/readable.html&&lynx -image_links /tmp/readable.html ;}
-subinvid() { ffmpeg -i "$1" -i "$2" -map 0 -map 1 -c copy "${1%.*}.pt-BR.${1##*.}" ;}
+mergesub() { mkvmerge -o "${1%.*}.mkv" "$1" --language 0:por --track-name 0:"Português (Brasil)" "$2" ;}
 hideinimage() { cat "$@" > "copy_$1" ;}
 
 #### Exports.
