@@ -35,9 +35,16 @@ mkdir -p $temp_wall_dir
 cd $temp_wall_dir
 
 # get links of images and download it
-get_random_url=$(lynx -listonly -nonumbers -dump ${link_wall[@]} | grep '/w/')
-get_images_url=$(echo "$get_random_url" | while read line; do lynx -source "$line" | grep -Po '<img id="wallpaper" src="\K[^"]+' ; done )
-dl_images=$(echo "$get_images_url" | while read line; do wget -N "$line" ; done)
+links=$(wget -qO- "$link_wall" \
+  | sed -r 's/href="/\n/g' \
+  | sed -r 's/"  target=".*$//g' \
+  | sed '/https:\/\/wallhaven.cc\/w\/[a-Z0-9]*/!d')
+
+for link in $links
+do
+  wget -c "$(wget -qO- "$link" \
+    | sed -r 's/^.*src="(https:\/\/w.wallhaven.cc\/full.*)" alt=".*$/\1/')"
+done
 
 # delete any file under 200k in size (to avoid shitty thumnbails or crap quality)
 find . -type f -iname "*.jp*g" -size -900k -exec rm {} \;
