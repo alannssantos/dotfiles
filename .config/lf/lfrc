@@ -49,7 +49,6 @@ cmd kcs %kcc-c2e --profile=K578 --upscale --splitter=2 --forcecolor "$f" && echo
 # Remove some defaults
 map m
 map o
-map n
 map "'"
 map '"'
 map d
