@@ -19,8 +19,8 @@ Resposta=$(sed -r '/http/!d;s/^.*HREF="(.*)" ADD_DATE=.*">(.*)<\/A>.*$/\2𤭢┃
   | sed 's/^.*┃//;/^$/d')
 
 if [ -n "$Resposta" ]; then
-    if grep '^"http' <<< "$Resposta" >/dev/null; then
-      Favorito=$(sed '/^"http/!d' <<< "$Resposta")
+    if grep '"http' <<< "$Resposta" >/dev/null; then
+      Favorito=$(sed '/"http/!d' <<< "$Resposta")
       eval $Navegador "$Favorito" &
     else
       eval $Navegador "\"$Pesquisador$Resposta\"" &
