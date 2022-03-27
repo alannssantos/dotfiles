@@ -3,13 +3,7 @@
 templates:
   global:
     exec:
-      - /usr/bin/wget -qO- "https://xdroid.net/api/message?k=<ApiKey>&t=Flexget&c={% if series_name is defined -%}
-          {{series_name}} - {{series_id}}
-          {% elif imdb_name is defined -%}
-          {{imdb_name}} - ({{imdb_year}})
-          {% else -%}
-          {{title}}
-          {%- endif -%}"
+      - /usr/bin/wget -qO- "https://xdroid.net/api/message?k=<ApiKey>&t=Flexget&c={% if series_name is defined -%}{{series_name}} - {{series_id}}{% elif imdb_name is defined -%}{{imdb_name}} - ({{imdb_year}}){% else -%}{{title}}{%- endif -%}"
 
 # Transmission só funciona com `pip3 install transmission-rpc`.
 # Mais informações `https://flexget.com/Plugins/transmission`.
