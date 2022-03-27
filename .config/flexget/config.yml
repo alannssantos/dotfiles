@@ -1,30 +1,15 @@
-# Para a notificação via telegram funcionar é preciso colocar o <TokenID> e <UserName>.
-# Crie um Bot para gerar um TokenID e inicie uma conversa com ele para gerar ChatID,
-# caso voce não tenha um UserName vá nas configurações do telegram e crie.
-# Instalar `pip3 install python-telegram-bot==12.8`.
+# Para a notificação via push no android funcionar é preciso colocar a <Api Key>
+# (https://play.google.com/store/apps/details?id=net.xdroid.pn)
 templates:
   global:
-    notify:
-      entries:
-        message:
-          |+
-          {% if series_name is defined -%}
-          *{{series_name}}* - {{series_id}}
-          *{{tvmaze_episode_name|d(tvdb_ep_name)|d('')}}*
-          [Image]({{tvmaze_series_original_image|replace("_", "%5F")}})
+    exec:
+      - /usr/bin/wget -qO- "https://xdroid.net/api/message?k=k-b65c174d6f6c&t=Flexget&c={% if series_name is defined -%}
+          {{series_name}} - {{series_id}}
           {% elif imdb_name is defined -%}
-          *{{imdb_name}}* - ({{imdb_year}})
-          [Image]({{(tvdb_posters|d|first )|d(imdb_photo)|d|replace("_", "%5F")}})
+          {{imdb_name}} - ({{imdb_year}})
           {% else -%}
           {{title}}
-          {%- endif -%}
-        via:
-          - telegram:
-              bot_token: '<TokenID>'
-              parse_mode: markdown
-              disable_previews: no
-              recipients:
-                - username: '<UserName>'
+          {%- endif -%}"
 
 # Transmission só funciona com `pip3 install transmission-rpc`.
 # Mais informações `https://flexget.com/Plugins/transmission`.
