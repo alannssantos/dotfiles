@@ -18,7 +18,9 @@ do
   Conteudo=$(wget -qO- "$Pagina")
   Link=$(sed -r '/^<img src/!d
     s/.*"\/\/(.*)\?token=.*" style.*$/\1/' <<< "$Conteudo")
-  NPagina=$(sed -r 's/.*(..[0-9]\..*)/\1/' <<< "$Link")
+  NPagina=$(sed -r '/selected=/!d
+    s/.*selected=.*>([0-9]*)<.*/00\1/
+    s/0*(...)/\1.jpg/' <<< "$Conteudo")
   mkdir "/tmp/$Nome" 2> /dev/null
   wget -cq "$Link" -O "/tmp/$Nome/$NPagina"
   echo -e "\033[1;31m[\033[1;37m${NPagina%%.*}/$TPaginas\033[1;31m] \033[1;34m$Nome"
