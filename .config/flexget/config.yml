@@ -39,6 +39,7 @@ tasks:
     accept_all: yes
     exec:
       - ~/.config/scripts/MangaFox {{url}} ~/HardDisk/Plex/Mangas/Weekly
+
   Comics:
     sequence:
       - rss: https://readcomicsonline.ru/feed
@@ -54,6 +55,7 @@ tasks:
         - Buffy the Last Vampire Slayer \(2021-\)
     exec:
       - ~/.config/scripts/ReadComicsOnline {{url}} ~/HardDisk/Plex/HQs/Weekly
+
   Animes:
     discover:
       what:
@@ -64,24 +66,22 @@ tasks:
             filter: "trusted only"
       interval: 15 minutes
       release_estimations: ignore
+    quality: 720p
     series:
-      settings:
-        shows:
-          quality: 720p
-      shows:
-        - "Blue Period":
-            from_group: NetflixSucks
-            begin: 10
-        - "Boruto - Naruto Next Generations":
-            from_group: Erai-raws
-            begin: 230
+      - "Blue Period":
+          from_group: NetflixSucks
+          begin: 13
+      - "Boruto - Naruto Next Generations":
+          from_group: Erai-raws
+          begin: 234
     tvmaze_lookup: yes
     transmission:
       host: localhost
       port: 9091
       username: ""
       password: ""
-      path: "/media/HardDisk/Plex/Animes/{{series_name}}/"
+      path: "/media/HardDisk/Jellyfin/Animes/{{series_name}}/"
+
   Series:
     discover:
       what:
@@ -90,43 +90,46 @@ tasks:
         - rarbg: {ranked: True}
       interval: 15 minutes
       release_estimations: loose
+    quality: 720p-1080p
+    content_size:
+      min: 300
+      max: 1000
+      strict: no
     series:
-      settings:
-        shows:
-          quality: 720p-1080p
-      shows:
-        - Westworld:
-            begin: S04E01
-        - The Wheel of Time:
-            begin: S01E08
-        - Young Justice:
-            begin: S04E12
-        - Motherland Fort Salem:
-            begin: S03E01
-        - Lovecraft Country:
-            begin: S02E01
-        - The Boys:
-            begin: S03E01
-        - American Gods:
-            begin: S04E01
-        - Carnival Row:
-            begin: S02E01
-        - Loki:
-            begin: S02E01
-        - Hawkeye:
-            begin: S01E07
-        - Arcane:
-            begin: S02E01
-            exact: yes
-        - What If...?:
-            begin: S02E01
+      - Westworld:
+          begin: S04E01
+      - The Wheel of Time:
+          begin: S02E01
+      - The Witcher:
+          begin: S03E01
+      - Young Justice:
+          begin: S05E01
+      - Young Sheldon:
+          begin: S05E18
+      - Motherland Fort Salem:
+          begin: S03E01
+      - The Boys:
+          begin: S03E01
+      - Carnival Row:
+          begin: S02E01
+      - Loki:
+          begin: S02E01
+      - Hawkeye:
+          begin: S02E01
+      - Arcane:
+          begin: S02E01
+          exact: yes
+      - What If...?:
+          begin: S02E01
+      - Moon Knight:
+          begin: S01E01
     tvmaze_lookup: yes
     transmission:
       host: localhost
       port: 9091
       username: ""
       password: ""
-      path: "/media/HardDisk/Plex/Series/{{series_name}}/Season {{series_season}}/"
+      path: "/media/HardDisk/Jellyfin/Series/{{series_name}}/Season {{series_season}}/"
 
   # Filmes adcionado com `flexget movie_list add (nome do filme|id_imdb)`
   Filmes:
