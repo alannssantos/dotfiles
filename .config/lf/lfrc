@@ -39,7 +39,7 @@ cmd mkf push %><space>
 cmd mkd push %mkdir<space>
 cmd cla !clamscan -ri "$f"
 cmd dra $dragon -a -T "$f"
-cmd hif $cat "$f" > copy_"$f"
+cmd shp $serverhttp
 cmd chr $mkchromecast -s --video -i "$f"
 cmd srt %subliminal --opensubtitles USERNAME PASSWORD download -l pt-br -s "$f"
 cmd frs %df -h --output="avail","target" . | awk '/\// {print "Espaço Livre: "$1}'
@@ -72,7 +72,7 @@ map xZ zps Compactar Zip com Senha
 map x6 7zs Compactar 7zip com Senha
 map xm mou Montar Dispositivos Removíveis
 map xk kcs Converter Pasta em Arquivo .mobi
-map xh hif Esconder Arquivo Dentro de Imagem
+map xh shp PythonServer em Diretorio atual
 
 # Broot mapping
 map f fuzzyfinder
