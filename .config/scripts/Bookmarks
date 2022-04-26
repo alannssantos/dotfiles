@@ -23,6 +23,6 @@ if [ -n "$Resposta" ]; then
       Favorito=$(sed '/"http/!d' <<< "$Resposta")
       eval $Navegador "$Favorito" &
     else
-      eval $Navegador "\"$Pesquisador$Resposta\"" &
+      eval $Navegador "\"$Pesquisador${Resposta#* }\"" &
     fi
 fi
