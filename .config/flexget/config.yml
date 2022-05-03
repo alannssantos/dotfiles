@@ -66,14 +66,14 @@ tasks:
             filter: "trusted only"
       interval: 15 minutes
       release_estimations: ignore
-    quality: 720p
     series:
       - "Blue Period":
+          quality: 720p
           from_group: NetflixSucks
           begin: 13
-      - "Boruto - Naruto Next Generations":
-          from_group: Erai-raws
-          begin: 234
+      - "Summertime Rendering (Summer Time Render)":
+          from_group: SlyFox
+          begin: 1
     tvmaze_lookup: yes
     transmission:
       host: localhost
