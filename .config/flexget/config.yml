@@ -1,9 +1,11 @@
-# Para a notificação via push no android funcionar é preciso colocar a <ApiKey>
-# (https://play.google.com/store/apps/details?id=net.xdroid.pn)
-templates:
-  global:
-    exec:
-      - /usr/bin/wget -qO- "https://xdroid.net/api/message?k=<ApiKey>&t=Flexget&c={% if series_name is defined -%}{{series_name}} - {{series_id}}{% elif imdb_name is defined -%}{{imdb_name}} - ({{imdb_year}}){% else -%}{{title}}{%- endif -%}"
+# Para a notificação via push no android funcionar é preciso colocar a <Tema>
+# (https://f-droid.org/en/packages/io.heckel.ntfy/)
+templates:                
+  global:                          
+    exec:              
+      - /usr/bin/curl -d "{% if series_name is defined -%}{{series_name}} - {{series_id}}
+        {% elif imdb_name is defined -%}{{imdb_name}} - ({{imdb_year}})                                                                                
+        {% else -%}{{title}}{%- endif -%}" ntfy.sh/<Tema>
 
 # Transmission só funciona com `pip3 install transmission-rpc`.
 # Mais informações `https://flexget.com/Plugins/transmission`.
