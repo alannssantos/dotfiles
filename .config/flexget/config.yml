@@ -2,10 +2,14 @@
 # (https://f-droid.org/en/packages/io.heckel.ntfy/)
 templates:                
   global:                          
-    exec:              
-      - /usr/bin/curl -d "{% if series_name is defined -%}{{series_name}} - {{series_id}}
-        {% elif imdb_name is defined -%}{{imdb_name}} - ({{imdb_year}})                                                                                
-        {% else -%}{{title}}{%- endif -%}" ntfy.sh/<Tema>
+    exec:
+      - /usr/bin/wget -qO- 'ntfy.sh/<Tema>/publish?title={{task_name}}
+        &message={% if series_name is defined -%}{{series_name}} - {{series_id}}
+          {% elif imdb_name is defined -%}{{imdb_name}} - ({{imdb_year}})
+          {% else -%}{{title}}{%- endif -%}
+        &attach={% if series_name is defined -%}{{tvmaze_series_original_image|replace("_", "%5F")}}
+          {% elif imdb_name is defined -%}{{(tvdb_posters|d|first )|d(imdb_photo)|d|replace("_", "%5F")}}                                              
+          {%- endif -%}'
 
 # Transmission só funciona com `pip3 install transmission-rpc`.
 # Mais informações `https://flexget.com/Plugins/transmission`.
