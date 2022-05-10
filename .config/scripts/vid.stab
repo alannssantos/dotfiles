@@ -9,7 +9,7 @@
 # make
 # sudo make install
 
-base=${@##*/}
+base=${1##*/}
 ext=${base#*.}
 name=${base%.*}
 
