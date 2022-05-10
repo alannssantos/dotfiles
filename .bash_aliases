@@ -53,6 +53,13 @@ justread() { readable "$1" -p html-title,html-content > /tmp/readable.html&&lynx
 mergesub() { mkvmerge -o "${1%.*}.mkv" "$1" --language 0:por --track-name 0:"Português (Brasil)" "$2" ;}
 hideinimage() { cat "$@" > "copy_$1" ;}
 
+mdtopdf() { pandoc --pdf-engine=lualatex \
+  -V 'mainfont: Quicksand' \
+  -V 'fontsize: 12pt' \
+  -V 'geometry:top=30mm, left=20mm, right=20mm, bottom=30mm' \
+  "$1" -o "${1%.*}".pdf \
+  ;}
+
 #### Exports.
 set -o vi
 export PATH="$PATH:$HOME/.local/bin"
