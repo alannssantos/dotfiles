@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# Vidstab is a video stabilization library which can be plugged-in with ffmpeg and Transcode.
+#
+# https://github.com/georgmartius/vid.stab
+#
+# cd path/to/vid.stab/dir/
+# cmake .
+# make
+# sudo make install
+
+base=${@##*/}
+ext=${base#*.}
+name=${base%.*}
+
+ffmpeg -i $1 -vf vidstabdetect -f null - && \
+ffmpeg -i $1 -vf vidstabtransform,unsharp=5:5:0.8:3:3:0.4 "$name"_VidStab."$ext" && \
+rm transforms.trf
