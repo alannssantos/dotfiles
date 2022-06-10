@@ -44,11 +44,11 @@ handler_pdf(){
 }
 
 handler_audio(){
-  mpv "$1"
+  smplayer "$1"
 }
 
 handler_video(){
-  nohup mpv --fs "$1" >/dev/null 2>&1 &
+  nohup smplayer -fullscreen "$1" >/dev/null 2>&1 &
 }
 
 handler_text(){
