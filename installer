@@ -114,6 +114,7 @@ pip3 install transmission-rpc && \
 pip3 install KindleComicConverter && \
 pip3 install python-telegram-bot==12.8 && \
 flatpak remote-add flathub https://flathub.org/repo/flathub.flatpakrepo && \
+wget -qO- https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-smplayer-theme/master/install.sh | sh && \
 echo -e "$BCor\nSistema!$ECor" && \
 echo -e "$Sussesso" || \
 echo -e "$Fracasso"
