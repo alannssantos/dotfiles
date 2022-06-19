@@ -30,7 +30,8 @@ $ECor"
 ## Funções
 Sistema(){
 #### Aplicativos e Drivers Pos-instalação.
-sudo apt install feh \
+sudo apt install exa \
+	feh \
 	mpc \
 	mpd \
 	mpv \
