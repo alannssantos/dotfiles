@@ -26,12 +26,14 @@ set showtabline=2
 set softtabstop=2
 set foldmethod=marker
 set clipboard=unnamedplus
-set guifont=Fira\ Code:h11
+set guifont=Fira\ Code:h12
 
 " mapping
 nnoremap <Tab> :tabn<CR>
 nnoremap <leader>e :Texplore<CR>
-nnoremap <leader>o :setlocal spell! spelllang=pt<CR>
+nnoremap <leader>n :%!nl -n rz -w3<CR>
+nnoremap <leader>o :set spell! spelllang=pt<CR>
+nnoremap <leader>s :!clear && shellcheck -x %<CR>
 
 " netrw: config
 let g:netrw_altv=1
