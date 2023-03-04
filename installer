@@ -43,21 +43,19 @@ sudo apt install exa \
 	peek \
 	slop \
 	tmux \
-	aria2 \
 	atool \
 	cmake \
 	irssi \
 	sshfs \
 	xclip \
-	clamav \
 	mcomix \
 	mpg123 \
+        neovim \
 	xinput \
 	blueman \
 	concalc \
 	flatpak \
 	gparted \
-	ncmpcpp \
 	w3m-img \
 	xdotool \
 	zathura \
@@ -74,17 +72,14 @@ sudo apt install exa \
 	python3-dev \
 	libxtst-dev \
 	font-manager \
-	libclamunrar \
 	libgtk-3-dev \
-	clamav-daemon \
+        gvfs-backends \
 	poppler-utils \
 	fonts-firacode \
 	network-manager \
 	paper-icon-theme \
 	libfreetype6-dev \
 	libxkbcommon-dev \
-	transmission-cli \
-	transmission-gtk \
 	ffmpegthumbnailer \
 	libfontconfig1-dev \
 	libxcb-xfixes0-dev \
@@ -93,18 +88,13 @@ sudo apt install exa \
 	printer-driver-all \
 	breeze-cursor-theme \
 	libjpeg62-turbo-dev \
-	transmission-common \
 	libimage-exiftool-perl \
 	ttf-mscorefonts-installer -y && \
 
 sudo apt update && \
 sudo apt upgrade -y && \
-sudo rm /var/log/clamav/freshclam.log ; \
-sudo freshclam && \
 npm config set prefix "$HOME/.local" && \
-sudo -H pip3 install ueberzug && \
 pip3 install jedi && \
-pip3 install flexget && \
 pip3 install pyperclip && \
 pip3 install epy-reader && \
 pip3 install gallery-dl && \
@@ -113,7 +103,6 @@ pip3 install youtube-dl && \
 pip3 install PyQt5==5.14.0 && \
 pip3 install transmission-rpc && \
 pip3 install KindleComicConverter && \
-pip3 install python-telegram-bot==12.8 && \
 flatpak remote-add flathub https://flathub.org/repo/flathub.flatpakrepo && \
 sudo flatpak install flathub com.github.tchx84.Flatseal && \
 wget -qO- https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-smplayer-theme/master/install.sh | sh && \
@@ -126,7 +115,7 @@ Extra(){
 #### Bat (cat mais bonito.)
 url1="https://github.com"
 url2=$(wget -qO- "https://github.com/sharkdp/bat/releases" \
-	| sed -r '/bat_.*_amd64.deb/!d;s/^.*href="(.*)" rel=.*$/\1/' \
+	| sed -r '/bat.*_amd64.deb/!d;s/^.*href="(.*)" rel=.*$/\1/' \
 	| sed '1!d')
 wget -c "$url1$url2" -P /tmp/ && \
 sudo apt install /tmp/bat_*_amd64.deb -y && \
@@ -142,18 +131,6 @@ url2=$(wget -qO- "https://github.com/gokcehan/lf/releases" \
 wget -c "$url1$url2" -P /tmp/ && \
 sudo atool --extract-to="/usr/bin/" /tmp/lf-linux-amd64.tar.gz && \
 echo -e "$BCor\nInstalacao do lf!$ECor" && \
-echo -e "$Sussesso" || \
-echo -e "$Fracasso"
-
-#### NeoVim AppImage.
-url1="https://github.com"
-url2=$(wget -qO- "https://github.com/neovim/neovim/releases" \
-	| sed -r '/\/download\/v[0-9].*nvim.appimage"/!d;s/^.*href="(.*)" rel=.*$/\1/' \
-	| sed '1!d')
-wget -c "$url1$url2" -O "nvim" && \
-chmod +x nvim && \
-sudo mv -v nvim /usr/bin/nvim && \
-echo -e "$BCor\nInstalacao do NeoVim!$ECor" && \
 echo -e "$Sussesso" || \
 echo -e "$Fracasso"
 
@@ -248,7 +225,7 @@ $ECor"
 Menu(){
 echo -e "$BCor
 	1.Sistema
-	2.Extra $YCor(Bat, NeoVim, Fuzzy Finder, Dragon, Tremc.)$BCor
+	2.Extra $YCor(Bat, Fuzzy Finder, Dragon, Tremc.)$BCor
 	3.DockLike $YCor(Dock para XFCE4-panel.)$BCor
 	4.Touchegg $YCor(Mais Funções no TouchPad.)$BCor
 	5.Dotfiles
