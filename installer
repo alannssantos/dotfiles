@@ -31,9 +31,6 @@ $ECor"
 Sistema(){
 #### Aplicativos e Drivers Pos-instalação.
 sudo apt install exa \
-	feh \
-	mpc \
-	mpd \
 	mpv \
 	npm \
 	rar \
@@ -45,11 +42,9 @@ sudo apt install exa \
 	tmux \
 	atool \
 	cmake \
-	irssi \
 	sshfs \
 	xclip \
 	mcomix \
-	mpg123 \
         neovim \
 	xinput \
 	blueman \
@@ -58,8 +53,6 @@ sudo apt install exa \
 	gparted \
 	w3m-img \
 	xdotool \
-	zathura \
-	redshift \
 	smplayer \
 	xsensors \
 	arc-theme \
@@ -118,7 +111,7 @@ url2=$(wget -qO- "https://github.com/sharkdp/bat/releases" \
 	| sed -r '/bat.*_amd64.deb/!d;s/^.*href="(.*)" rel=.*$/\1/' \
 	| sed '1!d')
 wget -c "$url1$url2" -P /tmp/ && \
-sudo apt install /tmp/bat_*_amd64.deb -y && \
+sudo apt install /tmp/bat*_amd64.deb -y && \
 echo -e "$BCor\nInstalacao do Bat!$ECor" && \
 echo -e "$Sussesso" || \
 echo -e "$Fracasso"
