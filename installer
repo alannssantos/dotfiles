@@ -86,6 +86,7 @@ sudo apt update && \
 sudo apt upgrade -y && \
 npm config set prefix "$HOME/.local" && \
 pip3 install jedi && \
+pip3 install stig && \
 pip3 install pyperclip && \
 pip3 install epy-reader && \
 pip3 install gallery-dl && \
@@ -134,12 +135,6 @@ echo -e "$Fracasso"
 #### Dragon (drag and drop pelo terminal).
 git clone https://github.com/mwh/dragon.git /tmp/dragon && cd /tmp/dragon && make && make install && \
 echo -e "$BCor\nInstalacao do Dragon.$ECor" && \
-echo -e "$Sussesso" || \
-echo -e "$Fracasso"
-
-#### Instalação do Tremc (Transmission-CLI).
-git clone https://github.com/tremc/tremc.git /tmp/tremc && cd /tmp/tremc && sudo make install && \
-echo -e "$BCor\nInstalacao do Tremc.$ECor" && \
 echo -e "$Sussesso" || \
 echo -e "$Fracasso"
 }
