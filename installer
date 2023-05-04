@@ -55,6 +55,7 @@ sudo apt install exa \
 	xdotool \
 	smplayer \
 	xsensors \
+	arc-theme \
 	keepassxc \
 	pkg-config \
 	streamlink \
@@ -71,6 +72,7 @@ sudo apt install exa \
 	network-manager \
 	libfreetype6-dev \
 	libxkbcommon-dev \
+	paper-icon-theme \
 	deepin-icon-theme \
 	ffmpegthumbnailer \
 	libfontconfig1-dev \
@@ -78,6 +80,7 @@ sudo apt install exa \
 	papirus-icon-theme \
 	python3-libtorrent \
 	printer-driver-all \
+	breeze-cursor-theme \
 	libjpeg62-turbo-dev \
 	libimage-exiftool-perl \
 	ttf-mscorefonts-installer -y && \
