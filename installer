@@ -44,6 +44,7 @@ sudo apt install exa \
 	cmake \
 	sshfs \
 	xclip \
+	codium \
 	mcomix \
         neovim \
 	xinput \
