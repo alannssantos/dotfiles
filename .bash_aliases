@@ -55,6 +55,19 @@ justread() { readable "$1" -p html-title,html-content > /tmp/readable.html&&lynx
 mergesub() { mkvmerge -o "${1%.*}.mkv" "$1" --language 0:por --track-name 0:"Português (Brasil)" "$2" ;}
 hideinimage() { cat "$@" > "copy_$1" ;}
 
+apt() { 
+  command nala "$@"
+}
+
+sudo() {
+  if [ "$1" = "apt" ]; then
+    shift
+    command sudo nala "$@"
+  else
+    command sudo "$@"
+  fi
+}
+
 mdtopdf() { 
   base=${1##*/}
   pandoc --pdf-engine=lualatex \
