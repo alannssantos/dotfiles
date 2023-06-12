@@ -56,7 +56,7 @@ mergesub() { mkvmerge -o "${1%.*}.mkv" "$1" --language 0:por --track-name 0:"Por
 hideinimage() { cat "$@" > "copy_$1" ;}
 
 apt() { 
-  if [ -e /usr/bin/nala ] ; then
+  if [ -e /usr/bin/nala ]; then
     command nala "$@"
   else
     command apt "$@"
