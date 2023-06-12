@@ -66,9 +66,9 @@ sudo() {
   if [ "$1" = "apt" ] && [ -e /usr/bin/nala ]; then
       shift
       command sudo nala "$@"
-    else
+  else
       command sudo "$@"
-    fi
+  fi
 }
 
 mdtopdf() { 
