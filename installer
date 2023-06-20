@@ -65,6 +65,7 @@ sudo apt install exa \
 	python3-dev \
 	libxtst-dev \
 	font-manager \
+	python3-full \
 	libgtk-3-dev \
         gvfs-backends \
 	poppler-utils \
