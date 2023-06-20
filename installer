@@ -88,6 +88,7 @@ sudo apt install exa \
 sudo apt update && \
 sudo apt upgrade -y && \
 npm config set prefix "$HOME/.local" && \
+python3 -m venv "$HOME/.local" && \
 pip3 install jedi && \
 pip3 install stig && \
 pip3 install pyperclip && \
