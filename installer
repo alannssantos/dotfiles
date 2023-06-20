@@ -60,7 +60,6 @@ sudo apt install exa \
 	pkg-config \
 	streamlink \
 	zlib1g-dev \
-	python3-pip \
 	simple-scan \
 	python3-dev \
 	libxtst-dev \
@@ -74,7 +73,6 @@ sudo apt install exa \
 	libfreetype6-dev \
 	libxkbcommon-dev \
 	paper-icon-theme \
-	deepin-icon-theme \
 	ffmpegthumbnailer \
 	libfontconfig1-dev \
 	libxcb-xfixes0-dev \
