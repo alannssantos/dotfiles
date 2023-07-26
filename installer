@@ -96,9 +96,7 @@ pip3 install epy-reader && \
 pip3 install gallery-dl && \
 pip3 install subliminal && \
 pip3 install youtube-dl && \
-pip3 install PyQt5==5.14.0 && \
 pip3 install transmission-rpc && \
-pip3 install KindleComicConverter && \
 flatpak remote-add flathub https://flathub.org/repo/flathub.flatpakrepo && \
 wget -qO- https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-smplayer-theme/master/install.sh | sh && \
 echo -e "$BCor\nSistema!$ECor" && \
