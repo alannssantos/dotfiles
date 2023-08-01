@@ -1,161 +1,125 @@
-# Para a notificação via push no android funcionar é preciso colocar a <Tema>
-# (https://f-droid.org/en/packages/io.heckel.ntfy/)
-templates:                
-  global:                          
-    exec:
-      - /usr/bin/wget -qO- 'ntfy.sh/<Tema>/publish?title={{task_name}}
-        &message={% if series_name is defined -%}{{series_name}} - {{series_id}}
-          {% elif imdb_name is defined -%}{{imdb_name}} - ({{imdb_year}})
-          {% else -%}{{title}}{%- endif -%}
-        &attach={% if series_name is defined -%}{{tvmaze_series_original_image|replace("_", "%5F")}}
-          {% elif imdb_name is defined -%}{{(tvdb_posters|d|first )|d(imdb_photo)|d|replace("_", "%5F")}}                                              
-          {%- endif -%}'
-
 # Transmission só funciona com `pip3 install transmission-rpc`.
 # Mais informações `https://flexget.com/Plugins/transmission`.
 tasks:
-  # Remove torrent depois de Upar a mesma quantidade!
-  Limpeza:
-    disable: [seen, seen_info_hash]
-    accept_all: yes
-    from_transmission:
-      only_complete: yes
-    if:
-      - transmission_ratio < 1.0: reject
-    transmission:
-      action: remove
-    template: no_global
+################################################################
+#
+#   ██╗     ██╗███╗   ███╗██████╗ ███████╗███████╗ █████╗ 
+#   ██║     ██║████╗ ████║██╔══██╗██╔════╝╚══███╔╝██╔══██╗
+#   ██║     ██║██╔████╔██║██████╔╝█████╗    ███╔╝ ███████║
+#   ██║     ██║██║╚██╔╝██║██╔═══╝ ██╔══╝   ███╔╝  ██╔══██║
+#   ███████╗██║██║ ╚═╝ ██║██║     ███████╗███████╗██║  ██║
+#   ╚══════╝╚═╝╚═╝     ╚═╝╚═╝     ╚══════╝╚══════╝╚═╝  ╚═╝
+# Remove torrent depois de Upar a mesma quantidade!
+#  Limpeza:
+#    disable: [seen, seen_info_hash]
+#    accept_all: yes
+#    from_transmission:
+#      only_complete: yes
+#    if:
+#      - transmission_ratio < 1.0: reject
+#    transmission:
+#      action: remove
+#
+################################################################
 
-  # Baixar mangas do (mangafox|fanfox) só funciona com `pip3 install gallery-dl`.
-  Mangas:
-    sequence:
-      - rss: http://fanfox.net/rss/gleipnir.xml
-      - rss: http://fanfox.net/rss/jagaaaaaan.xml
-      - rss: http://fanfox.net/rss/black_clover.xml
-      - rss: http://fanfox.net/rss/killing_bites.xml
-      - rss: http://fanfox.net/rss/parallel_paradise.xml
-      - rss: http://fanfox.net/rss/enen_no_shouboutai.xml
-      - rss: http://fanfox.net/rss/berserk_of_gluttony.xml
-      - rss: http://fanfox.net/rss/kanojo_okarishimasu.xml
-      - rss: http://fanfox.net/rss/mato_seihei_no_slave.xml
-      - rss: http://fanfox.net/rss/boku_no_hero_academia.xml
-      - rss: http://fanfox.net/rss/ren_ai_shikou_seitokai.xml
-      - rss: http://fanfox.net/rss/amano_megumi_wa_suki_darake.xml
-      - rss: http://fanfox.net/rss/hitomi_chan_is_shy_with_strangers.xml
-    accept_all: yes
-    exec:
-      - ~/.config/scripts/MangaFox {{url}} ~/HardDisk/Plex/Mangas/Weekly
+################################################################
+#
+#    █████╗ ███╗   ██╗██╗███╗   ███╗███████╗███████╗
+#   ██╔══██╗████╗  ██║██║████╗ ████║██╔════╝██╔════╝
+#   ███████║██╔██╗ ██║██║██╔████╔██║█████╗  ███████╗
+#   ██╔══██║██║╚██╗██║██║██║╚██╔╝██║██╔══╝  ╚════██║
+#   ██║  ██║██║ ╚████║██║██║ ╚═╝ ██║███████╗███████║
+#   ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝╚═╝     ╚═╝╚══════╝╚══════╝
+#  Animes:
+#    discover:
+#      what:
+#        - next_series_episodes: yes
+#      from:
+#        - nyaa:
+#            category: "anime"
+#            filter: "all"
+#      interval: 15 minutes
+#      release_estimations: ignore
+#    series:
+#      - "Zom 100 - Zombie ni Naru made ni Shitai 100 no Koto":
+#          quality: 720p+
+#          begin: 01
+#          from_group:
+#            - PT-BR
+#            - POR-BR
+#    tvmaze_lookup: yes
+#    transmission:
+#      host: localhost
+#      port: 9091
+#      username: ""
+#      password: ""
+#      path: "/media/HardDisk/Jellyfin/Animes/{{series_name}}/"
+#
+################################################################
 
-  Comics:
-    sequence:
-      - rss: https://readcomicsonline.ru/feed
-    regexp:
-      accept:
-        - Robin \(2021-\)
-        - Nine Stones \(2021-\)
-        - Future State \(2021-\)
-        - Lady Mechanika \(2021\)
-        - Teen Titans Academy \(2021-\)
-        - A Thing Called Truth \(2021-\)
-        - Vlad the Impaler \(2021-\)
-        - Buffy the Last Vampire Slayer \(2021-\)
-    exec:
-      - ~/.config/scripts/ReadComicsOnline {{url}} ~/HardDisk/Plex/HQs/Weekly
+################################################################
+#
+#   ███████╗███████╗██████╗ ██╗███████╗███████╗
+#   ██╔════╝██╔════╝██╔══██╗██║██╔════╝██╔════╝
+#   ███████╗█████╗  ██████╔╝██║█████╗  ███████╗
+#   ╚════██║██╔══╝  ██╔══██╗██║██╔══╝  ╚════██║
+#   ███████║███████╗██║  ██║██║███████╗███████║
+#   ╚══════╝╚══════╝╚═╝  ╚═╝╚═╝╚══════╝╚══════╝
+#  Series:
+#    discover:
+#      what:
+#        - next_series_episodes: yes
+#      from:
+#        - 1337x: yes
+#      interval: 15 minutes
+#      release_estimations: loose
+#    quality: 720p+
+#    content_size:
+#      min: 1500
+#      max: 5000
+#      strict: no
+#    series:
+#      - The Crowded Room:
+#          begin: S01E01
+#    tvmaze_lookup: yes
+#    transmission:
+#      host: localhost
+#      port: 9091
+#      username: ""
+#      password: ""
+#      path: "/media/HardDisk/Jellyfin/Series/{{series_name}}/Season {{series_season}}/"
+#
+################################################################
 
-  Animes:
-    discover:
-      what:
-        - next_series_episodes: yes
-      from:
-        - nyaa:
-            category: "anime eng"
-            filter: "trusted only"
-      interval: 15 minutes
-      release_estimations: ignore
-    series:
-      - "Blue Period":
-          quality: 720p
-          from_group: NetflixSucks
-          begin: 13
-      - "Summertime Rendering (Summer Time Render)":
-          from_group: SlyFox
-          begin: 1
-    tvmaze_lookup: yes
-    transmission:
-      host: localhost
-      port: 9091
-      username: ""
-      password: ""
-      path: "/media/HardDisk/Jellyfin/Animes/{{series_name}}/"
-
-  Series:
-    discover:
-      what:
-        - next_series_episodes: yes
-      from:
-        - rarbg: {ranked: True}
-      interval: 15 minutes
-      release_estimations: loose
-    quality: 720p-1080p
-    content_size:
-      min: 300
-      max: 1000
-      strict: no
-    series:
-      - Westworld:
-          begin: S04E01
-      - The Wheel of Time:
-          begin: S02E01
-      - The Witcher:
-          begin: S03E01
-      - Young Justice:
-          begin: S05E01
-      - Young Sheldon:
-          begin: S05E18
-      - Motherland Fort Salem:
-          begin: S03E01
-      - The Boys:
-          begin: S03E01
-      - Carnival Row:
-          begin: S02E01
-      - Loki:
-          begin: S02E01
-      - Hawkeye:
-          begin: S02E01
-      - Arcane:
-          begin: S02E01
-          exact: yes
-      - What If...?:
-          begin: S02E01
-      - Moon Knight:
-          begin: S01E01
-    tvmaze_lookup: yes
-    transmission:
-      host: localhost
-      port: 9091
-      username: ""
-      password: ""
-      path: "/media/HardDisk/Jellyfin/Series/{{series_name}}/Season {{series_season}}/"
-
-  # Filmes adcionado com `flexget movie_list add (nome do filme|id_imdb)`
-  Filmes:
-    discover:
-      what:
-        - movie_list: movies
-      from:
-        - yts: yes
-      interval: 15 minutes
-      release_estimations: ignore
-    list_match:
-      from:
-        - movie_list: movies
-    quality:
-      - 1080p
-      - bluray|webrip
-    imdb_lookup: yes
-    transmission:
-      host: localhost
-      port: 9091
-      username: ""
-      password: ""
-      path: /media/HardDisk/Plex/Filmes
+################################################################
+# 
+#   ███████╗██╗██╗     ███╗   ███╗███████╗███████╗
+#   ██╔════╝██║██║     ████╗ ████║██╔════╝██╔════╝
+#   █████╗  ██║██║     ██╔████╔██║█████╗  ███████╗
+#   ██╔══╝  ██║██║     ██║╚██╔╝██║██╔══╝  ╚════██║
+#   ██║     ██║███████╗██║ ╚═╝ ██║███████╗███████║
+#   ╚═╝     ╚═╝╚══════╝╚═╝     ╚═╝╚══════╝╚══════╝
+#  # Filmes adcionado com `flexget movie_list add (nome do filme|id_imdb)`
+#  Filmes:
+#    discover:
+#      what:
+#        - movie_list: movies
+#      from:
+#        - yts: yes
+#      interval: 15 minutes
+#      release_estimations: ignore
+#    list_match:
+#      from:
+#        - movie_list: movies
+#    quality:
+#      - 1080p
+#      - bluray|webrip
+#    imdb_lookup: yes
+#    transmission:
+#      host: localhost
+#      port: 9091
+#      username: ""
+#      password: ""
+#      path: /media/HardDisk/Plex/Filmes
+#
+################################################################
