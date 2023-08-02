@@ -47,6 +47,12 @@ tasks:
 #          from_group:
 #            - PT-BR
 #            - POR-BR
+#      - "Bleach: Thousand-Year Blood War":
+#          quality: 720p+
+#          begin: 15
+#          from_group:
+#            - Anime Time
+#          path: "/media/HardDisk/Jellyfin/Animes/Bleach: Thousand-Year Blood War/Season 17/"
 #    tvmaze_lookup: yes
 #    transmission:
 #      host: localhost
