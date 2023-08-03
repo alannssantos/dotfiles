@@ -52,7 +52,7 @@ tasks:
 #          begin: 15
 #          from_group:
 #            - Anime Time
-#          path: "/media/HardDisk/Jellyfin/Animes/Bleach: Thousand-Year Blood War/Season 17/"
+#          path: "/media/HardDisk/Jellyfin/Animes/Bleach/Season 17/"
 #    tvmaze_lookup: yes
 #    transmission:
 #      host: localhost
