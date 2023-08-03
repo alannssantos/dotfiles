@@ -40,15 +40,14 @@ tasks:
 #            filter: "all"
 #      interval: 15 minutes
 #      release_estimations: ignore
+#    quality: 720p+
 #    series:
 #      - "Zom 100 - Zombie ni Naru made ni Shitai 100 no Koto":
-#          quality: 720p+
 #          begin: 01
 #          from_group:
 #            - PT-BR
 #            - POR-BR
 #      - "Bleach: Thousand-Year Blood War":
-#          quality: 720p+
 #          begin: 15
 #          from_group:
 #            - Anime Time
