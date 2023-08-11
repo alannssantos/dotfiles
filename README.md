@@ -19,9 +19,10 @@
 # * * * * * user-name command to be executed
 */30  *     *    * *    root    /usr/bin/apt update >/dev/null 2>&1 ; pkill -RTMIN+12 dwmblocks
 */30  */3   */3  * *    alann   /home/alann/.config/scripts/wallpapers.sh >/dev/null 2>&1
-*/30  *     *    * *    alann   /usr/local/bin/flexget execute > /tmp/dtest_erro.log 2>&1
 ```
-
+```bash
+echo "*/30 *  * * *   $USER   $HOME/.local/bin/flexget execute > /tmp/dtest_erro.log 2>&1" | sudo tee -a /etc/crontab
+```
 #### Ip Fixo `/etc/network/interfaces`.
 
 ```
