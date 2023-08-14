@@ -55,7 +55,6 @@ sudo apt install lf \
 	gparted \
 	w3m-img \
 	xdotool \
-	smplayer \
 	xsensors \
 	arc-theme \
 	keepassxc \
@@ -87,6 +86,7 @@ sudo apt install lf \
 
 sudo apt update && \
 sudo apt upgrade -y && \
+sudo flatpak remote-add flathub https://flathub.org/repo/flathub.flatpakrepo && \
 npm config set prefix "$HOME/.local" && \
 python3 -m venv "$HOME/.local" && \
 pip3 install jedi && \
@@ -97,46 +97,7 @@ pip3 install gallery-dl && \
 pip3 install subliminal && \
 pip3 install youtube-dl && \
 pip3 install transmission-rpc && \
-flatpak remote-add flathub https://flathub.org/repo/flathub.flatpakrepo && \
-wget -qO- https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-smplayer-theme/master/install.sh | sh && \
 echo -e "$BCor\nSistema!$ECor" && \
-echo -e "$Sussesso" || \
-echo -e "$Fracasso"
-}
-
-Extra(){
-#### Dragon (drag and drop pelo terminal).
-git clone https://github.com/mwh/dragon.git /tmp/dragon && cd /tmp/dragon && make && make install && \
-echo -e "$BCor\nInstalacao do Dragon.$ECor" && \
-echo -e "$Sussesso" || \
-echo -e "$Fracasso"
-}
-
-Touchegg(){
-#### Touchegg (mais funções no touchpad.)
-url1="https://github.com"
-url2=$(wget -qO- "https://github.com/JoseExposito/touchegg/releases" \
-	| sed -r '/touchegg_.*_amd64.deb/!d;s/^.*href="(.*)" rel=.*$/\1/' \
-	| sed '1!d')
-wget -c "$url1$url2" -P /tmp/ && \
-sudo apt install /tmp/touchegg_*_amd64.deb -y && \
-echo -e "$BCor\nInstalacao do Touchegg!$ECor" && \
-echo -e "$Sussesso" || \
-echo -e "$Fracasso"
-}
-
-DockLike(){
-Urls=$(wget -qO- "https://launchpad.net/~xubuntu-dev/+archive/ubuntu/extras/+packages?field.name_filter=&field.status_filter=published&field.series_filter=focal" \
-	| sed -r '/sprite expander/!d;s/^.*href="(.*)" .*$/https:\/\/launchpad.net\/~xubuntu-dev\/+archive\/ubuntu\/extras\/\1/' \
-	| sed ';:a;$!N;s/\n/ /;ta;')
-Link=$(eval wget -qO- "$Urls" \
-	| sed '/.deb/!d' \
-	| sed -r  's/^.*<a href="(.*.deb)">.*$/\1/' \
-	| sed '/xfce4-docklike-plugin.*.amd64/!d' \
-	| sed '/\.deb$/!d')
-eval wget -c "$Link" -P /tmp/DockLike/ && \
-sudo apt install /tmp/DockLike/*.deb -y && \
-echo -e "$BCor\nInstalacao do DockLike.$ECor" && \
 echo -e "$Sussesso" || \
 echo -e "$Fracasso"
 }
@@ -145,12 +106,6 @@ Configs(){
 #### Copiar Dotfiles e Plugins.
 cp -r -v .config .irssi .bash_aliases .nanorc .tmux.conf .Xresources ~/ && \
 echo -e "$BCor\nCopiando arquivos de configuração...$ECor" && \
-echo -e "$Sussesso" || \
-echo -e "$Fracasso"
-
-#### Papirus MultiCores.
-wget -qO- https://git.io/papirus-folders-install | sh && \
-echo -e "$BCor\nPapirus Multi-Cores$ECor" && \
 echo -e "$Sussesso" || \
 echo -e "$Fracasso"
 
@@ -179,10 +134,7 @@ $ECor"
 Menu(){
 echo -e "$BCor
 	1.Sistema
-	2.Extra $YCor(Dragon)$BCor
-	3.DockLike $YCor(Dock para XFCE4-panel.)$BCor
-	4.Touchegg $YCor(Mais Funções no TouchPad.)$BCor
-	5.Dotfiles
+	2.Dotfiles
 $RCor
 	q.Sair
 $ECor"
@@ -193,15 +145,6 @@ case "$Resposta" in
 		Sistema
 		Menu ;;
 	2)
-		Extra
-		Menu ;;
-	3)
-		DockLike
-		Menu ;;
-	4)
-		Touchegg
-		Menu ;;
-	5)
 		Configs
 		Menu ;;
 	q)
