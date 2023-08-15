@@ -14,6 +14,7 @@ env:
 
 window:
   # Window dimensions (changes require restart)
+  opacity: 0.96
   #
   # Specified in number of columns/lines, not pixels.
   # If both are `0`, this setting is ignored.
@@ -327,7 +328,6 @@ colors:
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
 # background_opacity: 1.0
-background_opacity: 0.96
 
 #selection:
 #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
@@ -570,20 +570,21 @@ background_opacity: 0.96
 # a no-op if you do not wish to receive input characters for that binding.
 key_bindings:
   # (Windows, Linux, and BSD only)
-  - { key: V, mods: Control|Shift, action: Paste }
+  - { key: Copy, mods: None, action: Copy }
+  - { key: L, mods: Control, chars: "\x0c" }
+  - { key: Paste, mods: None, action: Paste }
   - { key: C, mods: Control|Shift, action: Copy }
-  - { key: Insert, mods: Shift, action: PasteSelection }
+  - { key: V, mods: Control|Shift, action: Paste }
+  - { key: L, mods: Control, action: ClearLogNotice }
+  - { key: F11, mods: None, action: ToggleFullscreen }
   - { key: Key0, mods: Control, action: ResetFontSize }
-  - { key: Equals, mods: Control, action: IncreaseFontSize }
+  - { key: Insert, mods: Shift, action: PasteSelection }
   - { key: Plus, mods: Control, action: IncreaseFontSize }
   - { key: Minus, mods: Control, action: DecreaseFontSize }
   - { key: Minus, mods: Control, action: DecreaseFontSize }
-  - { key: F11, mods: None, action: ToggleFullscreen }
-  - { key: Paste, mods: None, action: Paste }
-  - { key: Copy, mods: None, action: Copy }
-  - { key: L, mods: Control, action: ClearLogNotice }
-  - { key: L, mods: Control, chars: "\x0c" }
-  - { key: PageUp, mods: None, action: ScrollPageUp, mode: ~Alt }
-  - { key: PageDown, mods: None, action: ScrollPageDown, mode: ~Alt }
+  - { key: Equals, mods: Control, action: IncreaseFontSize }
+  - { key: N,  mods: Shift|Control, action: CreateNewWindow }
   - { key: Home, mods: Shift, action: ScrollToTop, mode: ~Alt }
+  - { key: PageUp, mods: None, action: ScrollPageUp, mode: ~Alt }
   - { key: End, mods: Shift, action: ScrollToBottom, mode: ~Alt }
+  - { key: PageDown, mods: None, action: ScrollPageDown, mode: ~Alt }
