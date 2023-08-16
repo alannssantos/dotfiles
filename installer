@@ -109,6 +109,12 @@ echo -e "$BCor\nCopiando arquivos de configuração...$ECor" && \
 echo -e "$Sussesso" || \
 echo -e "$Fracasso"
 
+#### Preview on LF.
+git clone https://github.com/alannssantos/lfimg.git /tmp/lfimg && make -C /tmp/lfimg/ install && \
+echo -e "$BCor\nPreview on LF.$ECor" && \
+echo -e "$Sussesso" || \
+echo -e "$Fracasso"
+
 #### Nerd Fonts.
 mkdir -vp "$HOME/.local/share/fonts/FiraCode"
 url1=$(wget -qO- "https://github.com/ryanoasis/nerd-fonts/releases" \
