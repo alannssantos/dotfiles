@@ -31,31 +31,27 @@ alias v='nvim'
 alias V='sudo nvim'
 alias ls='exa -l'
 alias mv='mv -iv'
-alias rg='finder'
 alias cp='cp -riv'
-alias mp='ncmpcpp'
 alias trc='stig'
 alias calc='concalc'
 alias less='batcat'
-alias ytmp='mpsyt /'
-alias lynx='lynx -accept_all_cookies -image_links'
 alias mkdir='mkdir -vp'
 alias tmuxd='tmux new -As0'
 alias legenda='subliminal --opensubtitles USERNAME PASSWORD download -l pt-br'
 alias yta-mp3='youtube-dl -c --extract-audio --audio-format mp3 -o "%(playlist_index)s-%(title)s.%(ext)s" --add-metadata'
 alias ytv-best='youtube-dl -c --add-metadata -f bestvideo+bestaudio -o "%(title)s.%(ext)s"'
-alias mpv-stream='mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-60'
 alias serverhttp="python3 -m http.server 8888 -b $(hostname -I | sed 's/ .*//')"
-alias streamlink='streamlink -p "mpv --cache 2048 --ontop --no-border --force-window --autofit=500x280 --geometry=-15-60"'
 alias gallery-zip='gallery-dl --zip'
 
 #### Funções.
-finder() { command -v lfrun >/dev/null && lfrun "$(fzf -e | xargs -r -0)" || lf "$(fzf -e | xargs -r -0)" ;}
+finder(){ command -v lfrun >/dev/null && lfrun "$(fzf -e | xargs -r -0)" || lf "$(fzf -e | xargs -r -0)" ;}
+mpv-yt(){ nohup mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-60 "$1" >/dev/null 2>&1 & }
 cue2chd(){ chdman createcd -i "$1" -o "${1%.*}.chd" ;}
 chd2cue(){ chdman extractcd -i "$1" -o "${1%.*}.cue" ;}
-justread() { readable "$1" -p html-title,html-content > /tmp/readable.html&&lynx -image_links /tmp/readable.html ;}
-mergesub() { mkvmerge -o "${1%.*}.mkv" "$1" --language 0:por --track-name 0:"Português (Brasil)" "$2" ;}
-hideinimage() { cat "$@" > "copy_$1" ;}
+justread(){ readable "$1" -p html-title,html-content > /tmp/readable.html&&lynx -image_links /tmp/readable.html ;}
+mergesub(){ mkvmerge -o "${1%.*}.mkv" "$1" --language 0:por --track-name 0:"Português (Brasil)" "$2" ;}
+mpv-stream(){ nohup streamlink -p "mpv --cache 2048 --ontop --no-border --force-window --autofit=500x280 --geometry=-15-60" "$1" best >/dev/null 2>&1 & }
+hideinimage(){ cat "$@" > "copy_$1" ;}
 
 apt() { 
   if [ -e /usr/bin/nala ]; then
