@@ -91,11 +91,11 @@ npm config set prefix "$HOME/.local" && \
 python3 -m venv "$HOME/.local" && \
 pip3 install jedi && \
 pip3 install stig && \
+pip3 install yt-dlp && \
 pip3 install pyperclip && \
 pip3 install epy-reader && \
 pip3 install gallery-dl && \
 pip3 install subliminal && \
-pip3 install youtube-dl && \
 pip3 install transmission-rpc && \
 echo -e "$BCor\nSistema!$ECor" && \
 echo -e "$Sussesso" || \
