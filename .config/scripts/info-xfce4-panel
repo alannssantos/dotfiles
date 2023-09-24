@@ -1,8 +1,18 @@
 #!/usr/bin/env bash
 
-dolar=$(wget -qO- "https://dolarhoje.com/" \
-	| sed -r '/id="nacional"/!d
-		s/^.*id="nacional" value="(.*)"\/><\/span>.*$/R$ \1 💸/')
+dolar(){
+Dolar=$(wget -qO- "https://dolarhoje.com/" | sed -r '/id="nacional"/!d;s/^.*id="nacional" value="(.*)"\/><\/span>.*$/\1/')
+echo -n "<txt>R$ $Dolar</txt><tool>Dólar Hoje</tool>"
+}
 
-echo "<txt> $dolar</txt>"
-echo "<tool>Dólar Hoje</tool>"
+update(){
+Update=$(apt list --upgradable 2>/dev/null | sed '/\//!d' | wc -l)
+[ "$Update" = 0 ] && echo -n "<icon>update-none</icon><tool>Nenhum Update Disponivel</tool>" || echo -n "<icon>update-high</icon><tool>$Update Update Disponivel</tool>"
+}
+
+case "$1" in
+  dolar)
+    dolar;;
+  update)
+    update;;
+esac
