@@ -10,8 +10,8 @@ $ pip3 install transmission-rpc
 
 #### Crontab `/etc/crontab`.
 
-```
-*/30  *     *    * *    alann   /usr/local/bin/flexget execute > /tmp/dtest_erro.log 2>&1
+```bash
+echo "*/30 *  * * *   $USER   $HOME/.local/bin/flexget execute > /tmp/dtest_erro.log 2>&1" | sudo tee -a /etc/crontab
 ```
 
 #### Editar o arquivo `~/.config/flexget/config.yml`.
