@@ -1,13 +1,16 @@
 #!/usr/bin/env bash
 
 dolar(){
-Dolar=$(wget -qO- "https://dolarhoje.com/" | sed -r '/id="nacional"/!d;s/^.*id="nacional" value="(.*)"\/><\/span>.*$/\1/')
-echo -n "<txt>R$ $Dolar</txt><tool>Dólar Hoje</tool>"
+  Dolar=$(wget -qO- "https://dolarhoje.com/" | sed -r '/id="nacional"/!d;s/^.*id="nacional" value="(.*)"\/><\/span>.*$/\1/')
+  echo -n "<txt>R$ $Dolar</txt><tool>Dólar Hoje</tool>"
 }
 
 update(){
-Update=$(apt list --upgradable 2>/dev/null | sed '/\//!d' | wc -l)
-[ "$Update" = 0 ] && echo -n "<icon>update-none</icon><tool>Nenhum Update Disponivel</tool>" || echo -n "<icon>update-high</icon><iconclick>gpk-update-viewer</iconclick><tool>$Update Update Disponivel</tool>"
+  Manager="xterm -e 'sudo apt update && sudo apt upgrade -y'"
+  Update=$(apt list --upgradable 2>/dev/null | sed '/\//!d' | wc -l)
+  [ "$Update" = 0 ] \
+    && echo -n "<icon>update-none</icon><tool>Nenhum Update Disponivel</tool>" \
+    || echo -n "<icon>update-high</icon><iconclick>$Manager</iconclick><tool>$Update Update Disponivel</tool>"
 }
 
 case "$1" in
@@ -16,3 +19,4 @@ case "$1" in
   update)
     update;;
 esac
+
