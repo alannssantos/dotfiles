@@ -1,5 +1,17 @@
 #!/usr/bin/env bash
 
+battery(){
+  Status=$(awk '{print $1}' /sys/class/power_supply/BAT*/status)
+  Percentage=$(awk '{print $1}' /sys/class/power_supply/BAT*/capacity)
+  BatteryIcon=$(printf "%03d" "$Percentage" | sed -r 's/^(.*)[0-9]/battery-\10/')
+  [ "$Status" = Full ] \
+    && echo -n "<icon>battery-charged</icon><tool><b>Carregando: <big>$Percentage%</big></b></tool>"
+  [ "$Status" = Charging ] \
+    && echo -n "<icon>$BatteryIcon-charging</icon><tool><b>Carregando: <big>$Percentage%</big></b></tool>"
+  [ "$Status" = Discharging ] \
+    && echo -n "<icon>$BatteryIcon</icon><txt>$Percentage%</txt><tool></tool>"
+}
+
 dolar(){
   Dolar=$(wget -qO- "https://dolarhoje.com/" | sed -r '/id="nacional"/!d;s/^.*id="nacional" value="(.*)"\/><\/span>.*$/\1/')
   echo -n "<txt>R$ $Dolar</txt><tool>Dólar Hoje</tool>"
@@ -9,14 +21,15 @@ update(){
   Manager="xterm -e 'sudo apt update && sudo apt upgrade -y'"
   Update=$(apt list --upgradable 2>/dev/null | sed '/\//!d' | wc -l)
   [ "$Update" = 0 ] \
-    && echo -n "<icon>update-none</icon><tool>Nenhum Update Disponivel</tool>" \
-    || echo -n "<icon>update-high</icon><iconclick>$Manager</iconclick><tool>$Update Update Disponivel</tool>"
+    && echo -n "<icon>update-none</icon><tool>Sistema Atualizado!</tool>" \
+    || echo -n "<icon>update-high</icon><iconclick>$Manager</iconclick><tool>$Update Atualizações Disponível</tool>"
 }
 
 case "$1" in
+  battery)
+    battery;;
   dolar)
     dolar;;
   update)
     update;;
 esac
-
