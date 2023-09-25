@@ -22,7 +22,7 @@ update(){
   Update=$(apt list --upgradable 2>/dev/null | sed '/\//!d' | wc -l)
   [ "$Update" = 0 ] \
     && echo -n "<icon>update-none</icon><tool>Sistema Atualizado!</tool>" \
-    || echo -n "<icon>update-high</icon><iconclick>$Manager</iconclick><tool>$Update Atualizações Disponível</tool>"
+    || echo -n "<icon>update-high</icon><iconclick>$Manager</iconclick><tool>Atualizações Disponíveis ($Update)</tool>"
 }
 
 case "$1" in
