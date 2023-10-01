@@ -33,6 +33,8 @@ vim.opt.clipboard       = 'unnamedplus'
 vim.opt.guifont         = 'Fira Code:h12'
 
 -- mapping
+vim.keymap.set("i", "jk", "<Esc>")
+vim.keymap.set("i", "kj", "<Esc>")
 vim.keymap.set('n', '<Tab>', ':tabn<CR>')
 vim.keymap.set('n', '<leader>e', ':Texplore<CR>')
 vim.keymap.set('n', '<leader>n', ':%!nl -n rz -w3<CR>')
