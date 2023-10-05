@@ -1,130 +1,137 @@
 # Transmission só funciona com `pip3 install transmission-rpc`.
 # Mais informações `https://flexget.com/Plugins/transmission`.
 tasks:
-################################################################
-#
-#   ██╗     ██╗███╗   ███╗██████╗ ███████╗███████╗ █████╗ 
-#   ██║     ██║████╗ ████║██╔══██╗██╔════╝╚══███╔╝██╔══██╗
-#   ██║     ██║██╔████╔██║██████╔╝█████╗    ███╔╝ ███████║
-#   ██║     ██║██║╚██╔╝██║██╔═══╝ ██╔══╝   ███╔╝  ██╔══██║
-#   ███████╗██║██║ ╚═╝ ██║██║     ███████╗███████╗██║  ██║
-#   ╚══════╝╚═╝╚═╝     ╚═╝╚═╝     ╚══════╝╚══════╝╚═╝  ╚═╝
-# Remove torrent depois de Upar a mesma quantidade!
-#  Limpeza:
-#    disable: [seen, seen_info_hash]
-#    accept_all: yes
-#    from_transmission:
-#      only_complete: yes
-#    if:
-#      - transmission_ratio < 1.0: reject
-#    transmission:
-#      action: remove
-#
-################################################################
+  ################################################################
+  #
+  #   ██╗     ██╗███╗   ███╗██████╗ ███████╗███████╗ █████╗
+  #   ██║     ██║████╗ ████║██╔══██╗██╔════╝╚══███╔╝██╔══██╗
+  #   ██║     ██║██╔████╔██║██████╔╝█████╗    ███╔╝ ███████║
+  #   ██║     ██║██║╚██╔╝██║██╔═══╝ ██╔══╝   ███╔╝  ██╔══██║
+  #   ███████╗██║██║ ╚═╝ ██║██║     ███████╗███████╗██║  ██║
+  #   ╚══════╝╚═╝╚═╝     ╚═╝╚═╝     ╚══════╝╚══════╝╚═╝  ╚═╝
+  #  Remove torrent depois de Upar a mesma quantidade!
+  #  Limpeza:
+  #    disable: [seen, seen_info_hash]
+  #    accept_all: yes
+  #    from_transmission:
+  #      only_complete: yes
+  #    if:
+  #      - transmission_ratio < 1.0: reject
+  #    transmission:
+  #      action: remove
+  #
+  ################################################################
 
-################################################################
-#
-#    █████╗ ███╗   ██╗██╗███╗   ███╗███████╗███████╗
-#   ██╔══██╗████╗  ██║██║████╗ ████║██╔════╝██╔════╝
-#   ███████║██╔██╗ ██║██║██╔████╔██║█████╗  ███████╗
-#   ██╔══██║██║╚██╗██║██║██║╚██╔╝██║██╔══╝  ╚════██║
-#   ██║  ██║██║ ╚████║██║██║ ╚═╝ ██║███████╗███████║
-#   ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝╚═╝     ╚═╝╚══════╝╚══════╝
-#  Animes:
-#    discover:
-#      what:
-#        - next_series_episodes: yes
-#      from:
-#        - nyaa:
-#            category: "anime"
-#            filter: "all"
-#      interval: 15 minutes
-#      release_estimations: ignore
-#    quality: 720p+
-#    series:
-#      - "Zom 100 - Zombie ni Naru made ni Shitai 100 no Koto":
-#          begin: 01
-#          from_group:
-#            - PT-BR
-#            - POR-BR
-#      - "Bleach: Thousand-Year Blood War":
-#          begin: 15
-#          from_group:
-#            - Anime Time
-#          path: "/media/HardDisk/Jellyfin/Animes/Bleach/Season 17/"
-#    tvmaze_lookup: yes
-#    transmission:
-#      host: localhost
-#      port: 9091
-#      username: ""
-#      password: ""
-#      path: "/media/HardDisk/Jellyfin/Animes/{{series_name}}/"
-#
-################################################################
+  ################################################################
+  #
+  #    █████╗ ███╗   ██╗██╗███╗   ███╗███████╗███████╗
+  #   ██╔══██╗████╗  ██║██║████╗ ████║██╔════╝██╔════╝
+  #   ███████║██╔██╗ ██║██║██╔████╔██║█████╗  ███████╗
+  #   ██╔══██║██║╚██╗██║██║██║╚██╔╝██║██╔══╝  ╚════██║
+  #   ██║  ██║██║ ╚████║██║██║ ╚═╝ ██║███████╗███████║
+  #   ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝╚═╝     ╚═╝╚══════╝╚══════╝
+  # Animes:
+  #   discover:
+  #     what:
+  #       - next_series_episodes: yes
+  #     from:
+  #       - nyaa:
+  #           category: "anime"
+  #           filter: "all"
+  #     interval: 15 minutes
+  #     release_estimations: ignore
+  #   series:
+  #     settings:
+  #       shows:
+  #         quality: 720p+
+  #         from_group:
+  #           - PT-BR
+  #           - POR-BR
+  #     shows:
+  #       - "Zom 100 - Zombie ni Naru made ni Shitai 100 no Koto":
+  #           begin: 01
+  #       - "Bleach: Thousand-Year Blood War":
+  #           begin: 15
+  #           from_group:
+  #             - Anime Time
+  #           path: "/media/HardDisk/Jellyfin/Animes/Bleach/Season 17/"
+  #   tvmaze_lookup: yes
+  #   transmission:
+  #     host: localhost
+  #     port: 9091
+  #     username: ""
+  #     password: ""
+  #     path: "/media/HardDisk/Jellyfin/Animes/{{series_name}}/"
+  #
+  ################################################################
 
-################################################################
-#
-#   ███████╗███████╗██████╗ ██╗███████╗███████╗
-#   ██╔════╝██╔════╝██╔══██╗██║██╔════╝██╔════╝
-#   ███████╗█████╗  ██████╔╝██║█████╗  ███████╗
-#   ╚════██║██╔══╝  ██╔══██╗██║██╔══╝  ╚════██║
-#   ███████║███████╗██║  ██║██║███████╗███████║
-#   ╚══════╝╚══════╝╚═╝  ╚═╝╚═╝╚══════╝╚══════╝
-#  Series:
-#    discover:
-#      what:
-#        - next_series_episodes: yes
-#      from:
-#        - 1337x: yes
-#      interval: 15 minutes
-#      release_estimations: loose
-#    quality: 720p+
-#    content_size:
-#      min: 1500
-#      max: 5000
-#      strict: no
-#    series:
-#      - The Crowded Room:
-#          begin: S01E01
-#    tvmaze_lookup: yes
-#    transmission:
-#      host: localhost
-#      port: 9091
-#      username: ""
-#      password: ""
-#      path: "/media/HardDisk/Jellyfin/Series/{{series_name}}/Season {{series_season}}/"
-#
-################################################################
+  ################################################################
+  #
+  #   ███████╗███████╗██████╗ ██╗███████╗███████╗
+  #   ██╔════╝██╔════╝██╔══██╗██║██╔════╝██╔════╝
+  #   ███████╗█████╗  ██████╔╝██║█████╗  ███████╗
+  #   ╚════██║██╔══╝  ██╔══██╗██║██╔══╝  ╚════██║
+  #   ███████║███████╗██║  ██║██║███████╗███████║
+  #   ╚══════╝╚══════╝╚═╝  ╚═╝╚═╝╚══════╝╚══════╝
+  # Series:
+  #   discover:
+  #     what:
+  #       - next_series_episodes: yes
+  #     from:
+  #       - 1337x: yes
+  #     interval: 15 minutes
+  #     release_estimations: loose
+  #   content_size:
+  #     min: 1500
+  #     max: 5000
+  #     strict: no
+  #   series:
+  #     settings:
+  #       shows:
+  #         quality: 720p+
+  #         season_packs: yes
+  #     shows:
+  #       - "Castlevania: Nocturne":
+  #           begin: S01E01
+  #   tvmaze_lookup: yes
+  #   transmission:
+  #     host: localhost
+  #     port: 9091
+  #     username: ""
+  #     password: ""
+  #     path: "/media/HardDisk/Jellyfin/Series/{{series_name}}/Season {{series_season}}/"
+  #
+  ################################################################
 
-################################################################
-# 
-#   ███████╗██╗██╗     ███╗   ███╗███████╗███████╗
-#   ██╔════╝██║██║     ████╗ ████║██╔════╝██╔════╝
-#   █████╗  ██║██║     ██╔████╔██║█████╗  ███████╗
-#   ██╔══╝  ██║██║     ██║╚██╔╝██║██╔══╝  ╚════██║
-#   ██║     ██║███████╗██║ ╚═╝ ██║███████╗███████║
-#   ╚═╝     ╚═╝╚══════╝╚═╝     ╚═╝╚══════╝╚══════╝
-#  # Filmes adcionado com `flexget movie_list add (nome do filme|id_imdb)`
-#  Filmes:
-#    discover:
-#      what:
-#        - movie_list: movies
-#      from:
-#        - yts: yes
-#      interval: 15 minutes
-#      release_estimations: ignore
-#    list_match:
-#      from:
-#        - movie_list: movies
-#    quality:
-#      - 1080p
-#      - bluray|webrip
-#    imdb_lookup: yes
-#    transmission:
-#      host: localhost
-#      port: 9091
-#      username: ""
-#      password: ""
-#      path: /media/HardDisk/Plex/Filmes
-#
-################################################################
+  ################################################################
+  #
+  #   ███████╗██╗██╗     ███╗   ███╗███████╗███████╗
+  #   ██╔════╝██║██║     ████╗ ████║██╔════╝██╔════╝
+  #   █████╗  ██║██║     ██╔████╔██║█████╗  ███████╗
+  #   ██╔══╝  ██║██║     ██║╚██╔╝██║██╔══╝  ╚════██║
+  #   ██║     ██║███████╗██║ ╚═╝ ██║███████╗███████║
+  #   ╚═╝     ╚═╝╚══════╝╚═╝     ╚═╝╚══════╝╚══════╝
+  #  # Filmes adcionado com `flexget movie_list add (nome do filme|id_imdb)`
+  # Filmes:
+  #   discover:
+  #     what:
+  #       - movie_list: movies
+  #     from:
+  #       - yts: yes
+  #     interval: 15 minutes
+  #     release_estimations: ignore
+  #   list_match:
+  #     from:
+  #       - movie_list: movies
+  #   quality:
+  #     - 1080p
+  #     - bluray|webrip
+  #   imdb_lookup: yes
+  #   transmission:
+  #     host: localhost
+  #     port: 9091
+  #     username: ""
+  #     password: ""
+  #     path: /media/HardDisk/Plex/Filmes
+  #
+  ################################################################
