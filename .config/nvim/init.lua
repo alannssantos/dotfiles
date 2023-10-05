@@ -31,6 +31,7 @@ vim.opt.softtabstop     = 2
 vim.opt.foldmethod      = 'marker'
 vim.opt.clipboard       = 'unnamedplus'
 vim.opt.guifont         = 'Fira Code:h12'
+vim.opt.relativenumber  = true
 
 -- mapping
 vim.keymap.set("i", "jk", "<Esc>")
