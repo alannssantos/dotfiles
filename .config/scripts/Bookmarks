@@ -1,28 +1,24 @@
 #!/usr/bin/env bash
 
-Pesquisador='https://duckduckgo.com/?q='
-Favoritos=~/.favoritos
 Navegador="firefox"
-FzfOpt='fzf -e --border -i --print-query --margin=20% --tiebreak=begin --prompt=Bookmarks:'
+bookmark_orig="$HOME/.mozilla/firefox/*.default-esr/places.sqlite"
+bookmark_file="/tmp/places.sqlite"
 
-# Pegar favoritos do Firefox Automaticamente.
-#
-# Abra o Firefox e digite na barra de endereço "about:config".
-# Pesquise por "browser.bookmarks.autoExportHTML" mude para "true".
-# Pesquise por "browser.bookmarks.file" escolha texto e adicione "~/.favoritos".
-#
+sql="select moz_places.url, moz_bookmarks.title
+     from moz_places, moz_bookmarks
+     where moz_bookmarks.fk = moz_places.id
+     and moz_bookmarks.type = 1
+     and length(moz_bookmarks.title) > 0
+     order by moz_bookmarks.dateAdded"
 
-Resposta=$(sed -r '/http/!d;s/^.*HREF="(.*)" ADD_DATE=.*">(.*)<\/A>.*$/\2𤭢┃\"\1\"/' $Favoritos \
-  | column -t -s "𤭢" \
-  | $FzfOpt \
-  | sed 's/#Porn.*┃\|#Hentai.*┃/┃--private-window /' \
-  | sed 's/^.*┃//;/^$/d')
+cp $bookmark_orig $bookmark_file
+
+Resposta=$(sqlite3 "$bookmark_file" "$sql" \
+  | sed 's/|/𤭢/' \
+  | fzf -e -m --border --margin=20% --delimiter '𤭢' --with-nth='2..' --prompt=Bookmarks: \
+  | sed -r 's/^(.*)𤭢.*#Porn.*|^(.*)𤭢.*#Hentai.*/--private-window \1\2/' \
+  | sed 's/𤭢.*//')
 
 if [ -n "$Resposta" ]; then
-    if grep '"http' <<< "$Resposta" >/dev/null; then
-      Favorito=$(sed '/"http/!d' <<< "$Resposta")
-      eval $Navegador "$Favorito" &
-    else
-      eval $Navegador "\"$Pesquisador${Resposta#* }\"" &
-    fi
+      eval "$Navegador $Resposta" &
 fi
