@@ -82,12 +82,14 @@ tasks:
   #     interval: 15 minutes
   #     release_estimations: loose
   #   content_size:
-  #     min: 1500
-  #     max: 5000
+  #     min: 2 GiB
+  #     max: 5 GiB
   #     strict: no
   #   series:
   #     settings:
   #       shows:
+  #         from_group:
+  #           - TGx
   #         quality: 720p+
   #         season_packs: yes
   #     shows:
