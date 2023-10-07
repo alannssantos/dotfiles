@@ -43,10 +43,10 @@ tasks:
   #   series:
   #     settings:
   #       shows:
-  #         quality: 720p+
   #         from_group:
   #           - PT-BR
   #           - POR-BR
+  #         quality: 720p+
   #     shows:
   #       - "Zom 100 - Zombie ni Naru made ni Shitai 100 no Koto":
   #           begin: 01
