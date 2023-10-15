@@ -33,7 +33,6 @@ Sistema(){
 sudo apt install lf \
   bat \
   exa \
-  fzf \
   mpv \
   npm \
   cups \
@@ -113,6 +112,12 @@ echo -e "$Fracasso"
 #### Preview on LF.
 git clone https://github.com/alannssantos/lfimg.git /tmp/lfimg && make -C /tmp/lfimg/ install && \
 echo -e "$BCor\nPreview on LF.$ECor" && \
+echo -e "$Sussesso" || \
+echo -e "$Fracasso"
+
+#### Fuzzy Finder.
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install \
+echo -e "$BCor\nFuzzy Finder.$ECor" && \
 echo -e "$Sussesso" || \
 echo -e "$Fracasso"
 
