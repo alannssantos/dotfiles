@@ -116,7 +116,7 @@ echo -e "$Sussesso" || \
 echo -e "$Fracasso"
 
 #### Fuzzy Finder.
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install \
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install --all && \
 echo -e "$BCor\nFuzzy Finder.$ECor" && \
 echo -e "$Sussesso" || \
 echo -e "$Fracasso"
