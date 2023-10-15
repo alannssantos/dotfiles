@@ -37,7 +37,7 @@ vim.opt.relativenumber  = true
 vim.keymap.set("i", "jk", "<Esc>")
 vim.keymap.set("i", "kj", "<Esc>")
 vim.keymap.set("n", "<Tab>", ":tabNext<CR>")
-vim.keymap.set('n', '<leader>e', ':Texplore<CR>')
+vim.keymap.set('n', '<leader>e', ':Lexplore<CR>')
 vim.keymap.set("n", "<leader><Tab>", ":bNext<CR>")
 vim.keymap.set('n', '<leader>n', ':%!nl -n rz -w3<CR>')
 vim.keymap.set('n', '<leader>o', ':set spell! spelllang=pt<CR>')
