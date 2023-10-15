@@ -31,58 +31,59 @@ $ECor"
 Sistema(){
 #### Aplicativos e Drivers Pos-instalação.
 sudo apt install lf \
-	bat \
-	exa \
-	fzf \
-	mpv \
-	npm \
-	cups \
-	curl \
-	lynx \
-	peek \
-	slop \
-	tmux \
-	atool \
-	cmake \
-	sshfs \
-	xclip \
-	mcomix \
-        neovim \
-	xinput \
-	blueman \
-	concalc \
-	flatpak \
-	gparted \
-	w3m-img \
-	xdotool \
-	xsensors \
-	arc-theme \
-	keepassxc \
-	pkg-config \
-	streamlink \
-	zlib1g-dev \
-	simple-scan \
-	python3-dev \
-	libxtst-dev \
-	font-manager \
-	python3-full \
-	libgtk-3-dev \
-        gvfs-backends \
-	poppler-utils \
-	fonts-firacode \
-	network-manager \
-	libfreetype6-dev \
-	libxkbcommon-dev \
-	paper-icon-theme \
-	ffmpegthumbnailer \
-	libfontconfig1-dev \
-	libxcb-xfixes0-dev \
-	papirus-icon-theme \
-	python3-libtorrent \
-	printer-driver-all \
-	breeze-cursor-theme \
-	libjpeg62-turbo-dev \
-	libimage-exiftool-perl -y && \
+  bat \
+  exa \
+  fzf \
+  mpv \
+  npm \
+  cups \
+  curl \
+  lynx \
+  peek \
+  slop \
+  tmux \
+  atool \
+  cmake \
+  sshfs \
+  xclip \
+  mcomix \
+  neovim \
+  xinput \
+  blueman \
+  concalc \
+  flatpak \
+  gparted \
+  w3m-img \
+  xdotool \
+  xsensors \
+  arc-theme \
+  keepassxc \
+  pkg-config \
+  streamlink \
+  zlib1g-dev \
+  simple-scan \
+  python3-dev \
+  libxtst-dev \
+  font-manager \
+  python3-full \
+  libgtk-3-dev \
+  gvfs-backends \
+  poppler-utils \
+  fonts-firacode \
+  network-manager \
+  libfreetype6-dev \
+  libxkbcommon-dev \
+  gnome-packagekit \
+  paper-icon-theme \
+  ffmpegthumbnailer \
+  libfontconfig1-dev \
+  libxcb-xfixes0-dev \
+  papirus-icon-theme \
+  python3-libtorrent \
+  printer-driver-all \
+  breeze-cursor-theme \
+  libjpeg62-turbo-dev \
+  libimage-exiftool-perl -y && \
 
 sudo apt update && \
 sudo apt upgrade -y && \
@@ -115,11 +116,17 @@ echo -e "$BCor\nPreview on LF.$ECor" && \
 echo -e "$Sussesso" || \
 echo -e "$Fracasso"
 
+#### Transmission TUI.
+git clone https://github.com/tremc/tremc.git /tmp/tremc && sudo make -C /tmp/tremc/ install && \
+echo -e "$BCor\nTransmission TUI.$ECor" && \
+echo -e "$Sussesso" || \
+echo -e "$Fracasso"
+
 #### Nerd Fonts.
 mkdir -vp "$HOME/.local/share/fonts/FiraCode"
 url1=$(wget -qO- "https://github.com/ryanoasis/nerd-fonts/releases" \
-	| sed -r '/h2 class/!d;s/^.*">(.*)<\/.*/\1/' \
-	| sed '1!d')
+  | sed -r '/h2 class/!d;s/^.*">(.*)<\/.*/\1/' \
+  | sed '1!d')
 wget -c "https://github.com/ryanoasis/nerd-fonts/releases/download/$url1/FiraCode.zip" -P /tmp/ && \
 atool --extract-to="$HOME/.local/share/fonts/FiraCode" /tmp/FiraCode.zip && \
 echo -e "$BCor\nNerd Fonts.$ECor" && \
@@ -131,33 +138,33 @@ OpInvalido(){
 clear
 echo -e "$YCor
 
-	╭────────────────────────╮
-	│$RCor   Opção desconhecida.$YCor  │
-	╰────────────────────────╯
+  ╭────────────────────────╮
+  │$RCor   Opção desconhecida.$YCor  │
+  ╰────────────────────────╯
 $ECor"
 }
 
 Menu(){
 echo -e "$BCor
-	1.Sistema
-	2.Dotfiles
+  1.Sistema
+  2.Dotfiles
 $RCor
-	q.Sair
+  q.Sair
 $ECor"
 read -r Resposta
 
 case "$Resposta" in
-	1)
-		Sistema
-		Menu ;;
-	2)
-		Configs
-		Menu ;;
-	q)
-		exit ;;
-	*)
-		OpInvalido
-		Menu ;;
+  1)
+    Sistema
+    Menu ;;
+  2)
+    Configs
+    Menu ;;
+  q)
+    exit ;;
+  *)
+    OpInvalido
+    Menu ;;
 esac
 }
 Menu
