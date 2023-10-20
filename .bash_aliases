@@ -40,7 +40,7 @@ alias tmuxd='tmux new -As0'
 alias legenda='subliminal --opensubtitles USERNAME PASSWORD download -l pt-br'
 alias yta-mp3='yt-dlp -c --extract-audio --audio-format mp3 -o "%(playlist_index)s-%(title)s.%(ext)s" --add-metadata'
 alias ytv-best='yt-dlp -c --add-metadata --format mp4 -o "%(title)s.%(ext)s"'
-alias serverhttp="python3 -m http.server 8888 -b $(hostname -I | sed 's/ .*//')"
+# alias serverhttp="python3 -m http.server 8888 -b $(hostname -I | sed 's/ .*//')"
 alias gallery-zip='gallery-dl --zip'
 
 #### Funções.
