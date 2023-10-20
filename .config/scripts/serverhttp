@@ -1,12 +1,41 @@
 #!/usr/bin/env bash
 
-Ip=$(hostname -I | sed 's/ $\|$/:8000/')
-Server="python -m SimpleHTTPServer"
+IP="$(hostname -I | sed 's/ .*//')"
 
-echo "$(tput bold)$(tput setaf 3)
-────────────────────────────────────
-$(tput bold)$(tput setaf 4)  Endereço Ip $(tput bold)$(tput setaf 1)$Ip$(tput bold)$(tput setaf 3)
-────────────────────────────────────
-$(tput bold)$(tput setaf 2)"
+server(){
+  python3 -m http.server 8888 -b "$IP"
+}
 
-$Server >/dev/null
+qrcodemaker(){
+  data=$(wget -qO- "http://$IP:8888/" \
+    | sed '/href="/!d' \
+    | sed 's/\&amp;/\&/g' \
+    | sed -r 's/.*href="(.*)">(.*)<\/a>.*/\1𤭢\2/' \
+    | grep -v / \
+    | fzf -e -m --border --ansi --delimiter '𤭢' --with-nth='2..')
+ 
+  name=$(sed 's/^.*𤭢//' <<< "$data")
+  link=$(sed 's/ *𤭢.*$//' <<< "$data")
+
+  if [ -n "$data" ]; then
+  qrencode -m 2 -t ANSIUTF8 "$IP:8888/$link"
+  echo "$name"
+  fi
+}
+
+help(){
+  echo "Uso: serverhttp [OPÇÃO...]
+
+  -q, --qrcode      Mostra link diretos em qrcode de aquivos no servidor.
+                    requisitos: fzf e qrencode.
+"
+}
+
+if [ -z "$1" ]; then
+  server
+else
+  case $1 in
+    -q|--qrcode) qrcodemaker;;
+    -h|--help) help;;
+  esac
+fi
