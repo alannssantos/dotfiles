@@ -87,6 +87,7 @@ sudo apt install lf \
 sudo apt update && \
 sudo apt upgrade -y && \
 sudo flatpak remote-add flathub https://flathub.org/repo/flathub.flatpakrepo && \
+flatpak install flathub it.mijorus.gearlever -y && \
 npm config set prefix "$HOME/.local" && \
 python3 -m venv "$HOME/.local" && \
 pip3 install jedi && \
