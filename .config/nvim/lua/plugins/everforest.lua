@@ -1,4 +1,4 @@
-return {  
+return {
   "neanias/everforest-nvim",
   version = false,
   lazy = false,
@@ -9,5 +9,14 @@ return {
       transparent_background_level = 1,
     })
     require("everforest").load()
+
+    -- This section is for transparency in neovide.
+    if vim.g.neovide then
+      vim.g.neovide_transparency     = 0.96
+      require("everforest").setup({
+        transparent_background_level = 0,
+      })
+      require("everforest").load()
+    end
   end,
 }
