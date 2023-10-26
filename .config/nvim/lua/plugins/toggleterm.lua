@@ -2,7 +2,7 @@ return {
   {'akinsho/toggleterm.nvim',
       version = "*",
       opts = {
-        vim.keymap.set('n', '<leader>tt', '<cmd>ToggleTerm direction=float<cr>')
+        vim.keymap.set('n', '<leader>tf', '<cmd>ToggleTerm direction=float<cr>')
       }
   }
 }
