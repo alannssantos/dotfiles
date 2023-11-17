@@ -47,6 +47,7 @@ tasks:
 #            - PT-BR
 #            - POR-BR
 #          quality: 720p+
+#          propers: 2 days
 #      shows:
 #        - "Zom 100 - Zombie ni Naru made ni Shitai 100 no Koto":
 #            begin: 01
@@ -82,7 +83,7 @@ tasks:
 #      interval: 15 minutes
 #      release_estimations: loose
 #    content_size:
-#      min: 2 GiB
+#      min: 1 GiB
 #      max: 5 GiB
 #      strict: no
 #    series:
@@ -91,6 +92,7 @@ tasks:
 #          from_group:
 #            - TGx
 #          quality: 720p+
+#          propers: 2 days
 #          season_packs: yes
 #      shows:
 #        - "Castlevania: Nocturne":
