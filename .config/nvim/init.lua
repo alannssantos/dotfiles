@@ -28,6 +28,7 @@ vim.opt.laststatus      = 2
 vim.opt.shiftwidth      = 2
 vim.opt.showtabline     = 2
 vim.opt.softtabstop     = 2
+vim.opt.colorcolumn     = '80'
 vim.opt.foldmethod      = 'marker'
 vim.opt.clipboard       = 'unnamedplus'
 vim.opt.guifont         = 'Fira Code:h12'
