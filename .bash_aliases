@@ -49,33 +49,30 @@ mpv-yt(){ nohup mpv --ontop --no-border --force-window --autofit=500x280 --geome
 cue2chd(){ chdman createcd -i "$1" -o "${1%.*}.chd" ;}
 chd2cue(){ chdman extractcd -i "$1" -o "${1%.*}.cue" ;}
 justread(){ readable "$1" -p html-title,html-content > /tmp/readable.html&&lynx -image_links /tmp/readable.html ;}
-mergesub(){ mkvmerge -o "${1%.*}.mkv" "$1" --language 0:por --track-name 0:"Português (Brasil)" "$2" ;}
-mkvsubflag(){ for i in "$@"; do mkvpropedit "$i" --edit track:@3 --set flag-default=0 --edit track:@4 --set flag-default=1; done; }
 mpv-stream(){ nohup streamlink -p "mpv --cache 2048 --ontop --no-border --force-window --autofit=500x280 --geometry=-15-60" "$1" best >/dev/null 2>&1 & }
 hideinimage(){ cat "$@" > "copy_$1" ;}
 
-apt() { 
-  if [ -e /usr/bin/nala ]; then
-    command nala "$@"
-  else
-    command apt "$@"
-  fi
-}
-sudo() {
-  if [ "$1" = "apt" ] && [ -e /usr/bin/nala ]; then
-      shift
-      command sudo nala "$@"
-  else
-      command sudo "$@"
-  fi
-}
+mkvsubflag(){ 
+    echo "Qual faixa deseja remover a flag?"
+    read unset_track
+    echo "Qual faixa deseja tornar padrão?"
+    read set_track
+
+    if [ -n "$unset_track" ] && [ -n "$set_track" ]; then
+      for i in "$@"
+        do mkvpropedit "$i" --edit track:@"$unset_track" --set flag-default=0 --edit track:@"$set_track" --set flag-default=1
+        done
+    fi
+  }
 
 mdtopdf() { 
   base=${1##*/}
   pandoc --pdf-engine=lualatex \
-  -V 'mainfont: Quicksand' \
-  -V 'fontsize: 12pt' \
-  -V 'geometry:top=30mm, left=20mm, right=20mm, bottom=30mm' \
+  -V 'mainfont:Ubuntu' \
+  -V 'monofont:Ubuntu Mono' \
+  -V 'fontsize:12pt' \
+  -V 'geometry:a4paper' \
+  -V 'geometry:margin=2cm' \
   "$1" -o "${base%.*}".pdf \
   ;}
 
