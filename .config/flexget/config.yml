@@ -46,7 +46,7 @@ tasks:
 #          from_group:
 #            - PT-BR
 #            - POR-BR
-#          quality: 720p+
+#          quality: 720p-1080p
 #          propers: 2 days
 #      shows:
 #        - "Zom 100 - Zombie ni Naru made ni Shitai 100 no Koto":
@@ -91,7 +91,7 @@ tasks:
 #        shows:
 #          from_group:
 #            - TGx
-#          quality: 720p+
+#          quality: 720p-1080p
 #          propers: 2 days
 #          season_packs: yes
 #      shows:
