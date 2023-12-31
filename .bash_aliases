@@ -53,17 +53,21 @@ mpv-stream(){ nohup streamlink -p "mpv --cache 2048 --ontop --no-border --force-
 hideinimage(){ cat "$@" > "copy_$1" ;}
 
 mkvsubflag(){ 
-    echo "Qual faixa deseja remover a flag?"
-    read unset_track
-    echo "Qual faixa deseja tornar padrão?"
-    read set_track
+  echo "Qual faixa deseja remover a flag?"
+  read unset_track
+  echo "Qual faixa deseja tornar padrão?"
+  read set_track
 
-    if [ -n "$unset_track" ] && [ -n "$set_track" ]; then
-      for i in "$@"
-        do mkvpropedit "$i" --edit track:@"$unset_track" --set flag-default=0 --edit track:@"$set_track" --set flag-default=1
-        done
-    fi
-  }
+  if [ -n "$unset_track" ] && [ -n "$set_track" ]; then
+    for i in "$@"
+      do mkvpropedit "$i" \
+        --edit track:@"$unset_track" \
+        --set flag-default=0 \
+        --edit track:@"$set_track" \
+        --set flag-default=1
+      done
+  fi
+  ;}
 
 mdtopdf() { 
   base=${1##*/}
