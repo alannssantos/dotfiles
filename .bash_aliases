@@ -67,7 +67,7 @@ mkvsubflag(){
         --set flag-default=1
       done
   fi
-  ;}
+  }
 
 mdtopdf() { 
   base=${1##*/}
