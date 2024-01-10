@@ -102,4 +102,6 @@ bind '"\C-X":"tmuxd\n"'
 bind '"\C-F":"finder\n"'
 bind '"\C-G":"$(fzf -e)\n"'
 
-debfetch
+if [ -x "$(command -v debfetch)" ]; then
+  debfetch
+fi
