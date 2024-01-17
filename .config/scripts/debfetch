@@ -11,7 +11,7 @@ reset="$(tput sgr0)"
 Dpkg=$(command -v dpkg 1>/dev/null && dpkg-query --list | sed '/^ii /!d' | wc -l | sed 's/.*/ & \(dpkg\)/')
 Flatpak=$(command -v flatpak 1>/dev/null && flatpak list | sed '1d' | wc -l | sed 's/.*/, & \(flatpak\)/')
 Snap=$(command -v snap 1>/dev/null && snap list | sed '1d' | wc -l | sed 's/.*/, & \(snap\)/')
-Memory=$(free -h | awk 'NR==2{printf "%s/%s (%.2f%%)\n", $3,$2,$3*100/$2}')
+Memory=$(free -h | awk 'NR==2{printf "%s/%s\n", $3,$2}')
 DiskRoot=$(df -h | awk '$NF=="/"{printf "%s/%s (%s)\n", $3,$2,$5}')
 DiskHome=$(df -h | awk '$NF=="/home"{printf "%s/%s (%s)\n", $3,$2,$5}')
 
@@ -26,7 +26,7 @@ $RCor            ⠈⠳⣄⠀⠀⠀⠀$reset
 
 ${bold} $PRETTY_NAME${reset}
 ${bold} Kernel:${reset} $(uname -rm)
-${bold} Memory:$reset $Memory${reset}
 ${bold} Uptime:${reset} $(uptime -p | cut -d' ' -f2-)
+${bold} Memory:$reset $Memory${reset}
 ${bold} Packages:$reset$Dpkg$Flatpak$Snap${reset}"
 exit 0
