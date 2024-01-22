@@ -54,8 +54,4 @@ $ sudo systemctl restart bluetooth
 $ systemctl status bluetooth
 ```
 
-#### Instalar PyPi direto do Github.
-
-```
-$ pip3 install git+https://github.com/alannssantos/mangascandl.git
-```
+#### [XFCE4 Docklike Plugin.](https://launchpad.net/~xubuntu-dev/+archive/ubuntu/extras/+packages)
