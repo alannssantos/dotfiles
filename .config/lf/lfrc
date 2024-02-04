@@ -74,7 +74,8 @@ map xk kcs Converter Pasta em Arquivo .mobi
 map xh shp PythonServer em Diretorio atual
 
 # Broot mapping
-map f fuzzyfinder
+map <c-f> fuzzyfinder
+map f filter
 
 # Basic functions
 map mk mkd
