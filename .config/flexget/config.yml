@@ -1,4 +1,5 @@
 # Transmission só funciona com `pip3 install transmission-rpc`.
+# Series só funciona com `pip3 install cloudscraper`.
 # Mais informações `https://flexget.com/Plugins/transmission`.
 tasks:
 ################################################################
