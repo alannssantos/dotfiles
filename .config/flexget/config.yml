@@ -79,7 +79,7 @@ tasks:
 #      what:
 #        - next_series_episodes: yes
 #      from:
-#        - 1337x: yes
+#        - magnetdl: yes
 #      interval: 15 minutes
 #      release_estimations: loose
 #    content_size:
