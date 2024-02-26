@@ -1,0 +1,35 @@
+#!/usr/bin/env python3
+
+import os, time
+import requests
+from bs4 import BeautifulSoup
+
+expiration_date = 7
+wallhaven_path = os.path.expanduser('~') + '/.local/share/backgrounds/wallhaven/'
+wallhaven_url = 'https://wallhaven.cc/search?q=id%3A7991&categories=110&purity=100&ratios=16x9&sorting=random&order=desc&ai_art_filter=1&seed=mArYJE&page=2'
+
+if not os.path.exists(wallhaven_path):
+    os.makedirs(wallhaven_path)
+os.chdir(os.path.join(os.getcwd(), wallhaven_path))
+
+r = requests.get(wallhaven_url)
+soup = BeautifulSoup(r.text, 'html.parser')
+images = [x['href'] for x in soup.find_all('a', class_='preview')]
+
+for link in images:
+    r = requests.get(link)
+    soup = BeautifulSoup(r.text, 'html.parser')
+    image = soup.find('img', id = 'wallpaper')
+    if image is not None:
+        image_name = image.get('src').split('/')[-1]
+        image_link = image.get('src')
+        print("Downloading: " + image_name)
+        with open(image_name, 'wb') as file:
+            file.write(requests.get(image_link).content)
+
+for f in os.listdir(wallhaven_path):
+    file_path = os.path.join(wallhaven_path, f)
+    file_date = os.stat(file_path).st_mtime
+    if(file_date < time.time() - 86400*expiration_date): 
+        print("Deleting: " + f)
+        os.remove(file_path) 
