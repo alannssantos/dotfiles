@@ -10,7 +10,7 @@ wallhaven_url = 'https://wallhaven.cc/search?q=id%3A7991&categories=110&purity=1
 
 if not os.path.exists(wallhaven_path):
     os.makedirs(wallhaven_path)
-os.chdir(os.path.join(os.getcwd(), wallhaven_path))
+os.chdir(wallhaven_path)
 
 r = requests.get(wallhaven_url)
 soup = BeautifulSoup(r.text, 'html.parser')
