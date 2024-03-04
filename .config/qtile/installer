@@ -17,15 +17,16 @@ Fracasso="$YCor
 ╰────────────────────────╯
 $ECor"
 
-sudo apt install python3-pip rofi feh compton lxappearance qt5ct -y \
-  && sudo -H pip3 install xcffib \
-  && sudo -H pip3 install --no-cache-dir cairocffi \
-  && sudo -H pip3 install dbus-next \
-  && sudo -H pip3 install qtile==0.17.0 \
+sudo apt install python3-pip rofi compton lxappearance qt5ct -y \
+  && python3 -m venv "$HOME/.local" \
+  && pip3 install xcffib \
+  && pip3 install --no-cache-dir cairocffi \
+  && pip3 install dbus-next \
+  && pip3 install qtile \
   && echo "[Desktop Entry]
 Name=Qtile
 Comment=Qtile Session
-Exec=qtile
+Exec=$(which qtile) start
 Type=Application
 Keywords=wm;tiling" | sudo tee /usr/share/xsessions/qtile.desktop \
   && echo -e "$Sussesso" || echo -e "$Fracasso"
