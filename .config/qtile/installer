@@ -23,6 +23,7 @@ sudo apt install python3-pip rofi compton lxappearance qt5ct -y \
   && pip3 install --no-cache-dir cairocffi \
   && pip3 install dbus-next \
   && pip3 install qtile \
+  && pip3 install qtile-extras \
   && echo "[Desktop Entry]
 Name=Qtile
 Comment=Qtile Session
