@@ -18,15 +18,5 @@ redshift -l -6.265936:-35.210228 &
 #### Telegram
 telegram-desktop &
 
-#### Server Livros
-$HOME/.local/bin/ubooquity &
-calibre --start-in-tray &
-
-#### Selecionando um papel de parede com feh da pasta Backgrounds do sistema.
-while :; do
-	feh --bg-fill --randomize $HOME/.config/wallpapers/* \
-	&& sleep 120
-done &
-
 #### Compositor
 compton &
