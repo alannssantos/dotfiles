@@ -25,12 +25,28 @@ update(){
     || echo -n "<icon>update-high</icon><iconclick>$Manager</iconclick><tool>Atualizações Disponíveis ($Update)</tool>"
 }
 
+help(){
+  echo "
+Usage: info-xfce4-panel [OPTIONS]
+
+Options:                                                                                                                                               
+  General Options:                                                                                                                                     
+    -u, --update              Mostra se os pacotes do sistema estão atualizado.
+                              Para que o update funcione corretamente coloque esta linha no crontab.
+                              (*/30 * * * * root /usr/bin/apt update >/dev/null 2>&1).
+
+    -d, --dolar               Mostra a contação do Dolar em Real (Brasil).
+    -b, --battery             Mostra o nivel da bateria do notebook."
+}
+
 case "$1" in
-  battery)
+  --battery|-[Bb])
     battery;;
-  dolar)
+  --dolar|-[Dd])
     dolar;;
-  update)
+  --update|-[Uu])
     update;;
+  --help|*)
+    help;;
 esac
 
