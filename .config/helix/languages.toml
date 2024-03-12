@@ -1,0 +1,4 @@
+# npm install --location=global pyright
+[[language]]
+name = "python"
+language-servers = [ "pyright" ]
