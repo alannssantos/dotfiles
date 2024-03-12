@@ -29,6 +29,7 @@ fi
 #### Aliases.
 alias v='nvim'
 alias V='sudo nvim'
+alias hx='helix'
 alias ls='exa -l'
 alias mv='mv -iv'
 alias cp='cp -riv'
