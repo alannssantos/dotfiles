@@ -32,7 +32,8 @@ handler_video(){
 }
 
 handler_text(){
-  eval helix "$files"
+  eval nvim -p "$files"
+#  eval helix "$files"
 }
 
 handler_ebook(){
