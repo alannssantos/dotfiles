@@ -36,6 +36,8 @@ return {
   {
     "neovim/nvim-lspconfig",
     config = function()
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
       local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
       for type, icon in pairs(signs) do
         local hl = "DiagnosticSign" .. type
@@ -81,10 +83,18 @@ return {
 
       -- Setup language servers.
       local lspconfig = require("lspconfig")
-      lspconfig.lua_ls.setup({})
-      lspconfig.bashls.setup({})
-      lspconfig.pyright.setup({})
-      lspconfig.tsserver.setup({})
+      lspconfig.lua_ls.setup({
+        capabilities = capabilities,
+      })
+      lspconfig.bashls.setup({
+        capabilities = capabilities,
+      })
+      lspconfig.pyright.setup({
+        capabilities = capabilities,
+      })
+      lspconfig.tsserver.setup({
+        capabilities = capabilities,
+      })
     end,
   },
 }
