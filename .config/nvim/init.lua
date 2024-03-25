@@ -38,9 +38,9 @@ vim.opt.relativenumber = true
 -- mapping
 vim.keymap.set("i", "jk", "<Esc>")
 vim.keymap.set("i", "kj", "<Esc>")
-vim.keymap.set("n", "<Tab>", ":bNext<CR>", {})
+vim.keymap.set("n", "<Tab>", ":tabNext<CR>", {})
 vim.keymap.set("n", "<leader>e", ":Lexplore<CR>")
-vim.keymap.set("n", "<leader><Tab>", ":tabNext<CR>", {})
+vim.keymap.set("n", "<leader><Tab>", ":bNext<CR>", {})
 vim.keymap.set("n", "<leader>n", ":%!nl -n rz -w3<CR>", {})
 vim.keymap.set("n", "<leader>tt", ":tabnew term://bash<CR>", {})
 vim.keymap.set("n", "<leader>o", ":set spell! spelllang=pt<CR>", {})
@@ -52,6 +52,7 @@ vim.g["netrw_altv"] = "1"
 vim.g["netrw_winsize"] = "25"
 vim.g["netrw_liststyle"] = "3"
 vim.g["netrw_browse_split"] = "3"
+vim.g["netrw_list_hide"] = "\\(^\\|\\s\\s\\)\\zs\\.\\S\\+"
 vim.api.nvim_create_autocmd("filetype", {
   pattern = "netrw",
   desc = "Better mappings for netrw",
@@ -62,7 +63,7 @@ vim.api.nvim_create_autocmd("filetype", {
     -- open file
     bind("l", "<CR>")
     -- edit new file
-    bind("n", "%")
+    bind("f", "%")
     -- rename file
     bind("r", "R")
   end,
