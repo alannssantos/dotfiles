@@ -1,12 +1,12 @@
 #### Variaveis.
-RCor="\[\033[1;31m\]" # Red (Vermelho)
-GCor="\[\033[1;32m\]" # Green (Verde)
-YCor="\[\033[1;33m\]" # Yellow (Amarelo)
-BCor="\[\033[1;34m\]" # Blue (Azul)
-PCor="\[\033[1;35m\]" # Purple (Roxo)
-CCor="\[\033[1;36m\]" # Cyan (Turquesa)
-WCor="\[\033[1;37m\]" # White (Branco)
-ECor="\[\033[0m\]"    # End (Fim)
+Cor=("\[\033[0m\]"
+"\[\033[1;31m\]"
+"\[\033[1;32m\]"
+"\[\033[1;33m\]"
+"\[\033[1;34m\]"
+"\[\033[1;35m\]"
+"\[\033[1;36m\]"
+"\[\033[1;37m\]")  
 
 export EDITOR="nvim"
 export SUDO_EDITOR="nvim"
@@ -20,8 +20,8 @@ gitM() { git status 2>&1 | tee | sed '/modified:/!d' | sed '$=' | sed '/\t/d;s/^
 gitN() { git status 2>&1 | tee | sed '/new file:/!d' | sed '$=' | sed '/\t/d;s/^/ /'; }
 gitB() { git branch 2>&1 | tee | sed '/^[^*]/d;s/* \(.*\)/\1/' | sed 's/^/ \[/;s/$/\] /'; }
 
-export PS1="\\n$RCor[$WCor\A$RCor] $GCor\u$YCor@$BCor\h $GCor\w$ECor\\n$YCor\$(gitB)$CCor\$(gitH)$RCor\$(gitD)$GCor\$(gitN)$CCor\$(gitR)$YCor\$(gitU)$CCor\$(gitM)$ECor $PCor$ $ECor"
-export PS2=" $GCor>$ECor "
+export PS1="\\n${Cor[1]}[${Cor[7]}\A${Cor[1]}] ${Cor[2]}\u${Cor[3]}@${Cor[4]}\h ${Cor[2]}\w${Cor[0]}\\n${Cor[3]}\$(gitB)${Cor[5]}\$(gitH)${Cor[1]}\$(gitD)${Cor[2]}\$(gitN)${Cor[6]}\$(gitR)${Cor[3]}\$(gitU)${Cor[6]}\$(gitM)${Cor[0]} ${Cor[5]}$ ${Cor[0]}"
+export PS2=" ${Cor[2]}>${Cor[0]} "
 
 if [ -f "$HOME"/.config/lf/icons ]; then
   . "$HOME"/.config/lf/icons
@@ -52,6 +52,14 @@ chd2cue() { chdman extractcd -i "$1" -o "${1%.*}.cue"; }
 justread() { readable "$1" -p html-title,html-content >/tmp/readable.html && lynx -image_links /tmp/readable.html; }
 mpv-stream() { nohup streamlink -p "mpv --cache 2048 --ontop --no-border --force-window --autofit=500x280 --geometry=-15-60" "$1" best >/dev/null 2>&1 & }
 hideinimage() { cat "$@" >"copy_$1"; }
+
+# Flexget Movie Function.
+movie-add() { flexget movie-list add "$*"; }
+movie-del() { flexget movie-list del "$(flexget movie-list list |
+  sed -r '/^│/!d' |
+  awk -F"│" '{print $3}' |
+  sed 's/^ *//;s/ *$//' |
+  fzf)"; }
 
 mkvsubflag() {
   for i in "$@"; do
