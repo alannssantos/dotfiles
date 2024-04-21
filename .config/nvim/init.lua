@@ -44,6 +44,7 @@ vim.keymap.set("n", "<leader><Tab>", ":bNext<CR>", {})
 vim.keymap.set("n", "<leader>n", ":%!nl -n rz -w3<CR>", {})
 vim.keymap.set("n", "<leader>o", ":set spell! spelllang=pt<CR>", {})
 vim.keymap.set("n", "<leader>q", ":bwipe<CR>", { desc = "Fechar Buffer" })
+vim.keymap.set("n", "<leader>tt", ":silent !tmux splitw -vd -p 30<CR>", {})
 
 -- netrw: config
 vim.g["netrw_altv"] = "1"
