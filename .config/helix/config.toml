@@ -15,11 +15,7 @@ normal = "block"
 select = "underline"
 
 [keys.normal]
-G = "goto_file_end"
-X = "extend_line_above"
-y = "yank_to_clipboard"
-p = "paste_clipboard_after"
-P = "paste_clipboard_before"
+X = "copy_selection_on_next_line"
 tab = "goto_next_buffer"
 esc = ["collapse_selection", "keep_primary_selection"]
 
