@@ -9,6 +9,8 @@ set ignorecase true
 set cleaner ~/.config/lf/cleaner
 set previewer ~/.config/lf/preview
 
+set rulerfmt " %d ┃ %i/%t "
+
 #Para ter imagem no seu terminal.
 #https://github.com/cirala/lfimg
 
