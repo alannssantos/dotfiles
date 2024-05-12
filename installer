@@ -7,25 +7,27 @@
 # /_/   \_\_|\__,_|_| |_|_| |_|
 
 ## Cores.
-RCor="\033[1;31m"    # Red (Vermelho)
-GCor="\033[1;32m"    # Green (Verde)
-YCor="\033[1;33m"    # Yellow (Amarelo)
-BCor="\033[1;34m"    # Blue (Azul)
-WCor="\033[1;37m"    # White (Branco)
-ECor="\033[0m"       # End (Fim)
+Cor=("\033[0m"
+  "\033[1;31m"
+  "\033[1;32m"
+  "\033[1;33m"
+  "\033[1;34m"
+  "\033[1;35m"
+  "\033[1;36m"
+  "\033[1;37m")
 
 ## Mensagens
 
-Sussesso="$YCor
+Sussesso="${Cor[3]}
 ╭────────────────────────╮
-│$GCor Instalado com sucesso!$YCor │
+│${Cor[2]} Instalado com sucesso!${Cor[3]} │
 ╰────────────────────────╯
-$ECor"
-Fracasso="$YCor
+${Cor[0]}"
+Fracasso="${Cor[3]}
 ╭────────────────────────╮
-│  $RCor Erro na instalação!$YCor  │
+│  ${Cor[1]} Erro na instalação!${Cor[3]}  │
 ╰────────────────────────╯
-$ECor"
+${Cor[0]}"
 
 ## Funções
 Sistema(){
@@ -46,11 +48,9 @@ sudo apt install lf \
   sshfs \
   xclip \
   mcomix \
-  neovim \
   xinput \
   blueman \
   concalc \
-  flatpak \
   gparted \
   w3m-img \
   xdotool \
@@ -87,82 +87,83 @@ sudo apt install lf \
 sudo apt update && \
 sudo apt upgrade -y && \
 npm config set prefix "$HOME/.local" && \
+npm i -g pyright && \
+npm i -g bash-language-server && \
+npm i -g vscode-langservers-extracted && \
+npm i -g typescript typescript-language-server && \
 python3 -m venv "$HOME/.local" && \
 pip3 install jedi && \
-pip3 install stig && \
 pip3 install yt-dlp && \
 pip3 install pyperclip && \
-pip3 install epy-reader && \
 pip3 install gallery-dl && \
-pip3 install subliminal && \
 pip3 install transmission-rpc && \
-echo -e "$BCor\nSistema!$ECor" && \
+echo -e "${Cor[4]}\nSistema!${Cor[0]}" && \
 echo -e "$Sussesso" || \
 echo -e "$Fracasso"
 }
 
 Configs(){
+#### Dependencias.
+sudo apt install cmake && \
+
 #### Copiar Dotfiles e Plugins.
 cp -r -v .config .irssi .bash_aliases .nanorc .tmux.conf .Xresources ~/ && \
-echo -e "$BCor\nCopiando arquivos de configuração...$ECor" && \
+echo -e "${Cor[4]}\nCopiando arquivos de configuração...${Cor[0]}" && \
 echo -e "$Sussesso" || \
 echo -e "$Fracasso"
 
 #### Preview on LF.
 git clone https://github.com/alannssantos/lfimg.git /tmp/lfimg && make -C /tmp/lfimg/ install && \
-echo -e "$BCor\nPreview on LF.$ECor" && \
+echo -e "${Cor[4]}\nPreview on LF.${Cor[0]}" && \
 echo -e "$Sussesso" || \
 echo -e "$Fracasso"
 
 #### Fuzzy Finder.
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install --all && \
-echo -e "$BCor\nFuzzy Finder.$ECor" && \
+echo -e "${Cor[4]}\nFuzzy Finder.${Cor[0]}" && \
 echo -e "$Sussesso" || \
 echo -e "$Fracasso"
 
 #### Transmission TUI.
 git clone https://github.com/tremc/tremc.git /tmp/tremc && sudo make -C /tmp/tremc/ install && \
-echo -e "$BCor\nTransmission TUI.$ECor" && \
+echo -e "${Cor[4]}\nTransmission TUI.${Cor[0]}" && \
 echo -e "$Sussesso" || \
 echo -e "$Fracasso"
 
 #### Nerd Fonts.
 mkdir -vp "$HOME/.local/share/fonts/FiraCode"
-url1=$(wget -qO- "https://github.com/ryanoasis/nerd-fonts/releases" \
-  | sed -r '/h2 class/!d;s/^.*">(.*)<\/.*/\1/' \
-  | sed '1!d')
-wget -c "https://github.com/ryanoasis/nerd-fonts/releases/download/$url1/FiraCode.zip" -P /tmp/ && \
-atool --extract-to="$HOME/.local/share/fonts/FiraCode" /tmp/FiraCode.zip && \
-echo -e "$BCor\nNerd Fonts.$ECor" && \
+wget -c "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.tar.xz" -P /tmp/ && \
+tar -xf /tmp/FiraCode.tar.xz -C "$HOME/.local/share/fonts/FiraCode"
+echo -e "${Cor[4]}\nNerd Fonts.${Cor[0]}" && \
 echo -e "$Sussesso" || \
 echo -e "$Fracasso"
 }
 
 OpInvalido(){
 clear
-echo -e "$YCor
+echo -e "${Cor[3]}
 
   ╭────────────────────────╮
-  │$RCor   Opção desconhecida.$YCor  │
+  │${Cor[1]}   Opção desconhecida.${Cor[3]}  │
   ╰────────────────────────╯
-$ECor"
+${Cor[0]}"
 }
 
 Menu(){
-echo -e "$BCor
-  1.Sistema
-  2.Dotfiles
-$RCor
+echo -e "${Cor[4]}
+  1.Dotfiles
+  2.Sistema
+${Cor[1]}
   q.Sair
-$ECor"
+${Cor[0]}"
 read -r Resposta
 
 case "$Resposta" in
   1)
-    Sistema
+    Configs
     Menu ;;
   2)
-    Configs
+    Sistema
     Menu ;;
   q)
     exit ;;
