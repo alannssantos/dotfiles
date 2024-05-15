@@ -1,0 +1,106 @@
+#!/usr/bin/env bash
+
+transmission(){
+  # {{{ #### Transmission
+  Torrent=$(transmission-remote 192.168.0.132:9091 -l |
+    sed -r '/%|Unknown/!d
+    s/.*Verifying.*/⌛️/
+    s/.*Seeding.*/🌱/
+    s/.*Stopped.*/🔴/
+    s/.*100%.*/✅/
+    s/.*Idle.*/⌛️/
+    s/.*Unknown.*/❗/
+    s/.*Uploading.*/📤/
+    s/ .* (.*%).*Up & Down.*/📥[\1]/
+    s/ .* (.*%).*Downloading.*/📥[\1]/' |
+    sort |
+    uniq -c |
+    sed -r 's/ //g
+    s/(.*🔴.*)/#[fg=colour1]\1/
+    s/(.*❗.*)/#[fg=colour5]\1/
+    s/(.*⌛️.*)/#[fg=colour11]\1/
+    s/(.*🌱.*)/#[fg=colour71]\1/
+    s/(.*✅.*)/#[fg=colour71]\1/
+    s/(.*📤.*)/#[fg=colour71]\1/
+    s/.*(📥.*$)/#[fg=colour4]\1/' |
+    sed ':a;$!N;s/\n//;ta;' |
+    sed 's/^/#[fg=colour71]┃ /')
+  echo -n "$Torrent "
+  #### ━━━━━━━━━━━━ # }}}
+}
+
+mpcplayer() {
+  # {{{ #### Mpc Player
+  Player=$(mpc -f "[[%artist% ┃ ]%title%]|[%file$]" 2>/dev/null |
+    sed -r '/^volume:|^\[playing\]|^\[paused\]/d
+    s/(.* )┃( .*)/#[fg=colour71]┃ 🎵 \1-#[fg=colour5]\2/')
+  echo -n "$Player "
+  #### ━━━━━━━━━━ # }}}
+}
+
+cputemperature(){
+  # {{{ #### Temperatura CPU
+  Temp=$(sensors |
+    sed -r '/Package id 0:/!d
+      s/.*\+(.*)\..°C *\(.*$/\1/')
+  echo -n "#[fg=colour71]┃ #[fg=colour11]$Temp°C "
+  #### ━━━━━━━━━━━━━━━ # }}}
+}
+
+battery() {
+  Status=$(awk '{print $1}' /sys/class/power_supply/BAT*/status)
+  Percentage=$(awk '{print $1}' /sys/class/power_supply/BAT*/capacity)
+  Percentage=$(printf "%02d\n" "$Percentage")
+  Icon=("#[fg=colour1]󰂃" "#[fg=colour1]󰁺" "#[fg=colour11]󰁻" "#[fg=colour11]󰁼" "#[fg=colour71]󰁽" "#[fg=colour71]󰁾" "#[fg=colour71]󰁿" "#[fg=colour4]󰂀" "#[fg=colour4]󰂁" "#[fg=colour4]󰂂" "#[fg=colour4]󰁹")
+  IconCharging=("#[fg=colour1]󰢜" "#[fg=colour1]󰢜" "#[fg=colour11]󰂆" "#[fg=colour11]󰂇" "#[fg=colour71]󰂈" "#[fg=colour71]󰢝" "#[fg=colour71]󰂉" "#[fg=colour4]󰢞" "#[fg=colour4]󰂊" "#[fg=colour4]󰂋" "#[fg=colour4]󰂅")
+  [ "$Status" = Full ] &&
+    echo -n "#[fg=colour71]┃ ${Icon[${Percentage%[0-9]}]} $Percentage% "
+  [ "$Status" = Charging ] &&
+    echo -n "#[fg=colour71]┃ ${IconCharging[${Percentage%[0-9]}]} $Percentage% "
+  [ "$Status" = Discharging ] &&
+    echo -n "#[fg=colour71]┃ ${Icon[${Percentage%[0-9]}]} $Percentage% "
+}
+
+update() {
+  Update=$(apt list --upgradable 2>/dev/null | sed '/\//!d' | wc -l)
+  [ "$Update" = 0 ] &&
+    echo -n "" ||
+    echo -n "#[fg=colour71]┃ #[fg=colour11]Update:$Update "
+}
+
+help() {
+	echo "
+Usage: info-tmux-panel [OPTIONS]
+
+Options:                                                                                                                                               
+  General Options:                                                                                                                                     
+    -u, --update              Mostra se os pacotes do sistema estão atualizado.
+                              Para que o update funcione corretamente coloque esta linha no crontab.
+                              (*/30 * * * * root /usr/bin/apt update >/dev/null 2>&1).
+
+    -c, --cputemperature      Mostra a temperatura atual do Processador.
+    -t, --transmission        Mostra o trafego no transmission.
+    -m, --mpcplayer           Mostra a o que está tocando no MPC.
+    -b, --battery             Mostra o nivel da bateria do notebook."
+}
+
+case "$1" in
+--battery | -[Bb])
+	battery
+  ;;
+--mpcplayer | -[Mm])
+	mpcplayer
+  ;;
+--cputemperature | -[Cc])
+	cputemperature
+  ;;
+--tramsmission | -[Tt])
+	transmission
+  ;;
+--update | -[Uu])
+	update
+  ;;
+--help | *)
+	help
+	;;
+esac
