@@ -74,6 +74,13 @@ mkvsubflag() {
   done
 }
 
+livetv() {
+  Channel_Name=$(yt-dlp --skip-download "$@" --print "channel")
+  Channel_Url=$(yt-dlp --skip-download "$@" --print "channel_url")
+  yt-dlp --format "best[height<=720]" --skip-download -g "$@" > "$Channel_Name.strm"
+  yt-dlp --skip-download --write-thumbnail --playlist-items 0 --convert-thumbnails jpg --output "%(channel)s" "$Channel_Url"
+}
+
 mdtopdf() {
   base=${1##*/}
   pandoc --pdf-engine=lualatex \
