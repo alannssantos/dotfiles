@@ -8,8 +8,8 @@ Cor=("\[\033[0m\]"
   "\[\033[1;36m\]"
   "\[\033[1;37m\]")
 
-export EDITOR="nvim"
-export SUDO_EDITOR="nvim"
+export EDITOR="helix"
+export SUDO_EDITOR="helix"
 
 #### Começo da Funções git status.
 gitU() { git status 2>&1 | tee | sed '/\t/!d;/:/d' | sed '$=' | sed '/\t/d;s/^//'; }
@@ -29,7 +29,6 @@ fi
 
 #### Aliases.
 alias v='nvim'
-alias V='sudo nvim'
 alias hx='helix'
 alias ls='exa -l'
 alias mv='mv -iv'
