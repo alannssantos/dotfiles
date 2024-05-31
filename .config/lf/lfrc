@@ -3,13 +3,13 @@ set info size
 set icons true
 set drawbox true
 set preview true
-set ratios 1:3:2
+set ratios 3:2
 set dircounts true
 set ignorecase true
 set cleaner ~/.config/lf/cleaner
 set previewer ~/.config/lf/preview
 
-set rulerfmt " %d ┃ %i/%t "
+set rulerfmt "%d %i/%t"
 
 #Para ter imagem no seu terminal.
 #https://github.com/cirala/lfimg
@@ -80,8 +80,8 @@ map <c-f> fuzzyfinder
 map f filter
 
 # Basic functions
-map mk mkd
-map mf mkf
+map mk mkd Criar diretório
+map mf mkf Criar arquivo
 map dd cut
 map C clear
 map yy copy
