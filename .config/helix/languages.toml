@@ -2,3 +2,10 @@
 [[language]]
 name = "python"
 language-servers = [ "pyright" ]
+formatter = { command = 'prettier', args = ["--parser", "python"] }
+auto-format = true
+
+[[language]]
+name = "typescript"
+formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+auto-format = true
