@@ -88,11 +88,13 @@ sudo apt update && \
 sudo apt upgrade -y && \
 npm config set prefix "$HOME/.local" && \
 npm i -g pyright && \
+npm i -g prettier && \
 npm i -g bash-language-server && \
 npm i -g vscode-langservers-extracted && \
 npm i -g typescript typescript-language-server && \
 python3 -m venv "$HOME/.local" && \
 pip3 install jedi && \
+pip3 install black && \
 pip3 install yt-dlp && \
 pip3 install pyperclip && \
 pip3 install gallery-dl && \
