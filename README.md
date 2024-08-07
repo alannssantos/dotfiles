@@ -61,5 +61,5 @@ $ systemctl status bluetooth
 Use o comando `lsblk` para saber qual disco ultilizar (Cuidado para formatar o Sistema).
 
 ```bash
-sudo dd if="<destino do arquivo>" of="/dev/<drive destino>" status=progress
+sudo dd if="<destino do arquivo>" of="/dev/<drive destino>" bs=1m status=progress
 ```
