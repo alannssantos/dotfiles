@@ -55,3 +55,11 @@ $ systemctl status bluetooth
 ```
 
 #### [XFCE4 Docklike Plugin.](https://launchpad.net/~xubuntu-dev/+archive/ubuntu/extras/+packages)
+
+# Pen drive Bootável
+
+Use o comando `lsblk` para saber qual disco ultilizar (Cuidado para formatar o Sistema).
+
+```bash
+sudo dd if="<destino do arquivo>" of="/dev/<drive destino>" status=progress
+```
