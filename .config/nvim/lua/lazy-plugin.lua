@@ -45,8 +45,6 @@ require("lazy").setup({
 			"stevearc/resession.nvim", -- Optional, for persistent history
 		},
 		config = function()
-			local get_hex = require("cokeline.hlgroups").get_hl_attr
-
 			require("cokeline").setup({
 				components = {
 					{
@@ -122,14 +120,6 @@ require("lazy").setup({
 				require("telescope.builtin").oldfiles,
 				{ desc = "Fuzzy find recent files" }
 			)
-			vim.keymap.set("n", "<leader>fs", require("telescope.builtin").live_grep, { desc = "Find string in cwd" })
-			vim.keymap.set("n", "<leader>fb", require("telescope.builtin").buffers, { desc = "Find buffers" })
-			vim.keymap.set(
-				"n",
-				"<leader>fc",
-				require("telescope.builtin").grep_string,
-				{ desc = "Find string under cursor in cwd" }
-			)
 		end,
 	},
 	-- numToStr/Comment.nvim
@@ -146,7 +136,7 @@ require("lazy").setup({
 			})
 		end,
 	},
-	-- Formatter
+	-- stevearc/conform.nvim
 	{
 		"stevearc/conform.nvim",
 		config = function()
@@ -164,7 +154,19 @@ require("lazy").setup({
 			})
 		end,
 	},
-
+	-- folke/trouble.nvim
+	{
+		"folke/trouble.nvim",
+		opts = {}, -- for default options, refer to the configuration section for custom setup.
+		cmd = "Trouble",
+		keys = {
+			{
+				"<leader>d",
+				"<cmd>Trouble diagnostics toggle<cr>",
+				desc = "Diagnostics (Trouble)",
+			},
+		},
+	},
 	-- LSP Configuração
 	{
 		{
@@ -240,15 +242,8 @@ require("lazy").setup({
 					local opts = { buffer = bufnr }
 
 					vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
-					vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
-					vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
-					vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
-					vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
-					vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
-					vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
 					vim.keymap.set("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
-					vim.keymap.set({ "n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
-					vim.keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+					vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
 				end
 
 				lsp_zero.extend_lspconfig({
