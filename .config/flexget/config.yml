@@ -3,18 +3,6 @@
 # Mais informações `https://flexget.com/Plugins/transmission`.
 tasks:
   ################################################################
-  # Remove torrent depois de Upar a mesma quantidade!
-  # Limpeza:
-  #   disable: [seen, seen_info_hash]
-  #   accept_all: yes
-  #   from_transmission:
-  #     only_complete: yes
-  #   if:
-  #     - transmission_ratio < 1.0: reject
-  #   transmission:
-  #     action: remove
-
-  ################################################################
   # Animes colocados automaticamente pelo MAL(MyAnimeList).
   # Animes:
   #   discover:
@@ -46,11 +34,9 @@ tasks:
   #           - planned
   #         type: tv
   #   tvmaze_lookup: yes
-  #   transmission:
+  #   qbittorrent:
   #     host: localhost
-  #     port: 9091
-  #     username: ""
-  #     password: ""
+  #     port: 8080
   #     path: "/media/HardDisk/Jellyfin/Animes/{{series_name}}/"
 
   ################################################################
@@ -82,11 +68,9 @@ tasks:
   #             - Anime Time
   #           path: "/media/HardDisk/Jellyfin/Animes/Bleach/Season 17/"
   #   tvmaze_lookup: yes
-  #   transmission:
+  #   qbittorrent:
   #     host: localhost
-  #     port: 9091
-  #     username: ""
-  #     password: ""
+  #     port: 8080
   #     path: "/media/HardDisk/Jellyfin/Animes/{{series_name}}/"
 
   ################################################################
@@ -114,11 +98,9 @@ tasks:
   #       - "Castlevania: Nocturne":
   #           begin: S01E01
   #   tvmaze_lookup: yes
-  #   transmission:
+  #   qbittorrent:
   #     host: localhost
-  #     port: 9091
-  #     username: ""
-  #     password: ""
+  #     port: 8080
   #     path: "/media/HardDisk/Jellyfin/Series/{{series_name}}/Season {{series_season}}/"
 
   ################################################################
@@ -138,9 +120,7 @@ tasks:
   #     - 1080p
   #     - bluray|webrip
   #   imdb_lookup: yes
-  #   transmission:
+  #   qbittorrent:
   #     host: localhost
-  #     port: 9091
-  #     username: ""
-  #     password: ""
+  #     port: 8080
   #     path: /media/HardDisk/Plex/Filmes
