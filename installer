@@ -30,120 +30,112 @@ Fracasso="${Cor[3]}
 ${Cor[0]}"
 
 ## Funções
-Sistema(){
-#### Aplicativos e Drivers Pos-instalação.
-sudo apt install lf \
-  bat \
-  exa \
-  mpv \
-  npm \
-  cups \
-  curl \
-  lynx \
-  peek \
-  slop \
-  tmux \
-  atool \
-  cmake \
-  sshfs \
-  xclip \
-  mcomix \
-  xinput \
-  blueman \
-  concalc \
-  gparted \
-  w3m-img \
-  xdotool \
-  xsensors \
-  arc-theme \
-  keepassxc \
-  pkg-config \
-  streamlink \
-  zlib1g-dev \
-  simple-scan \
-  python3-dev \
-  libxtst-dev \
-  font-manager \
-  python3-full \
-  libgtk-3-dev \
-  gvfs-backends \
-  poppler-utils \
-  fonts-firacode \
-  network-manager \
-  libfreetype6-dev \
-  libxkbcommon-dev \
-  gnome-packagekit \
-  paper-icon-theme \
-  ffmpegthumbnailer \
-  libfontconfig1-dev \
-  libxcb-xfixes0-dev \
-  papirus-icon-theme \
-  python3-libtorrent \
-  printer-driver-all \
-  breeze-cursor-theme \
-  libjpeg62-turbo-dev \
-  libimage-exiftool-perl -y && \
-
-sudo apt update && \
-sudo apt upgrade -y && \
-npm config set prefix "$HOME/.local" && \
-npm i -g pyright && \
-npm i -g prettier && \
-npm i -g bash-language-server && \
-npm i -g vscode-langservers-extracted && \
-npm i -g typescript typescript-language-server && \
-python3 -m venv "$HOME/.local" && \
-pip3 install jedi && \
-pip3 install black && \
-pip3 install yt-dlp && \
-pip3 install pyperclip && \
-pip3 install gallery-dl && \
-pip3 install transmission-rpc && \
-echo -e "${Cor[4]}\nSistema!${Cor[0]}" && \
-echo -e "$Sussesso" || \
-echo -e "$Fracasso"
+Sistema() {
+  #### Aplicativos e Drivers Pos-instalação.
+  sudo apt install lf \
+    bat \
+    exa \
+    mpv \
+    npm \
+    cups \
+    curl \
+    lynx \
+    peek \
+    slop \
+    tmux \
+    atool \
+    cmake \
+    sshfs \
+    xclip \
+    mcomix \
+    xinput \
+    blueman \
+    concalc \
+    gparted \
+    w3m-img \
+    xdotool \
+    xsensors \
+    arc-theme \
+    keepassxc \
+    pkg-config \
+    streamlink \
+    zlib1g-dev \
+    simple-scan \
+    python3-dev \
+    libxtst-dev \
+    font-manager \
+    python3-full \
+    libgtk-3-dev \
+    gvfs-backends \
+    poppler-utils \
+    fonts-firacode \
+    network-manager \
+    libfreetype6-dev \
+    libxkbcommon-dev \
+    gnome-packagekit \
+    paper-icon-theme \
+    ffmpegthumbnailer \
+    libfontconfig1-dev \
+    libxcb-xfixes0-dev \
+    papirus-icon-theme \
+    python3-libtorrent \
+    printer-driver-all \
+    breeze-cursor-theme \
+    libjpeg62-turbo-dev \
+    libimage-exiftool-perl -y &&
+    sudo apt update &&
+    sudo apt upgrade -y &&
+    npm config set prefix "$HOME/.local" &&
+    python3 -m venv "$HOME/.local" &&
+    pip3 install yt-dlp &&
+    pip3 install pyperclip &&
+    pip3 install comicthumb &&
+    pip3 install gallery-dl &&
+    echo -e "${Cor[4]}\nSistema!${Cor[0]}" &&
+    echo -e "$Sussesso" ||
+    echo -e "$Fracasso"
 }
 
-Configs(){
-#### Dependencias.
-sudo apt install cmake && \
+Configs() {
+  #### Dependencias.
+  sudo apt install cmake &&
 
-#### Copiar Dotfiles e Plugins.
-cp -r -v .config .irssi .bash_aliases .nanorc .tmux.conf .Xresources ~/ && \
-echo -e "${Cor[4]}\nCopiando arquivos de configuração...${Cor[0]}" && \
-echo -e "$Sussesso" || \
-echo -e "$Fracasso"
+    #### Copiar Dotfiles e Plugins.
+    cp -r -v .config .irssi .bash_aliases .nanorc .tmux.conf .Xresources ~/ &&
+    echo -e "${Cor[4]}\nCopiando arquivos de configuração...${Cor[0]}" &&
+    echo -e "$Sussesso" ||
+    echo -e "$Fracasso"
 
-#### Preview on LF.
-git clone https://github.com/alannssantos/lfimg.git /tmp/lfimg && make -C /tmp/lfimg/ install && \
-echo -e "${Cor[4]}\nPreview on LF.${Cor[0]}" && \
-echo -e "$Sussesso" || \
-echo -e "$Fracasso"
+  #### Preview on LF.
+  git clone https://github.com/alannssantos/lfimg.git /tmp/lfimg && make -C /tmp/lfimg/ install &&
+    echo -e "${Cor[4]}\nPreview on LF.${Cor[0]}" &&
+    echo -e "$Sussesso" ||
+    echo -e "$Fracasso"
 
-#### Fuzzy Finder.
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install --all && \
-echo -e "${Cor[4]}\nFuzzy Finder.${Cor[0]}" && \
-echo -e "$Sussesso" || \
-echo -e "$Fracasso"
+  #### Fuzzy Finder.
+  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install --all &&
+    echo -e "${Cor[4]}\nFuzzy Finder.${Cor[0]}" &&
+    echo -e "$Sussesso" ||
+    echo -e "$Fracasso"
 
-#### Transmission TUI.
-git clone https://github.com/tremc/tremc.git /tmp/tremc && sudo make -C /tmp/tremc/ install && \
-echo -e "${Cor[4]}\nTransmission TUI.${Cor[0]}" && \
-echo -e "$Sussesso" || \
-echo -e "$Fracasso"
+  #### Transmission TUI.
+  git clone https://github.com/tremc/tremc.git /tmp/tremc && sudo make -C /tmp/tremc/ install &&
+    echo -e "${Cor[4]}\nTransmission TUI.${Cor[0]}" &&
+    echo -e "$Sussesso" ||
+    echo -e "$Fracasso"
 
-#### Nerd Fonts.
-mkdir -vp "$HOME/.local/share/fonts/FiraCode"
-wget -c "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.tar.xz" -P /tmp/ && \
-tar -xf /tmp/FiraCode.tar.xz -C "$HOME/.local/share/fonts/FiraCode"
-echo -e "${Cor[4]}\nNerd Fonts.${Cor[0]}" && \
-echo -e "$Sussesso" || \
-echo -e "$Fracasso"
+  #### Nerd Fonts.
+  mkdir -vp "$HOME/.local/share/fonts/FiraCode"
+  wget -c "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.tar.xz" -P /tmp/ &&
+    tar -xf /tmp/FiraCode.tar.xz -C "$HOME/.local/share/fonts/FiraCode"
+  echo -e "${Cor[4]}\nNerd Fonts.${Cor[0]}" &&
+    echo -e "$Sussesso" ||
+    echo -e "$Fracasso"
 }
 
-OpInvalido(){
-clear
-echo -e "${Cor[3]}
+OpInvalido() {
+  clear
+  echo -e "${Cor[3]}
 
   ╭────────────────────────╮
   │${Cor[1]}   Opção desconhecida.${Cor[3]}  │
@@ -151,27 +143,31 @@ echo -e "${Cor[3]}
 ${Cor[0]}"
 }
 
-Menu(){
-echo -e "${Cor[4]}
+Menu() {
+  echo -e "${Cor[4]}
   1.Dotfiles
   2.Sistema
 ${Cor[1]}
   q.Sair
 ${Cor[0]}"
-read -r Resposta
+  read -r Resposta
 
-case "$Resposta" in
+  case "$Resposta" in
   1)
     Configs
-    Menu ;;
+    Menu
+    ;;
   2)
     Sistema
-    Menu ;;
+    Menu
+    ;;
   q)
-    exit ;;
+    exit
+    ;;
   *)
     OpInvalido
-    Menu ;;
-esac
+    Menu
+    ;;
+  esac
 }
 Menu
