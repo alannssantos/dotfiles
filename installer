@@ -106,6 +106,12 @@ Configs() {
     echo -e "$Sussesso" ||
     echo -e "$Fracasso"
 
+  #### AppImage Package (AppMan)
+  wget https://raw.githubusercontent.com/ivan-hc/AM/main/APP-MANAGER -O ~/.local/bin/appman && chmod a+x ~/.local/bin/appman &&
+    echo -e "${Cor[4]}\nAppImage Package (AppMan).${Cor[0]}" &&
+    echo -e "$Sussesso" ||
+    echo -e "$Fracasso"
+
   #### Preview on LF.
   git clone https://github.com/alannssantos/lfimg.git /tmp/lfimg && make -C /tmp/lfimg/ install &&
     echo -e "${Cor[4]}\nPreview on LF.${Cor[0]}" &&
