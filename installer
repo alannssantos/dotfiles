@@ -47,6 +47,7 @@ Sistema() {
     cmake \
     sshfs \
     xclip \
+    zsync \
     mcomix \
     xinput \
     blueman \
