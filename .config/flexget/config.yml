@@ -41,67 +41,79 @@ tasks:
 
   ################################################################
   # Animes colocados manualmente
-  # Animes:
-  #   discover:
-  #     what:
-  #       - next_series_episodes: yes
-  #     from:
-  #       - nyaa:
-  #           category: "anime"
-  #           filter: "all"
-  #     interval: 15 minutes
-  #     release_estimations: ignore
-  #   series:
-  #     settings:
-  #       shows:
-  #         from_group:
-  #           - PT-BR
-  #           - POR-BR
-  #         quality: 720p-1080p
-  #         propers: 2 days
-  #     shows:
-  #       - "Zom 100 - Zombie ni Naru made ni Shitai 100 no Koto":
-  #           begin: 01
-  #       - "Bleach: Thousand-Year Blood War":
-  #           begin: 15
-  #           from_group:
-  #             - Anime Time
-  #           path: "/media/HardDisk/Jellyfin/Animes/Bleach/Season 17/"
-  #   tvmaze_lookup: yes
-  #   qbittorrent:
-  #     host: localhost
-  #     port: 8080
-  #     path: "/media/HardDisk/Jellyfin/Animes/{{series_name}}/"
+  Animes:
+    discover:
+      what:
+        - next_series_episodes: yes
+      from:
+        - nyaa:
+            category: "anime"
+            filter: "all"
+      interval: 15 minutes
+      release_estimations: ignore
+    series:
+      settings:
+        shows:
+          quality: 720p-1080p
+          propers: 2 days
+          from_group:
+            - Multiple Subtitle
+            - Multi-Subs
+      shows:
+        # Fall
+        - "Dan Da Dan":
+            begin: 07
+            from_group:
+              - Erai-raws
+        - "MF Ghost 2nd Season":
+            begin: 06
+            path: "/media/HardDisk/Jellyfin/Animes/MF Ghost/Season 02/"
+            from_group:
+              - DKB
+    tvmaze_lookup: yes
+    qbittorrent:
+      host: localhost
+      port: 8080
+      path: "/media/HardDisk/Jellyfin/Animes/{{series_name}}/"
+      label: animes
+      tags:
+        - flexget
 
   ################################################################
-  # Series:
-  #   discover:
-  #     what:
-  #       - next_series_episodes: yes
-  #     from:
-  #       - magnetdl: yes
-  #     interval: 15 minutes
-  #     release_estimations: loose
-  #   content_size:
-  #     min: 1 GiB
-  #     max: 5 GiB
-  #     strict: no
-  #   series:
-  #     settings:
-  #       shows:
-  #         from_group:
-  #           - TGx
-  #         quality: 720p-1080p
-  #         propers: 2 days
-  #         season_packs: yes
-  #     shows:
-  #       - "Castlevania: Nocturne":
-  #           begin: S01E01
-  #   tvmaze_lookup: yes
-  #   qbittorrent:
-  #     host: localhost
-  #     port: 8080
-  #     path: "/media/HardDisk/Jellyfin/Series/{{series_name}}/Season {{series_season}}/"
+  Series:
+    discover:
+      what:
+        - next_series_episodes: yes
+      from:
+        - 1337x: yes
+      interval: 15 minutes
+      release_estimations: loose
+    content_size:
+      min: 700 MiB
+      max: 5 GiB
+      strict: no
+    series:
+      settings:
+        shows:
+          from_group:
+            - TGx
+          quality: 1080p
+          propers: 2 days
+          season_packs: yes
+      shows:
+        - "Gen V":
+            begin: S02E01
+        - "From":
+            exact: yes
+            begin: S04E01
+    tvmaze_lookup: yes
+    qbittorrent:
+      host: localhost
+      port: 8080
+      path: "/media/HardDisk/Jellyfin/Series/{{series_name}}/Season {{series_season}}/"
+      label: tv-shows
+      tags:
+        - flexget
 
   ################################################################
   # Filmes adcionado com `flexget movie_list add (nome do filme|id_imdb)`
