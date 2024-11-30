@@ -108,7 +108,7 @@ Configs() {
     echo -e "$Fracasso"
 
   #### AppImage Package (AppMan)
-  wget https://raw.githubusercontent.com/ivan-hc/AM/main/APP-MANAGER -O ~/.local/bin/appman && chmod a+x ~/.local/bin/appman &&
+  wget https://raw.githubusercontent.com/ivan-hc/AM/main/APP-MANAGER -P ~/.local/bin/appman && chmod a+x ~/.local/bin/appman &&
     echo -e "${Cor[4]}\nAppImage Package (AppMan).${Cor[0]}" &&
     echo -e "$Sussesso" ||
     echo -e "$Fracasso"
