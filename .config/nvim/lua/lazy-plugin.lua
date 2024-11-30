@@ -87,6 +87,23 @@ require("lazy").setup({
 			require("ibl").setup()
 		end,
 	},
+	-- oil.nvim
+	{
+		"stevearc/oil.nvim",
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+		},
+		config = function()
+			require("oil").setup({
+				columns = { "icon" },
+				keymap = {
+					["C-h"] = false,
+					["M-h"] = "actions.select_split",
+				},
+			})
+			vim.keymap.set("n", "<leader>e", require("oil").toggle_float)
+		end,
+	},
 	-- which-key.nvim
 	{
 		"folke/which-key.nvim",
