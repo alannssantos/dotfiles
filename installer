@@ -99,7 +99,7 @@ Sistema() {
 
 Configs() {
   #### Dependencias.
-  sudo apt install cmake &&
+  sudo apt install cmake curl wget &&
 
     #### Copiar Dotfiles e Plugins.
     cp -r -v .config .irssi .bash_aliases .nanorc .tmux.conf .Xresources ~/ &&
@@ -108,7 +108,8 @@ Configs() {
     echo -e "$Fracasso"
 
   #### AppImage Package (AppMan)
-  wget https://raw.githubusercontent.com/ivan-hc/AM/main/APP-MANAGER -P ~/.local/bin/appman && chmod a+x ~/.local/bin/appman &&
+  curl https://raw.githubusercontent.com/ivan-hc/AM/main/APP-MANAGER --create-dirs --output ~/.local/bin/appman &&
+    chmod a+x ~/.local/bin/appman &&
     echo -e "${Cor[4]}\nAppImage Package (AppMan).${Cor[0]}" &&
     echo -e "$Sussesso" ||
     echo -e "$Fracasso"
