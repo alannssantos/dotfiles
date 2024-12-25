@@ -1,0 +1,163 @@
+# vim:fileencoding=utf-8:foldmethod=marker
+
+# : Manager {{{
+
+[manager]
+cwd = { fg = "#a7c080" } # Soft Green
+
+# Hovered
+hovered = { fg = "#2c313a", bg = "#d3c6aa" } # Dark background, Soft beige foreground
+preview_hovered = { underline = true }
+
+# Find
+find_keyword = { fg = "#d3c6aa", italic = true }                # Soft beige
+find_position = { fg = "#e8a2af", bg = "reset", italic = true } # Soft red
+
+# Marker
+marker_selected = { fg = "#a7c080", bg = "#a7c080" } # Soft Green
+marker_copied = { fg = "#d3c6aa", bg = "#d3c6aa" }   # Soft beige
+marker_cut = { fg = "#e8a2af", bg = "#e8a2af" }      # Soft red
+
+# Tab
+tab_active = { fg = "#2c313a", bg = "#d3c6aa" }   # Dark background, Soft beige foreground
+tab_inactive = { fg = "#a7c080", bg = "#434c5e" } # Soft Green on muted dark
+tab_width = 1
+
+# Border
+border_symbol = "│"
+border_style = { fg = "#687d68" } # Muted Green
+
+# Highlighting
+syntect_theme = "~/.config/bat/themes/Everforest-Soft.tmTheme"
+
+# : }}}
+
+# : Mode {{{
+
+[mode]
+
+normal_main = { fg = "#2c313a", bg = "#d3c6aa", bold = true } # Dark background, Soft beige foreground
+normal_alt  = { fg = "#d3c6aa", bg = "#434c5e" }
+
+# Select mode
+select_main = { fg = "#2c313a", bg = "#a7c080", bold = true } # Dark background, Soft Green foreground
+select_alt  = { fg = "#a7c080", bg = "#434c5e" }
+
+# Unset mode
+unset_main = { fg = "#2c313a", bg = "#e8a2af", bold = true }  # Dark background, Soft red foreground
+unset_alt  = { fg = "#e8a2af", bg = "#434c5e" }
+
+# : }}}
+
+# : Status {{{
+
+[status]
+separator_open = ""
+separator_close = ""
+
+# Progress
+progress_label = { fg = "#ffffff", bold = true }
+progress_normal = { fg = "#d3c6aa", bg = "#434c5e" } # Soft beige on muted dark
+progress_error = { fg = "#e8a2af", bg = "#434c5e" }  # Soft red on muted dark
+
+# Permissions
+perm_type = { fg = "#d3c6aa" } # Soft beige
+perm_read = { fg = "#d3c6aa" } # Soft beige
+perm_write = { fg = "#e8a2af" } # Soft red
+perm_exec = { fg = "#a7c080" } # Soft Green
+perm_sep = { fg = "#687d68" } # Muted Green
+
+# : }}}
+
+# : Input {{{
+
+[input]
+border = { fg = "#d3c6aa" }    # Soft beige
+title = {}
+value = {}
+selected = { reversed = true }
+
+# : }}}
+
+# : Completion {{{
+
+[completion]
+border = { fg = "#d3c6aa" }    # Soft beige
+
+# : }}}
+
+# : Pick {{{
+
+[pick]
+border = { fg = "#d3c6aa" } # Soft beige
+active = { fg = "#e8a2af" } # Soft red
+inactive = {}
+
+# : }}}
+
+# : Tasks {{{
+
+[tasks]
+border = { fg = "#d3c6aa" }    # Soft beige
+title = {}
+hovered = { underline = true }
+
+# : }}}
+
+# : Which {{{
+
+[which]
+mask = { bg = "#2c313a" }            # Dark background
+cand = { fg = "#a7c080" }            # Soft Green
+rest = { fg = "#d3c6aa" }            # Soft beige
+desc = { fg = "#e8a2af" }            # Soft red
+separator = "  "
+separator_style = { fg = "#434c5e" } # Muted dark
+
+# : }}}
+
+# : Help {{{
+
+[help]
+on = { fg = "#e8a2af" }                     # Soft red
+run = { fg = "#a7c080" }                   # Soft Green
+desc = { fg = "#d3c6aa" }                   # Soft beige
+hovered = { bg = "#434c5e", bold = true }   # Muted dark background
+footer = { fg = "#2c313a", bg = "#d3c6aa" } # Dark background, Soft beige foreground
+
+# : }}}
+
+# : Notify {{{
+
+[notify]
+title_info  = { fg = "#a7c080" }
+title_warn  = { fg = "#d3c6aa" }
+title_error = { fg = "#e8a2af" }
+
+# : }}}
+
+# : File-specific styles {{{
+
+[filetype]
+
+rules = [
+  # Images
+  { mime = "image/*", fg = "#DBBC7F" }, # Soft Green
+
+  # Media
+  { mime = "{audio,video}/*", fg = "#e8a2af" },
+
+  # Archives
+  { mime = "application/*zip", fg = "#A7C080", bold = true },
+  { mime = "application/x-{tar,bzip*,7z-compressed,xz,rar}", fg = "#A7C080", bold = true},
+
+  # Documents
+  { mime = "application/{pdf,doc,rtf}", fg = "#E67E80" },
+
+  # Fallback
+  { name = "*", fg = "#d3c6aa" },  # Soft beige
+  { name = "*/", fg = "#7FBBB3", bold = true }, # Soft blue
+]
+
+# : }}}
+
