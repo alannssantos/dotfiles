@@ -8,8 +8,8 @@ Cor=("\[\033[0m\]"
   "\[\033[1;36m\]"
   "\[\033[1;37m\]")
 
-export EDITOR="helix"
-export SUDO_EDITOR="helix"
+export EDITOR="nvim"
+export SUDO_EDITOR="nvim"
 
 #### Começo da Funções git status.
 gitU() { git status 2>&1 | tee | sed '/\t/!d;/:/d' | sed '$=' | sed '/\t/d;s/^//'; }
@@ -48,7 +48,7 @@ hideinimage() { cat "$@" >"copy_$1"; }
 ssh-tmux(){ ssh "$@" -t 'tmux new -As0'; }
 cue2chd() { chdman createcd -i "$1" -o "${1%.*}.chd"; }
 chd2cue() { chdman extractcd -i "$1" -o "${1%.*}.cue"; }
-finder() { command -v lfrun >/dev/null && lfrun "$(fzf -e | xargs -r -0)" || lf "$(fzf -e | xargs -r -0)"; }
+finder() { y "$(fzf -e | xargs -r -0)"; }
 mpv-yt() { nohup mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-60 "$@" >/dev/null 2>&1 & }
 justread() { readable "$@" -p html-title,html-content >/tmp/readable.html && lynx -image_links /tmp/readable.html; }
 mpv-stream() { nohup streamlink -p "mpv --cache 2048 --ontop --no-border --force-window --autofit=500x280 --geometry=-15-60" "$1" best >/dev/null 2>&1 & }
@@ -91,6 +91,15 @@ mdtopdf() {
     -V 'geometry:margin=2cm' \
     "$1" -o "${base%.*}".pdf \
     ;
+}
+
+function y() {
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+  yazi "$@" --cwd-file="$tmp"
+  if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+    builtin cd -- "$cwd"
+  fi
+  rm -f -- "$tmp"
 }
 
 #### Exports.
