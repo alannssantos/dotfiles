@@ -80,28 +80,28 @@ require("lazy").setup({
 			})
 		end,
 	},
-	-- indent-blankline.nvim
+	-- mini.nvim
 	{
-		"lukas-reineke/indent-blankline.nvim",
+		"echasnovski/mini.nvim",
+		version = "*",
 		config = function()
-			require("ibl").setup()
-		end,
-	},
-	-- oil.nvim
-	{
-		"stevearc/oil.nvim",
-		dependencies = {
-			"nvim-tree/nvim-web-devicons",
-		},
-		config = function()
-			require("oil").setup({
-				columns = { "icon" },
-				keymap = {
-					["C-h"] = false,
-					["M-h"] = "actions.select_split",
+			require("mini.animate").setup()
+			require("mini.statusline").setup()
+			require("mini.indentscope").setup()
+			require("mini.comment").setup({
+				mappings = {
+					comment_line = "<leader>c",
+					comment_visual = "<leader>c",
 				},
 			})
-			vim.keymap.set("n", "<leader>e", require("oil").toggle_float)
+			require("mini.files").setup({
+				windows = {
+					preview = true,
+					width_focus = 30,
+					width_preview = 30,
+				},
+			})
+			vim.keymap.set("n", "<leader>e", ":lua MiniFiles.open()<CR>")
 		end,
 	},
 	-- which-key.nvim
@@ -137,20 +137,6 @@ require("lazy").setup({
 				require("telescope.builtin").oldfiles,
 				{ desc = "Fuzzy find recent files" }
 			)
-		end,
-	},
-	-- numToStr/Comment.nvim
-	{
-		"numToStr/Comment.nvim",
-		config = function()
-			require("Comment").setup({
-				toggler = {
-					line = "<leader>c",
-				},
-				opleader = {
-					line = "<leader>c",
-				},
-			})
 		end,
 	},
 	-- stevearc/conform.nvim
