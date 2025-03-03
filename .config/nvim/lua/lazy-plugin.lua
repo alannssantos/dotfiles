@@ -41,7 +41,6 @@ require("lazy").setup({
 		"willothy/nvim-cokeline",
 		dependencies = {
 			"nvim-lua/plenary.nvim", -- Required for v0.4.0+
-			"nvim-tree/nvim-web-devicons", -- If you want devicons
 			"stevearc/resession.nvim", -- Optional, for persistent history
 		},
 		config = function()
@@ -85,7 +84,8 @@ require("lazy").setup({
 		"echasnovski/mini.nvim",
 		version = "*",
 		config = function()
-			require("mini.animate").setup()
+			require("mini.extra").setup()
+			require("mini.pairs").setup()
 			require("mini.statusline").setup()
 			require("mini.indentscope").setup()
 			require("mini.comment").setup({
@@ -98,11 +98,22 @@ require("lazy").setup({
 				windows = {
 					preview = true,
 					width_focus = 30,
-					width_preview = 30,
+					width_preview = 60,
 				},
 			})
+			require("mini.pick").setup()
+			vim.keymap.set("n", "<leader>ff", ":Pick explorer<CR>")
+			vim.keymap.set("n", "<leader>fr", ":Pick oldfiles<CR>")
 			vim.keymap.set("n", "<leader>e", ":lua MiniFiles.open()<CR>")
 		end,
+	},
+	-- render markdown
+	{
+		"MeanderingProgrammer/render-markdown.nvim",
+		dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" }, -- if you use the mini.nvim suite
+		---@module 'render-markdown'
+		---@type render.md.UserConfig
+		opts = {},
 	},
 	-- which-key.nvim
 	{
@@ -111,32 +122,6 @@ require("lazy").setup({
 		init = function()
 			vim.o.timeout = true
 			vim.o.timeoutlen = 500
-		end,
-	},
-	-- telescope.nvim
-	{
-		"nvim-telescope/telescope.nvim",
-		branch = "0.1.x",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-			"nvim-tree/nvim-web-devicons",
-		},
-		config = function()
-			require("telescope").setup({})
-			-- set keymaps
-			vim.keymap.set(
-				"n",
-				"<leader>ff",
-				require("telescope.builtin").find_files,
-				{ desc = "Fuzzy find files in cwd" }
-			)
-			vim.keymap.set(
-				"n",
-				"<leader>fr",
-				require("telescope.builtin").oldfiles,
-				{ desc = "Fuzzy find recent files" }
-			)
 		end,
 	},
 	-- stevearc/conform.nvim
