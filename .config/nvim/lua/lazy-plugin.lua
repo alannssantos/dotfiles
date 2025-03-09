@@ -84,6 +84,7 @@ require("lazy").setup({
 		"echasnovski/mini.nvim",
 		version = "*",
 		config = function()
+			require("mini.pick").setup()
 			require("mini.extra").setup()
 			require("mini.pairs").setup()
 			require("mini.statusline").setup()
@@ -101,10 +102,53 @@ require("lazy").setup({
 					width_preview = 60,
 				},
 			})
-			require("mini.pick").setup()
-			vim.keymap.set("n", "<leader>ff", ":Pick explorer<CR>")
-			vim.keymap.set("n", "<leader>fr", ":Pick oldfiles<CR>")
-			vim.keymap.set("n", "<leader>e", ":lua MiniFiles.open()<CR>")
+			require("mini.clue").setup({
+				triggers = {
+					-- Leader triggers
+					{ mode = "n", keys = "<Leader>" },
+					{ mode = "x", keys = "<Leader>" },
+
+					-- Built-in completion
+					{ mode = "i", keys = "<C-x>" },
+
+					-- `g` key
+					{ mode = "n", keys = "g" },
+					{ mode = "x", keys = "g" },
+
+					-- Marks
+					{ mode = "n", keys = "'" },
+					{ mode = "n", keys = "`" },
+					{ mode = "x", keys = "'" },
+					{ mode = "x", keys = "`" },
+
+					-- Registers
+					{ mode = "n", keys = '"' },
+					{ mode = "x", keys = '"' },
+					{ mode = "i", keys = "<C-r>" },
+					{ mode = "c", keys = "<C-r>" },
+
+					-- Window commands
+					{ mode = "n", keys = "<C-w>" },
+
+					-- `z` key
+					{ mode = "n", keys = "z" },
+					{ mode = "x", keys = "z" },
+				},
+
+				clues = {
+					-- Enhance this by adding descriptions for <Leader> mapping groups
+					require("mini.clue").gen_clues.builtin_completion(),
+					require("mini.clue").gen_clues.g(),
+					require("mini.clue").gen_clues.marks(),
+					require("mini.clue").gen_clues.registers(),
+					require("mini.clue").gen_clues.windows(),
+					require("mini.clue").gen_clues.z(),
+				},
+			})
+			vim.keymap.set("n", "<leader>fr", ":Pick oldfiles<CR>", { desc = "Arquivos recentes" })
+			vim.keymap.set("n", "<leader>fd", ":Pick diagnostic<CR>", { desc = "Diagnosticos LSP" })
+			vim.keymap.set("n", "<leader>ff", ":Pick explorer<CR>", { desc = "Pesquisador de Arquivos" })
+			vim.keymap.set("n", "<leader>e", ":lua MiniFiles.open()<CR>", { desc = "Navegador de Arquivos" })
 		end,
 	},
 	-- render markdown
@@ -114,15 +158,6 @@ require("lazy").setup({
 		---@module 'render-markdown'
 		---@type render.md.UserConfig
 		opts = {},
-	},
-	-- which-key.nvim
-	{
-		"folke/which-key.nvim",
-		event = "VeryLazy",
-		init = function()
-			vim.o.timeout = true
-			vim.o.timeoutlen = 500
-		end,
 	},
 	-- stevearc/conform.nvim
 	{
@@ -141,19 +176,6 @@ require("lazy").setup({
 				},
 			})
 		end,
-	},
-	-- folke/trouble.nvim
-	{
-		"folke/trouble.nvim",
-		opts = {}, -- for default options, refer to the configuration section for custom setup.
-		cmd = "Trouble",
-		keys = {
-			{
-				"<leader>d",
-				"<cmd>Trouble diagnostics toggle<cr>",
-				desc = "Diagnostics (Trouble)",
-			},
-		},
 	},
 	-- LSP Configuração
 	{
@@ -224,16 +246,31 @@ require("lazy").setup({
 				{ "williamboman/mason-lspconfig.nvim" },
 			},
 			config = function()
-				local lsp_zero = require("lsp-zero")
-
 				local lsp_attach = function(client, bufnr)
 					local opts = { buffer = bufnr }
-
 					vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
 					vim.keymap.set("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
 					vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
+					vim.keymap.set("n", "<leader>d", "<cmd>lua vim.diagnostic.open_float()<cr>", opts)
 				end
 
+				vim.diagnostic.config({
+					virtual_text = {
+						-- source = "always",  -- Or "if_many"
+						prefix = "●", -- Could be '■', '▎', 'x'
+					},
+					severity_sort = true,
+					float = {
+						source = "always", -- Or "if_many"
+					},
+				})
+				local signs = { Error = "●", Warn = "●", Hint = "●", Info = "●" }
+				for type, icon in pairs(signs) do
+					local hl = "DiagnosticSign" .. type
+					vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+				end
+
+				local lsp_zero = require("lsp-zero")
 				lsp_zero.extend_lspconfig({
 					sign_text = true,
 					lsp_attach = lsp_attach,
