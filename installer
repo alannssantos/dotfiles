@@ -56,6 +56,7 @@ Sistema() {
     w3m-img \
     xdotool \
     xsensors \
+    alacritty \
     arc-theme \
     keepassxc \
     pkg-config \
