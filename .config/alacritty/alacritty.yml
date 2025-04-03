@@ -61,7 +61,7 @@ window:
   #
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
-  startup_mode: Maximized
+  startup_mode: Fullscreen
 
   # Window title
   title: Alacritty
@@ -186,7 +186,7 @@ font:
     style: Bold Italic
 
   # Point size
-  size: 10.0
+  size: 11.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -224,8 +224,8 @@ font:
 colors:
   # Default colors
   primary:
-    background: "0x2D353B"
-    foreground: "0xABB2BF"
+    background: "0x2d353b"
+    foreground: "0xd3c6aa"
 
     # Bright and dim foreground colors
     #
@@ -249,43 +249,43 @@ colors:
   # background is unset, selection color will be the inverse of the cell colors.
   # If only text is unset the cell text color will remain the same.
   selection:
-    text: "0xbbc2cf"
+    text: "0xe67e80"
 
   # Normal colors
   normal:
-    black: "0x2D2D2D"
-    red: "0xF2777A"
-    green: "0x99CC99"
-    yellow: "0xFFCC66"
-    blue: "0x6699CC"
-    magenta: "0xCC99CC"
-    cyan: "0x66CCCC"
-    white: "0xD3D0C8"
+    black:   "0x475258"
+    red:     "0xe67e80"
+    green:   "0xa7c080"
+    yellow:  "0xdbbc7f"
+    blue:    "0x7fbbb3"
+    magenta: "0xd699b6"
+    cyan:    "0x83c092"
+    white:   "0xd3c6aa"
 
   # Bright colors
   bright:
-    black: "0x2D2D2D"
-    red: "0xF2777A"
-    green: "0x99CC99"
-    yellow: "0xFFCC66"
-    blue: "0x6699CC"
-    magenta: "0xCC99CC"
-    cyan: "0x66CCCC"
-    white: "0xF2F0EC"
+    black:   "0x475258"
+    red:     "0xe67e80"
+    green:   "0xa7c080"
+    yellow:  "0xdbbc7f"
+    blue:    "0x7fbbb3"
+    magenta: "0xd699b6"
+    cyan:    "0x83c092"
+    white:   "0xd3c6aa"
 
   # Dim colors
   #
   # If the dim colors are not set, they will be calculated automatically based
   # on the `normal` colors.
   dim:
-    black:   '0x000000'
-    red:     '0x8c3336'
-    green:   '0x7a8530'
-    yellow:  '0x97822e'
-    blue:    '0x506d8f'
-    magenta: '0x80638e'
-    cyan:    '0x497e7a'
-    white:   '0x9a9a9a'
+    black:   "0x475258"
+    red:     "0xe67e80"
+    green:   "0xa7c080"
+    yellow:  "0xdbbc7f"
+    blue:    "0x7fbbb3"
+    magenta: "0xd699b6"
+    cyan:    "0x83c092"
+    white:   "0xd3c6aa"
 
   # Indexed Colors
   #
@@ -363,11 +363,11 @@ colors:
 #   - (macOS) /bin/bash --login
 #   - (Linux/BSD) user login shell
 #   - (Windows) powershell
-#shell:
-  #program: /bin/tmux
-  #args:
-    #- new
-    #- -As0
+# shell:
+#   program: /bin/tmux
+#   args:
+#     - new
+#     - -As0
 
 # Startup directory
 #
