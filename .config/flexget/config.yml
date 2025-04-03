@@ -57,8 +57,7 @@ tasks:
           quality: 720p-1080p
           propers: 2 days
           from_group:
-            - Multiple Subtitle
-            - Multi-Subs
+            - DKB
       shows:
         # Fall
         - "Dan Da Dan":
@@ -70,33 +69,35 @@ tasks:
             path: "/media/HardDisk/Jellyfin/Animes/MF Ghost/Season 02/"
             from_group:
               - DKB
-    tvmaze_lookup: yes
+    thetvdb_lookup: yes
     qbittorrent:
       host: localhost
       port: 8080
       path: "/media/HardDisk/Jellyfin/Animes/{{series_name}}/"
       label: animes
       tags:
-        - flexget
+        - flexget-animes
 
   ################################################################
   Series:
     discover:
       what:
+        - next_series_seasons: yes
         - next_series_episodes: yes
       from:
         - 1337x: yes
       interval: 15 minutes
       release_estimations: loose
     content_size:
-      min: 700 MiB
-      max: 5 GiB
+      min: 900 MiB
       strict: no
     series:
       settings:
         shows:
           from_group:
             - TGx
+            - FLUX
+            - TURG
           quality: 1080p
           propers: 2 days
           season_packs: yes
@@ -106,14 +107,14 @@ tasks:
         - "From":
             exact: yes
             begin: S04E01
-    tvmaze_lookup: yes
+    thetvdb_lookup: yes
     qbittorrent:
       host: localhost
       port: 8080
       path: "/media/HardDisk/Jellyfin/Series/{{series_name}}/Season {{series_season}}/"
       label: tv-shows
       tags:
-        - flexget
+        - flexget-series
 
   ################################################################
   # Filmes adcionado com `flexget movie_list add (nome do filme|id_imdb)`
