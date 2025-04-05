@@ -28,7 +28,7 @@ require("lazy").setup({
 
 			-- Esta parte é para aplicar transparência no neovide.
 			if vim.g.neovide then
-				vim.g.neovide_transparency = 0.96
+				vim.g.neovide_opacity = 0.96
 				require("everforest").setup({
 					transparent_background_level = 0,
 				})
