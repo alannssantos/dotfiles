@@ -1,11 +1,7 @@
 # Tmux
-
 ![Screenshot of my desktop](https://raw.githubusercontent.com/alannssantos/dotfiles/master/.screenshots/Tmux.png "Screenshot")
-
 # Configuração.
-
 #### Crontab `/etc/crontab`.
-
 ```
 # For details see man 4 crontabs
 
@@ -21,7 +17,6 @@
 */30  */3   */3  * *    alann   /home/alann/.config/scripts/wallpapers.sh >/dev/null 2>&1
 ```
 #### Ip Fixo `/etc/network/interfaces`.
-
 ```
 # Configuração de IP Fixo.
 auto enp2s0
@@ -33,9 +28,7 @@ iface enp2s0 inet static
         broadcast 192.168.0.255
         gateway 192.168.0.1
 ```
-
 #### Samba `/etc/samba/smb.conf`.
-
 ```
 # Configuração de Compartilhamento.
 [Emby]
@@ -45,21 +38,20 @@ iface enp2s0 inet static
 	guest ok = yes
 
 ```
-
 #### Ativar o Bluetooth.
-
-```
+```bash
 $ sudo systemctl enable bluetooth
 $ sudo systemctl restart bluetooth
 $ systemctl status bluetooth
 ```
-
-#### [XFCE4 Docklike Plugin.](https://launchpad.net/~xubuntu-dev/+archive/ubuntu/extras/+packages)
-
+# Color Scheme para maioria dos terminais
+[Gogh - Color Schemes.](https://gogh-co.github.io/Gogh/)
+```bash
+bash -c "$(wget -qO- https://git.io/vQgMr)"
+```
 # Pen drive Bootável
-
 Use o comando `lsblk` para saber qual disco ultilizar (Cuidado para formatar o Sistema).
-
 ```bash
 sudo dd if="<destino do arquivo>" of="/dev/<drive destino>" bs=1M status=progress
 ```
+# [XFCE4 Docklike Plugin.](https://launchpad.net/~xubuntu-dev/+archive/ubuntu/extras/+packages)
