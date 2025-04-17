@@ -101,6 +101,10 @@ require("lazy").setup({
 					width_focus = 30,
 					width_preview = 60,
 				},
+				mappings = {
+					go_in = "L",
+					go_in_plus = "l", -- open file & close filetree
+				},
 			})
 			require("mini.clue").setup({
 				triggers = {
@@ -256,7 +260,6 @@ require("lazy").setup({
 
 				vim.diagnostic.config({
 					virtual_text = {
-						-- source = "always",  -- Or "if_many"
 						prefix = "●", -- Could be '■', '▎', 'x'
 					},
 					severity_sort = true,
