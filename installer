@@ -52,6 +52,7 @@ Sistema() {
     xinput \
     blueman \
     concalc \
+    flatpak \
     gparted \
     w3m-img \
     xdotool \
@@ -84,7 +85,8 @@ Sistema() {
     printer-driver-all \
     breeze-cursor-theme \
     libjpeg62-turbo-dev \
-    libimage-exiftool-perl -y &&
+    libimage-exiftool-perl \
+    gnome-software-plugin-flatpak -y &&
     sudo apt update &&
     sudo apt upgrade -y &&
     npm config set prefix "$HOME/.local" &&
