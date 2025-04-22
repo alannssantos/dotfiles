@@ -28,6 +28,7 @@ require("lazy").setup({
 
 			-- Esta parte é para aplicar transparência no neovide.
 			if vim.g.neovide then
+				vim.keymap.set("c", "<C-S-v>", "<C-R>+") -- Paste command mode
 				vim.g.neovide_opacity = 0.96
 				require("everforest").setup({
 					transparent_background_level = 0,
