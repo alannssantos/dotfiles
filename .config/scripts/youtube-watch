@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+notify-send -t 3000 "Playing Video" "$(xclip -o)"
+mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-60 "$(xclip -o)" >/dev/null 2>&1
