@@ -41,6 +41,7 @@ Sistema() {
     curl \
     lynx \
     peek \
+    foot \
     slop \
     tmux \
     atool \
@@ -54,12 +55,12 @@ Sistema() {
     concalc \
     flatpak \
     gparted \
+    secrets \
     w3m-img \
     xdotool \
     xsensors \
     alacritty \
     arc-theme \
-    keepassxc \
     pkg-config \
     streamlink \
     zlib1g-dev \
