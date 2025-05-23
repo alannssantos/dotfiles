@@ -88,7 +88,7 @@ Sistema() {
     libjpeg62-turbo-dev \
     libimage-exiftool-perl \
     gnome-software-plugin-flatpak -y &&
-    sudo apt update &&
+    sudo apt-add-repository contrib non-free &&
     sudo apt upgrade -y &&
     npm config set prefix "$HOME/.local" &&
     python3 -m venv "$HOME/.local" &&
