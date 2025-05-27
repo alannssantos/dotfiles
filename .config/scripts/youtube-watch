@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
 
-notify-send -t 3000 "Playing Video" "$(xclip -o)"
-mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-60 "$(xclip -o)" >/dev/null 2>&1
+url="$(xclip -o)"
+title="$(wget -qO- "$url" | sed -r '/<title>/!d;s/^.*<title>//;s/<\/title>.*$//')"
+
+notify-send -t 3000 "Playing Video" "$title"
+mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-60 "$url" >/dev/null 2>&1
