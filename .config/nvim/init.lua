@@ -34,7 +34,7 @@ vim.opt.colorcolumn = "80"
 vim.opt.smartindent = true
 vim.opt.foldmethod = "marker"
 vim.opt.relativenumber = true
-vim.opt.guifont = "Fira Code:h12"
+vim.opt.guifont = "Fira Code:h11"
 vim.opt.clipboard = "unnamedplus"
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
@@ -79,4 +79,4 @@ vim.api.nvim_create_autocmd("filetype", {
 	end,
 })
 
-require("lazy-plugin")
+require("lazy-pkg")
