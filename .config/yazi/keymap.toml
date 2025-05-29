@@ -2,6 +2,10 @@
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
 "$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
 
+# Plugins
+# ya pkg add yazi-rs/plugins:full-border
+# ya pkg add yazi-rs/plugins:mount
+
 [mgr]
 
 keymap = [
@@ -59,7 +63,6 @@ keymap = [
 	{ on = "<Tab>", run = "spot", desc = "Spot hovered file" },
 
 	# Operation
-	{ on = "S",            run = 'shell "$SHELL" --block',      desc = "Open $SHELL here" },
 	{ on = "o",            run = "open",                        desc = "Open selected files" },
 	{ on = "O",            run = "open --interactive",          desc = "Open selected files interactively" },
 	{ on = "<Enter>",      run = "open",                        desc = "Open selected files" },
@@ -79,9 +82,10 @@ keymap = [
 	{ on = ";",            run = "shell --interactive",         desc = "Run a shell command" },
 	{ on = ":",            run = "shell --block --interactive", desc = "Run a shell command (block until finishes)" },
 	{ on = "<C-h>",        run = "hidden toggle",               desc = "Toggle the visibility of hidden files" },
-	{ on = "s",            run = "search --via=fd",             desc = "Search files by name via fd" },
-	{ on = "S",            run = "search --via=rg",             desc = "Search files by content via ripgrep" },
+	{ on = "s",            run = "search --via=rg",             desc = "Search files by content via ripgrep" },
+	{ on = "S",            run = 'shell "$SHELL" --block',      desc = "Open $SHELL here" },
 	{ on = "<C-s>",        run = "escape --search",             desc = "Cancel the ongoing search" },
+	{ on = "M",            run = "plugin mount",                desc = "Mount disk manager" },
 	{ on = "z",            run = "plugin zoxide",               desc = "Jump to a directory via zoxide" },
 	{ on = "Z",            run = "plugin fzf",                  desc = "Jump to a file/directory via fzf" },
 
