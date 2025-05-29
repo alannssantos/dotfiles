@@ -29,7 +29,7 @@ fi
 
 #### Aliases.
 alias v='nvim'
-alias hx='helix'
+alias yz='yazi'
 alias ls='exa -l'
 alias mv='mv -iv'
 alias cp='cp -riv'
