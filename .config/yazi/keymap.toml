@@ -2,7 +2,7 @@
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
 "$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
 
-[manager]
+[mgr]
 
 keymap = [
 	{ on = "<Esc>", run = "escape",             desc = "Exit visual mode, clear selected, or cancel search" },
@@ -59,31 +59,31 @@ keymap = [
 	{ on = "<Tab>", run = "spot", desc = "Spot hovered file" },
 
 	# Operation
-	{ on = "o",         run = "open",                        desc = "Open selected files" },
-	{ on = "O",         run = "open --interactive",          desc = "Open selected files interactively" },
-	{ on = "<Enter>",   run = "open",                        desc = "Open selected files" },
-	{ on = "<S-Enter>", run = "open --interactive",          desc = "Open selected files interactively" },
-	{ on = "y",         run = "yank",                        desc = "Yank selected files (copy)" },
-	{ on = "x",         run = "yank --cut",                  desc = "Yank selected files (cut)" },
-	{ on = "p",         run = "paste",                       desc = "Paste yanked files" },
-	{ on = "P",         run = "paste --force",               desc = "Paste yanked files (overwrite if the destination exists)" },
-	{ on = "-",         run = "link",                        desc = "Symlink the absolute path of yanked files" },
-	{ on = "_",         run = "link --relative",             desc = "Symlink the relative path of yanked files" },
-	{ on = "<C-->",     run = "hardlink",                    desc = "Hardlink yanked files" },
-	{ on = "Y",         run = "unyank",                      desc = "Cancel the yank status" },
-	{ on = "X",         run = "unyank",                      desc = "Cancel the yank status" },
-	{ on = "d",         run = "remove",                      desc = "Trash selected files" },
-	{ on = "D",         run = "remove --permanently",        desc = "Permanently delete selected files" },
-	{ on = "a",         run = "create",                      desc = "Create a file (ends with / for directories)" },
-	{ on = "r",         run = "rename --cursor=before_ext",  desc = "Rename selected file(s)" },
-	{ on = ";",         run = "shell --interactive",         desc = "Run a shell command" },
-	{ on = ":",         run = "shell --block --interactive", desc = "Run a shell command (block until finishes)" },
-	{ on = "<C-h>",     run = "hidden toggle",               desc = "Toggle the visibility of hidden files" },
-	{ on = "s",         run = "search --via=fd",             desc = "Search files by name via fd" },
-	{ on = "S",         run = "search --via=rg",             desc = "Search files by content via ripgrep" },
-	{ on = "<C-s>",     run = "escape --search",             desc = "Cancel the ongoing search" },
-	{ on = "z",         run = "plugin zoxide",               desc = "Jump to a directory via zoxide" },
-	{ on = "Z",         run = "plugin fzf",                  desc = "Jump to a file/directory via fzf" },
+	{ on = "S",            run = 'shell "$SHELL" --block',      desc = "Open $SHELL here" },
+	{ on = "o",            run = "open",                        desc = "Open selected files" },
+	{ on = "O",            run = "open --interactive",          desc = "Open selected files interactively" },
+	{ on = "<Enter>",      run = "open",                        desc = "Open selected files" },
+	{ on = "<S-Enter>",    run = "open --interactive",          desc = "Open selected files interactively" },
+	{ on = [ "y", "y" ],   run = "yank",                        desc = "Yank selected files (copy)" },
+	{ on = [ "d", "d" ],   run = "yank --cut",                  desc = "Yank selected files (cut)" },
+	{ on = [ "p", "p" ],   run = "paste",                       desc = "Paste yanked files" },
+	{ on = "P",            run = "paste --force",               desc = "Paste yanked files (overwrite if the destination exists)" },
+	{ on = "-",            run = "link",                        desc = "Symlink the absolute path of yanked files" },
+	{ on = "_",            run = "link --relative",             desc = "Symlink the relative path of yanked files" },
+	{ on = "<C-->",        run = "hardlink",                    desc = "Hardlink yanked files" },
+	{ on = "Y",            run = "unyank",                      desc = "Cancel the yank status" },
+	{ on = [ "d", "D" ],   run = "remove",                      desc = "Trash selected files" },
+	{ on = [ "D", "D" ],   run = "remove --permanently",        desc = "Permanently delete selected files" },
+	{ on = "a",            run = "create",                      desc = "Create a file (ends with / for directories)" },
+	{ on = "r",            run = "rename --cursor=before_ext",  desc = "Rename selected file(s)" },
+	{ on = ";",            run = "shell --interactive",         desc = "Run a shell command" },
+	{ on = ":",            run = "shell --block --interactive", desc = "Run a shell command (block until finishes)" },
+	{ on = "<C-h>",        run = "hidden toggle",               desc = "Toggle the visibility of hidden files" },
+	{ on = "s",            run = "search --via=fd",             desc = "Search files by name via fd" },
+	{ on = "S",            run = "search --via=rg",             desc = "Search files by content via ripgrep" },
+	{ on = "<C-s>",        run = "escape --search",             desc = "Cancel the ongoing search" },
+	{ on = "z",            run = "plugin zoxide",               desc = "Jump to a directory via zoxide" },
+	{ on = "Z",            run = "plugin fzf",                  desc = "Jump to a file/directory via fzf" },
 
 	# Linemode
 	{ on = [ "m", "s" ], run = "linemode size",        desc = "Linemode: size" },
