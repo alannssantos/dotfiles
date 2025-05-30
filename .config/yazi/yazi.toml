@@ -2,7 +2,7 @@
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
 "$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
 
-[manager]
+[mgr]
 ratio          = [ 1, 4, 3 ]
 sort_by        = "alphabetical"
 sort_sensitive = false
@@ -115,6 +115,11 @@ preloaders = [
 	# Font
 	{ mime = "font/*", run = "font" },
 	{ mime = "application/ms-opentype", run = "font" },
+  # Do not preload gvfs mount_point
+  # Environment variable won't work here.
+  # Using absolute path instead.
+  { name = "/run/user/1000/gvfs/**/*", run = "noop" },
+  #... the rest of preloaders
 ]
 previewers = [
 	{ name = "*/", run = "folder", sync = true },
@@ -145,6 +150,13 @@ previewers = [
 	{ mime = "inode/empty", run = "empty" },
 	# Fallback
 	{ name = "*", run = "file" },
+  # Allow to preview folder.
+  { name = "*/", run = "folder", sync = true },
+  # Do not preview MTP mount_point (uncomment to except text file)
+  #  { mime = "{text/*,application/x-subrip}", run = "code" },
+  # Using absolute path.
+  { name = "/run/user/1000/gvfs/**/*", run = "noop" },
+  #... the rest of previewers
 ]
 
 [input]
