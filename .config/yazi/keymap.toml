@@ -4,7 +4,8 @@
 
 # Plugins
 # ya pkg add yazi-rs/plugins:full-border
-# ya pkg add yazi-rs/plugins:mount
+# ya pkg add boydaihungst/gvfs
+# ya pkg add KKV9/compress
 
 [mgr]
 
@@ -16,7 +17,7 @@ keymap = [
 	{ on = "<C-c>", run = "close",              desc = "Close the current tab, or quit if it's last" },
 	{ on = "<C-z>", run = "suspend",            desc = "Suspend the process" },
 
-	# Hopping
+  # Hopping
 	{ on = "k", run = "arrow -1", desc = "Move cursor up" },
 	{ on = "j", run = "arrow 1",  desc = "Move cursor down" },
 
@@ -85,9 +86,18 @@ keymap = [
 	{ on = "s",            run = "search --via=rg",             desc = "Search files by content via ripgrep" },
 	{ on = "S",            run = 'shell "$SHELL" --block',      desc = "Open $SHELL here" },
 	{ on = "<C-s>",        run = "escape --search",             desc = "Cancel the ongoing search" },
-	{ on = "M",            run = "plugin mount",                desc = "Mount disk manager" },
+	{ on = [ "c", "a" ],   run = "plugin compress",             desc = "Archive selected files" },
+	{ on = [ "c", "p" ],   run = "plugin compress -p",          desc = "Archive selected files (password)" },
 	{ on = "z",            run = "plugin zoxide",               desc = "Jump to a directory via zoxide" },
 	{ on = "Z",            run = "plugin fzf",                  desc = "Jump to a file/directory via fzf" },
+  # Add|Edit|Remove mountpoint: smb, sftp, ftp, nfs, google-drive, dns-sd, dav, davs, dav+sd, davs+sd, afp, afc, sshfs
+  # Read more about the schemes here: https://wiki.gnome.org/Projects(2f)gvfs(2f)schemes.html
+  # For example: smb://user:password@192.168.1.2/share, sftp://user@192.168.1.2/, ftp://192.168.1.2/
+  { on = [ "M", "a" ], run = "plugin gvfs -- add-mount",           desc = "Add a GVFS mount URI" },
+  { on = [ "M", "e" ], run = "plugin gvfs -- edit-mount",          desc = "Edit a GVFS mount URI" },
+  { on = [ "M", "r" ], run = "plugin gvfs -- remove-mount",        desc = "Remove a GVFS mount URI" },
+  { on = [ "M", "u" ], run = "plugin gvfs -- select-then-unmount", desc = "Select device then unmount" },
+  { on = [ "M", "m" ], run = "plugin gvfs -- select-then-mount",   desc = "Select device then mount" },
 
 	# Linemode
 	{ on = [ "m", "s" ], run = "linemode size",        desc = "Linemode: size" },
@@ -131,7 +141,7 @@ keymap = [
 	{ on = [ "g", "h" ],       run = "cd ~",                    desc = "Go home" },
 	{ on = [ "g", "c" ],       run = "cd ~/.config",            desc = "Goto ~/.config" },
 	{ on = [ "g", "d" ],       run = "cd ~/Downloads",          desc = "Goto ~/Downloads" },
- 	{ on = [ "g", "s" ],       run = "cd /run/user/1000/gvfs",  desc = "Goto /sftp" },
+ 	{ on = [ "g", "s" ],       run = "cd /run/user/1000/gvfs",  desc = "Goto sftp folders" },
  	{ on = [ "g", "m" ],       run = "cd /media",               desc = "Goto /media" },
 	{ on = [ "g", "<Space>" ], run = "cd --interactive",        desc = "Jump interactively" },
 
