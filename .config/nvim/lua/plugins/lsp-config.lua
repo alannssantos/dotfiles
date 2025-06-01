@@ -32,19 +32,13 @@ return {
 				end
 
 				vim.diagnostic.config({
-					virtual_text = {
-						prefix = "●", -- Could be '■', '▎', 'x'
-					},
+					virtual_text = { prefix = "●" },
 					severity_sort = true,
 					float = {
 						source = "always", -- Or "if_many"
+						border = "single",
 					},
 				})
-				local signs = { Error = "●", Warn = "●", Hint = "●", Info = "●" }
-				for type, icon in pairs(signs) do
-					local hl = "DiagnosticSign" .. type
-					vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-				end
 
 				local lsp_zero = require("lsp-zero")
 				lsp_zero.extend_lspconfig({
