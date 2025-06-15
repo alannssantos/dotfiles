@@ -49,6 +49,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 -- mapping
 vim.keymap.set("i", "jk", "<Esc>")
 vim.keymap.set("i", "kj", "<Esc>")
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 vim.keymap.set("n", "<Tab>", ":bNext<CR>", {})
 vim.keymap.set("n", "<leader>e", ":Lexplore<CR>")
 vim.keymap.set("n", "<leader><Tab>", ":tabNext<CR>", {})
