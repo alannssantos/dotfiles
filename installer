@@ -55,7 +55,6 @@ Sistema() {
     concalc \
     flatpak \
     gparted \
-    secrets \
     w3m-img \
     xdotool \
     xsensors \
@@ -76,7 +75,6 @@ Sistema() {
     network-manager \
     libfreetype6-dev \
     libxkbcommon-dev \
-    gnome-packagekit \
     paper-icon-theme \
     ffmpegthumbnailer \
     libfontconfig1-dev \
@@ -87,7 +85,7 @@ Sistema() {
     breeze-cursor-theme \
     libjpeg62-turbo-dev \
     libimage-exiftool-perl \
-    gnome-software-plugin-flatpak -y &&
+    software-properties-common -y &&
     sudo apt-add-repository contrib non-free &&
     sudo apt upgrade -y &&
     npm config set prefix "$HOME/.local" &&
