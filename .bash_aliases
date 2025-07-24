@@ -8,8 +8,8 @@ Cor=("\[\033[0m\]"
   "\[\033[1;36m\]"
   "\[\033[1;37m\]")
 
-export EDITOR="nvim"
-export SUDO_EDITOR="nvim"
+export EDITOR="hx"
+export SUDO_EDITOR="hx"
 
 #### Começo da Funções git status.
 gitU() { git status 2>&1 | tee | sed '/\t/!d;/:/d' | sed '$=' | sed '/\t/d;s/^//'; }
