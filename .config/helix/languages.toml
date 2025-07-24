@@ -9,16 +9,21 @@ indent = { tab-width = 2, unit = "  " }
 name = "lua"
 auto-format = true
 language-servers = ["lua-language-server"]
-formatter = { command = "stylua" }
+formatter = { command = "stylua", args = [ "-" ] }
 
 [[language]]
 name = "python"
 auto-format = true
 language-servers = ["pyright"]
-formatter = { command = "sh", args = ["-c", "black --quiet - | isort -"]}
+formatter = { command = "black", args = ["--quiet", "-"] }
 
 [[language]]
 name = "yaml"
 auto-format = true
 language-servers = ["yaml-language-server"]
 formatter = { command = "prettier", args = ["--parser", "yaml"] }
+
+[[language]]
+name = "markdown"
+auto-format = true
+language-servers = ["marksman"]
