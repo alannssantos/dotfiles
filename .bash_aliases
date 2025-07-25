@@ -30,6 +30,7 @@ fi
 #### Aliases.
 alias v='nvim'
 alias yz='yazi'
+alias hx='helix'
 alias ls='exa -l'
 alias mv='mv -iv'
 alias cp='cp -riv'
@@ -39,6 +40,7 @@ alias less='batcat'
 alias mkdir='mkdir -vp'
 alias tmuxd='tmux new -As0'
 alias grama='aspell check --lang=pt_BR'
+alias zellijd='zellij attach --create s0'
 alias legenda='subliminal --opensubtitles USERNAME PASSWORD download -l pt-br'
 alias yta-mp3='yt-dlp -c --extract-audio --audio-format mp3 -o "%(playlist_index)s-%(title)s.%(ext)s" --add-metadata'
 alias ytv-best='yt-dlp -c --add-metadata --format mp4 -o "%(title)s.%(ext)s"'
@@ -114,7 +116,7 @@ export MANPAGER="less -R --use-color -Dd+r -Du+b"
 export FZF_DEFAULT_COMMAND='find /home /media /mnt'
 export FZF_DEFAULT_OPTS="--color='bg+:#282C34,fg+:#99cc99,pointer:#99cc99,prompt:#99cc99,border:#99cc99' --border"
 
-bind '"\C-X":"tmuxd\n"'
+bind '"\C-X":"zellijd\n"'
 bind '"\C-F":"finder\n"'
 
 if [ -x "$(command -v debfetch)" ]; then
