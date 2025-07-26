@@ -1,3 +1,5 @@
+# Deve instalar os binários no path para lsp funcionar.
+# Na duvida consulte `hx --health [linguagem]`
 [[language]]
 name = "bash"
 auto-format = true
@@ -22,8 +24,3 @@ name = "yaml"
 auto-format = true
 language-servers = ["yaml-language-server"]
 formatter = { command = "prettier", args = ["--parser", "yaml"] }
-
-[[language]]
-name = "markdown"
-auto-format = true
-language-servers = ["marksman"]
