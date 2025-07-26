@@ -116,7 +116,7 @@ export MANPAGER="less -R --use-color -Dd+r -Du+b"
 export FZF_DEFAULT_COMMAND='find /home /media /mnt'
 export FZF_DEFAULT_OPTS="--color='bg+:#282C34,fg+:#99cc99,pointer:#99cc99,prompt:#99cc99,border:#99cc99' --border"
 
-bind '"\C-X":"zs0\n"'
+bind '"\C-X":"tmuxd\n"'
 bind '"\C-F":"finder\n"'
 
 if [ -x "$(command -v debfetch)" ]; then
