@@ -9,6 +9,11 @@ shell = ["sh", "-c"]
 bufferline = "always"
 line-number = "relative"
 
+[editor.indent-guides]
+render = true
+character = "▏" # Some characters that work well: "▏", "┆", "┊", "⸽"
+skip-levels = 1
+
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
