@@ -29,8 +29,6 @@ j = { k = "normal_mode" }
 
 [keys.normal.space]
 q = ":buffer-close"
-t.v = ":! tmux splitw -v -p 30"
-t.h = ":! tmux splitw -h -p 42"
 
 [editor.lsp]
 display-messages = true
