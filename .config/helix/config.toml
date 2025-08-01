@@ -1,4 +1,4 @@
-theme = "everforest_midnight"
+theme = "everforest_dark"
 
 [editor]
 mouse = false
@@ -11,8 +11,11 @@ line-number = "relative"
 
 [editor.indent-guides]
 render = true
-character = "▏" # Some characters that work well: "▏", "┆", "┊", "⸽"
+character = "▏"
 skip-levels = 1
+
+[editor.whitespace.render]
+newline = "all"
 
 [editor.cursor-shape]
 insert = "bar"
@@ -20,15 +23,10 @@ normal = "block"
 select = "underline"
 
 [keys.normal]
-X = "copy_selection_on_next_line"
 tab = "goto_next_buffer"
+space.q = ":buffer-close"
+X = "copy_selection_on_next_line"
 esc = ["collapse_selection", "keep_primary_selection"]
 
 [keys.insert]
 j = { k = "normal_mode" }
-
-[keys.normal.space]
-q = ":buffer-close"
-
-[editor.lsp]
-display-messages = true
