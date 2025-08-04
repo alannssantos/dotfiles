@@ -23,9 +23,11 @@ normal = "block"
 select = "underline"
 
 [keys.normal]
+Z.Q = ":quit!"
+Z.Z = ":write-quit!"
 tab = "goto_next_buffer"
 space.q = ":buffer-close"
-X = "copy_selection_on_next_line"
+a = ["append_mode", "collapse_selection"]
 esc = ["collapse_selection", "keep_primary_selection"]
 
 [keys.insert]
