@@ -32,7 +32,7 @@ ${Cor[0]}"
 ## Funções
 Sistema() {
   #### Aplicativos e Drivers Pos-instalação.
-  sudo apt install lf \
+  sudo apt install \
     bat \
     exa \
     mpv \
@@ -40,30 +40,21 @@ Sistema() {
     cups \
     curl \
     lynx \
-    peek \
     foot \
-    slop \
     tmux \
     atool \
     cmake \
     sshfs \
-    xclip \
     zsync \
     mcomix \
-    xinput \
-    blueman \
     concalc \
-    flatpak \
-    gparted \
-    w3m-img \
-    xdotool \
+    skanpage \
     xsensors \
     alacritty \
     arc-theme \
     pkg-config \
     streamlink \
     zlib1g-dev \
-    simple-scan \
     python3-dev \
     libxtst-dev \
     font-manager \
@@ -72,7 +63,6 @@ Sistema() {
     gvfs-backends \
     poppler-utils \
     fonts-firacode \
-    network-manager \
     libfreetype6-dev \
     libxkbcommon-dev \
     paper-icon-theme \
@@ -102,7 +92,6 @@ Sistema() {
 Configs() {
   #### Dependencias.
   sudo apt install cmake curl wget &&
-
     #### Copiar Dotfiles e Plugins.
     cp -r -v .config .irssi .bash_aliases .nanorc .Xresources ~/ &&
     echo -e "${Cor[4]}\nCopiando arquivos de configuração...${Cor[0]}" &&
@@ -113,12 +102,6 @@ Configs() {
   curl https://raw.githubusercontent.com/ivan-hc/AM/main/APP-MANAGER --create-dirs --output ~/.local/bin/appman &&
     chmod a+x ~/.local/bin/appman &&
     echo -e "${Cor[4]}\nAppImage Package (AppMan).${Cor[0]}" &&
-    echo -e "$Sussesso" ||
-    echo -e "$Fracasso"
-
-  #### Preview on LF.
-  git clone https://github.com/alannssantos/lfimg.git /tmp/lfimg && make -C /tmp/lfimg/ install &&
-    echo -e "${Cor[4]}\nPreview on LF.${Cor[0]}" &&
     echo -e "$Sussesso" ||
     echo -e "$Fracasso"
 
