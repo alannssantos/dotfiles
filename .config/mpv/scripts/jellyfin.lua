@@ -17,7 +17,7 @@ local options = {
 	show_on_idle = "",
 	use_playlist = "",
 	colour_default = "FFFFFF",
-	colour_selected = "FF",
+	colour_selected = "83C092",
 	colour_watched = "A0A0A0",
 }
 opt.read_options(options, mp.get_script_name())
