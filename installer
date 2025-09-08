@@ -35,6 +35,7 @@ Sistema() {
   sudo apt install \
     bat \
     exa \
+    fzf \
     mpv \
     npm \
     cups \
@@ -46,6 +47,7 @@ Sistema() {
     cmake \
     sshfs \
     zsync \
+    fdfind \
     mcomix \
     concalc \
     skanpage \
@@ -102,12 +104,6 @@ Configs() {
   curl https://raw.githubusercontent.com/ivan-hc/AM/main/APP-MANAGER --create-dirs --output ~/.local/bin/appman &&
     chmod a+x ~/.local/bin/appman &&
     echo -e "${Cor[4]}\nAppImage Package (AppMan).${Cor[0]}" &&
-    echo -e "$Sussesso" ||
-    echo -e "$Fracasso"
-
-  #### Fuzzy Finder.
-  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install --all &&
-    echo -e "${Cor[4]}\nFuzzy Finder.${Cor[0]}" &&
     echo -e "$Sussesso" ||
     echo -e "$Fracasso"
 
