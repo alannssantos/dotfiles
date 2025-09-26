@@ -48,7 +48,7 @@ tasks:
   #     port: 9091
   #     username: ""
   #     password: ""
-  #     path: "/media/HardDisk/Jellyfin/Animes/{{tvdb_series_name}}/Season {{tvdb_season}}/"
+  #     path: "/media/HardDisk/Jellyfin/Animes/{{series_name}}/"
   ################################################################
   # Series:
   #   discover:
@@ -89,7 +89,7 @@ tasks:
   #     port: 9091
   #     username: ""
   #     password: ""
-  #     path: "/media/HardDisk/Jellyfin/Series/{{tvdb_series_name}}/Season {{tvdb_season}}/"
+  #     path: "/media/HardDisk/Jellyfin/Series/{{series_name}}/Season {{series_season}}/"
   ################################################################
   # Filmes adcionado com `flexget movie_list add (nome do filme|id_imdb)`
   # Filmes:
