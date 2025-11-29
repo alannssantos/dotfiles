@@ -34,9 +34,10 @@ Sistema() {
   #### Aplicativos e Drivers Pos-instalação.
   sudo apt install \
     bat \
-    exa \
+    eza \
     fzf \
     mpv \
+    nnn \
     npm \
     cups \
     curl \
@@ -47,38 +48,28 @@ Sistema() {
     cmake \
     sshfs \
     zsync \
-    fdfind \
+    fd-find \
     mcomix \
     concalc \
     skanpage \
-    xsensors \
-    alacritty \
-    arc-theme \
     pkg-config \
     streamlink \
     zlib1g-dev \
     python3-dev \
     libxtst-dev \
-    font-manager \
     python3-full \
+    libfreetype6 \
     libgtk-3-dev \
     gvfs-backends \
     poppler-utils \
-    fonts-firacode \
-    libfreetype6-dev \
     libxkbcommon-dev \
-    paper-icon-theme \
     ffmpegthumbnailer \
     libfontconfig1-dev \
     libxcb-xfixes0-dev \
-    papirus-icon-theme \
     python3-libtorrent \
     printer-driver-all \
-    breeze-cursor-theme \
     libjpeg62-turbo-dev \
-    libimage-exiftool-perl \
-    software-properties-common -y &&
-    sudo apt-add-repository contrib non-free &&
+    libimage-exiftool-perl -y &&
     sudo apt upgrade -y &&
     npm config set prefix "$HOME/.local" &&
     python3 -m venv "$HOME/.local" &&
