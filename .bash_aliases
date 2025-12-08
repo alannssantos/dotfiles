@@ -96,6 +96,11 @@ mdtopdf() {
     ;
 }
 
+f() {
+    fff "$@"
+    cd "$(cat "${XDG_CACHE_HOME:=${HOME}/.cache}/fff/.fff_d")"
+}
+
 #### Exports.
 set -o vi
 export PATH="$PATH:$HOME/.local/bin"
