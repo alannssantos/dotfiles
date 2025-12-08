@@ -1,0 +1,7 @@
+export FFF_FILE_ICON=1
+
+export FFF_KEY_TO_TOP="g"
+export FFF_KEY_TO_BOTTOM="e"
+
+export FFF_FAV1=$HOME
+export FFF_FAV2=/media/
