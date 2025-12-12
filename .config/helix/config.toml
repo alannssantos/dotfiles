@@ -27,6 +27,7 @@ Z.Q = ":quit!"
 Z.Z = ":write-quit!"
 tab = "goto_next_buffer"
 space.q = ":buffer-close"
+S-tab = "goto_previous_buffer"
 space.m = ':! mdview "%{buffer_name}"'
 a = ["append_mode", "collapse_selection"]
 esc = ["collapse_selection", "keep_primary_selection"]
