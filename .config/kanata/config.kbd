@@ -27,7 +27,7 @@
   _     _     _    _    _    _    _    _    _    _    _    _    _   _
   _     _     _    _    _    _    _    _    _    _    _    _    _   _
   @caps _     _    _    _    _    _    _    _    _    _    _    _
-  _     _     _    _    _    _    _    _    _    _    _    _    _   _
+  _     _     _    _    @cop @pas _    _    _    _    _    _    _   _
   _     _     _                   _              _
 )
 (deflayer caps-mod
@@ -40,4 +40,6 @@
 )
 (defalias
       caps (tap-hold $tap-time $hold-time caps (layer-toggle caps-mod))
+      cop (tap-hold $tap-time $hold-time c C-c)
+      pas (tap-hold $tap-time $hold-time v C-v)
 )
