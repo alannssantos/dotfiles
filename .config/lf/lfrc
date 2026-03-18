@@ -1,9 +1,11 @@
 # Basic settings
 set info size
 set icons true
+set ratios 3:2
 set drawbox true
 set preview true
-set ratios 3:2
+set incfilter true
+set incsearch true
 set dircounts true
 set ignorecase true
 set cleaner ~/.config/lf/cleaner
@@ -81,6 +83,8 @@ map f filter
 map mk mkd Criar diretório
 map mf mkf Criar arquivo
 map dd cut
+map gg top
+map ge bottom
 map C clear
 map yy copy
 map pp paste
