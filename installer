@@ -105,9 +105,9 @@ Configs() {
     echo -e "$Fracasso"
 
   #### Nerd Fonts.
-  mkdir -vp "$HOME/.local/share/fonts/FiraCode"
-  wget -c "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.tar.xz" -P /tmp/ &&
-    tar -xf /tmp/FiraCode.tar.xz -C "$HOME/.local/share/fonts/FiraCode"
+  mkdir -vp "$HOME/.local/share/fonts/Iosevka"
+  wget -c "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Iosevka.tar.xz" -P /tmp/ &&
+    tar -xf /tmp/Iosevka.tar.xz -C "$HOME/.local/share/fonts/Iosevka"
   echo -e "${Cor[4]}\nNerd Fonts.${Cor[0]}" &&
     echo -e "$Sussesso" ||
     echo -e "$Fracasso"
