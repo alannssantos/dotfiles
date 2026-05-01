@@ -10,6 +10,7 @@ set dircounts true
 set ignorecase true
 set cleaner ~/.config/lf/cleaner
 set previewer ~/.config/lf/preview
+set rulerfmt " %d| \033[30;41m %m \033[0m| \033[30;43m %c \033[0m| \033[30;45m %s \033[0m| %i/%t| "
 
 #Para ter imagem no seu terminal.
 #https://github.com/cirala/lfimg
