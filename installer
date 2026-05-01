@@ -33,11 +33,11 @@ ${Cor[0]}"
 Sistema() {
   #### Aplicativos e Drivers Pos-instalação.
   sudo apt install \
+    lf \
     bat \
     eza \
     fzf \
     mpv \
-    nnn \
     npm \
     cups \
     curl \
@@ -60,6 +60,7 @@ Sistema() {
     python3-full \
     libfreetype6 \
     libgtk-3-dev \
+    wl-clipboard \
     gvfs-backends \
     poppler-utils \
     libxkbcommon-dev \
