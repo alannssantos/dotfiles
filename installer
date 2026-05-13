@@ -49,9 +49,7 @@ Sistema() {
     sshfs \
     zsync \
     fd-find \
-    mcomix \
     concalc \
-    skanpage \
     pkg-config \
     streamlink \
     zlib1g-dev \
