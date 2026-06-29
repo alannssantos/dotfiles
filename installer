@@ -33,6 +33,7 @@ ${Cor[0]}"
 Sistema() {
   #### Aplicativos e Drivers Pos-instalação.
   sudo apt install \
+    hx \
     lf \
     bat \
     eza \
@@ -42,7 +43,6 @@ Sistema() {
     cups \
     curl \
     lynx \
-    foot \
     tmux \
     atool \
     cmake \
@@ -72,9 +72,8 @@ Sistema() {
     sudo apt upgrade -y &&
     npm config set prefix "$HOME/.local" &&
     python3 -m venv "$HOME/.local" &&
+    source $HOME/.local/bin/activate &&
     pip3 install yt-dlp &&
-    pip3 install pyperclip &&
-    pip3 install comicthumb &&
     pip3 install gallery-dl &&
     echo -e "${Cor[4]}\nSistema!${Cor[0]}" &&
     echo -e "$Sussesso" ||
