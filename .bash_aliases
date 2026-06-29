@@ -27,10 +27,13 @@ if [ -f "$HOME"/.config/lf/icons ]; then
   . "$HOME"/.config/lf/icons
 fi
 
+if [ -f /etc/bash_completion ]; then
+  . /etc/bash_completion
+fi
+
 #### Aliases.
 alias v='nvim'
 alias yz='yazi'
-alias hx='helix'
 alias ls='exa -l'
 alias mv='mv -iv'
 alias cp='cp -riv'
