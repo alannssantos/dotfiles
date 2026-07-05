@@ -56,7 +56,7 @@ tasks:
   #       - next_series_seasons: yes
   #       - next_series_episodes: yes
   #     from:
-  #       - 1337x: yes
+  #       - piratebay: yes
   #     interval: 15 minutes
   #     release_estimations: loose
   #   content_size:
