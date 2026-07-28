@@ -61,6 +61,7 @@ mpv-stream() { nohup streamlink -p "mpv --cache 2048 --ontop --no-border --force
 
 # Flexget Movie Function.
 movie-add() { flexget movie-list add "$*"; }
+movie-list() { flexget movie-list list; }
 movie-del() { flexget movie-list del "$(flexget movie-list list |
   sed -r '/^│/!d' |
   awk -F"│" '{print $3}' |
