@@ -3,9 +3,9 @@
 #### Requisitos
 
 ```
-$ pip3 install flexget==3.1.50
+$ python -m pip install flexget==3.1.50
 $ sudo apt install python3-libtorrent
-$ pip3 install transmission-rpc
+$ python -m pip install transmission-rpc
 ```
 
 #### Crontab `/etc/crontab`.
