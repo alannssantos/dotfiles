@@ -73,8 +73,8 @@ Sistema() {
     npm config set prefix "$HOME/.local" &&
     python3 -m venv "$HOME/.local" &&
     source $HOME/.local/bin/activate &&
-    pip3 install yt-dlp &&
-    pip3 install gallery-dl &&
+    python -m pip install yt-dlp &&
+    python -m pip install gallery-dl &&
     echo -e "${Cor[4]}\nSistema!${Cor[0]}" &&
     echo -e "$Sussesso" ||
     echo -e "$Fracasso"
