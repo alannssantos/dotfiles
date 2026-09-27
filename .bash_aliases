@@ -44,8 +44,8 @@ alias mkdir='mkdir -vp'
 alias tmuxd='tmux new -As0'
 alias zs0='zellij attach --create s0'
 alias legenda='subliminal --opensubtitles USERNAME PASSWORD download -l pt-br'
-alias yta-mp3='yt-dlp -c --extract-audio --audio-format mp3 -o "%(playlist_index)s-%(title)s.%(ext)s" --add-metadata'
-alias ytv-best='yt-dlp -c --add-metadata --format mp4 -o "%(title)s.%(ext)s"'
+alias yta-mp3='yt-dlp -c --extract-audio -o "%(playlist_index)s-%(title)s.%(ext)s" --add-metadata'
+alias ytv-best='yt-dlp -c --add-metadata -o "%(title)s.%(ext)s"'
 alias ortografia='aspell check --lang=pt_BR'
 alias gallery-zip='gallery-dl --zip'
 
@@ -84,7 +84,7 @@ mkvsubflag() {
 livetv() {
   Channel_Name=$(yt-dlp --skip-download "$@" --print "channel")
   Channel_Url=$(yt-dlp --skip-download "$@" --print "channel_url")
-  yt-dlp --format "best[height<=720]" --skip-download -g "$@" > "$Channel_Name.strm"
+  yt-dlp --skip-download -g "$@" > "$Channel_Name.strm"
   yt-dlp --skip-download --write-thumbnail --playlist-items 0 --convert-thumbnails jpg --output "%(channel)s" "$Channel_Url"
 }
 
