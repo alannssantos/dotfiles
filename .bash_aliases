@@ -72,7 +72,7 @@ mkvsubflag() {
   for i in "$@"; do
     data=$(ffprobe -loglevel error -select_streams s -show_entries stream=index:stream_tags=language:stream_tags=title:stream_disposition=default -of csv=p=0 "$i")
     unset_track=$(sed -r '/[0-9]*,1,.*/!d;s/([0-9]*),1,.*/\1/' <<<"$data" | tail -1)
-    set_track=$(sed -r '/,por,.*Bra.il/!d;s/([0-9]*),.*/\1/' <<<"$data")
+    set_track=$(sed -r '/,por,.*Bra.il/!d;s/([0-9]*),.*/\1/' <<<"$data" | head -1)
     mkvpropedit "$i" \
       --edit track:@$(("$unset_track" + 1)) \
       --set flag-default=0 \
